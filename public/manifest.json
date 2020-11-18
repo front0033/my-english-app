@@ -1,22 +1,12 @@
 {
-  "short_name": "web boilerplate",
-  "name": "web boilerplate",
+  "short_name": "My English App",
+  "name": "My English App",
   "icons": [
     {
-      "src": "favicon_x5.ico",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "favicon_x5.ico",
-      "type": "image/x-icon",
-      "sizes": "192x192"
-    },
-    {
-      "src": "favicon_x5.ico",
-      "type": "image/x-icon",
-      "sizes": "512x512"
-    }	 
+    }
   ],
   "start_url": ".",
   "display": "standalone",
