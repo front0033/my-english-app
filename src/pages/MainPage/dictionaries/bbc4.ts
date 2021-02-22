@@ -30,36 +30,36 @@ export default {
       translate: 'к счастью',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'agenda',
+      translate: 'повестка дня',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'give you a clue',
+      translate: 'дать вам подсказку',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'presumably',
+      translate: 'предположительно',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'legal tender',
+      translate: 'законное платежное средство',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'settle',
+      translate: 'селиться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'recognize',
+      translate: 'распознавать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'fluctuates',
+      translate: 'колеблется',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'stock exchange',
+      translate: 'фондовая биржа',
     },
     {
       word: 'empty',
