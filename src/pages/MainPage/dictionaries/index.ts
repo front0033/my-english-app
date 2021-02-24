@@ -24,6 +24,7 @@ import film from './film';
 import le1002 from './lightEnglish2';
 import lingoaleo from './lingoaleo';
 import body from './body';
+import activeEnglish1 from './ActiveEnglish1';
 
 import IDictionary, {IDictionaryItem} from './types';
 
@@ -32,6 +33,7 @@ export const dictionary: Record<string, IDictionary> = {
   irregular1,
   lingoaleo,
   le1002,
+  activeEnglish1,
   body,
   bbc1,
   bbc2,
