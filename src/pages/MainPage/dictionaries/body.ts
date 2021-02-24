@@ -50,6 +50,126 @@ export default {
       translate: 'belly button',
     },
     {
+      word: 'forearm',
+      translate: 'предплечье',
+    },
+    {
+      word: 'forehead',
+      translate: 'лоб',
+    },
+    {
+      word: 'elbow',
+      translate: 'локоть',
+    },
+    {
+      word: 'mouth',
+      translate: 'рот',
+    },
+    {
+      word: 'yelashes',
+      translate: 'ресницы',
+    },
+    {
+      word: 'knee',
+      translate: 'колено',
+    },
+    {
+      word: 'jaw',
+      translate: 'челюсть',
+    },
+    {
+      word: 'calf',
+      translate: 'икра ноги',
+    },
+    {
+      word: 'heel',
+      translate: 'пятка',
+    },
+    {
+      word: 'shoulder',
+      translate: 'плечо',
+    },
+    {
+      word: 'shoulder blade',
+      translate: 'лопатка',
+    },
+    {
+      word: 'temple',
+      translate: 'висок',
+    },
+    {
+      word: 'nape',
+      translate: 'затылок',
+    },
+    {
+      word: 'nostril',
+      translate: 'nostril',
+    },
+    {
+      word: 'lips',
+      translate: 'губы',
+    },
+    {
+      word: 'eyebrows',
+      translate: 'брови',
+    },
+    {
+      word: 'neck',
+      translate: 'шея',
+    },
+    {
+      word: 'foot',
+      translate: 'нога',
+    },
+    {
+      word: 'leg',
+      translate: 'нога',
+    },
+    {
+      word: 'lap',
+      translate: 'колени (верхняя часть бедра)',
+    },
+    {
+      word: 'hip',
+      translate: 'бедро',
+    },
+    {
+      word: 'ears',
+      translate: 'уши',
+    },
+    {
+      word: 'eyes',
+      translate: 'глаза',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
       word: 'empty',
       translate: 'empty',
     },
