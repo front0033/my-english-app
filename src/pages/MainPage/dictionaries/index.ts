@@ -25,6 +25,7 @@ import le1002 from './lightEnglish2';
 import lingoaleo from './lingoaleo';
 import body from './body';
 import activeEnglish1 from './ActiveEnglish1';
+import different1 from './differendActiveEnglish';
 
 import IDictionary, {IDictionaryItem} from './types';
 
@@ -34,6 +35,7 @@ export const dictionary: Record<string, IDictionary> = {
   lingoaleo,
   le1002,
   activeEnglish1,
+  different1,
   body,
   bbc1,
   bbc2,

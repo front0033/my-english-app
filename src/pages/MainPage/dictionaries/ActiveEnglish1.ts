@@ -98,32 +98,32 @@ export default {
       translate: 'что-бы (можно просто to)',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'above',
+      translate: 'над',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'disagreement',
+      translate: 'несогласие',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'under control',
+      translate: 'под контролем',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'raising',
+      translate: 'повышение',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'as well',
+      translate: 'также',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'nessesary',
+      translate: 'необходимый',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'calmly',
+      translate: 'спокойно',
     },
     {
       word: 'empty',
