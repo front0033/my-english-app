@@ -110,12 +110,12 @@ export default {
       translate: 'отрезать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'turbulent',
+      translate: 'неспокойный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'various',
+      translate: 'различный',
     },
     {
       word: 'empty',

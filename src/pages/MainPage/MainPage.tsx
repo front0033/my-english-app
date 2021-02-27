@@ -12,6 +12,8 @@ import {
   Typography,
   AppBar,
   Toolbar,
+  Checkbox,
+  FormControlLabel,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
@@ -112,6 +114,7 @@ const MainPage = () => {
   const [selected, setSelected] = React.useState('irregular');
   const [count, setCount] = React.useState(0);
   const [show, setShow] = React.useState(false);
+  const [fromRussian, setFromRussian] = React.useState(false);
   const size = React.useRef(preparedDictionaries[selected].items.length);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,6 +142,10 @@ const MainPage = () => {
     window.open(`https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${word.replace('*', '').trim()}&op=translate`);
   };
 
+  const handleChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setFromRussian(checked);
+  };
+
   const iconButtonClasses = {root: `${classes.iconButton} ${classes.button}`};
 
   const translateIconClasses = {
@@ -159,11 +166,14 @@ const MainPage = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar color="transparent" position="static">
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
             <Typography variant="h6">My English App</Typography>
-            <Typography variant="subtitle2">{`Всего: ${allCountWorlds} слов`}</Typography>
+            <FormControlLabel
+              control={<Checkbox color="primary" checked={fromRussian} onChange={handleChecked} />}
+              label="from Russian"
+            />
           </Grid>
         </Toolbar>
       </AppBar>
@@ -192,9 +202,11 @@ const MainPage = () => {
           </TextField>
           <Typography className={classes.typographyCount}>{muchIsleft()}</Typography>
           <Typography className={`${classes.typographyWord} ${isImportant ? classes.important : ''}`}>
-            {selectedItem.word}
+            {fromRussian ? selectedItem.translate : selectedItem.word}
           </Typography>
-          <Typography className={classes.typographyTranslate}>{show && selectedItem.translate}</Typography>
+          <Typography className={classes.typographyTranslate}>
+            {show && (fromRussian ? selectedItem.word : selectedItem.translate)}
+          </Typography>
           <Grid className={classes.buttonContainer}>
             <Grid container justify="center">
               <IconButton classes={iconButtonClasses} onClick={goToGoogleTranslate(selectedItem.word)}>
@@ -215,8 +227,9 @@ const MainPage = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container justify="flex-end" className={classes.signature}>
-        Developed by Igor B.
+      <Grid container justify="space-between" className={classes.signature}>
+        <Typography variant="subtitle2">{`Всего: ${allCountWorlds} слов`}</Typography>
+        <Typography variant="subtitle2">Developed by Igor B.</Typography>
       </Grid>
     </>
   );
