@@ -26,10 +26,14 @@ import lingoaleo from './lingoaleo';
 import body from './body';
 import activeEnglish1 from './ActiveEnglish1';
 import different1 from './differendActiveEnglish';
+import newTranslates from './newTransatedWords';
+import dailyesl from './dailyesl';
 
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  dailyesl,
+  newTranslates,
   irregular,
   irregular1,
   lingoaleo,

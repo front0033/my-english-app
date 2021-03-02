@@ -62,64 +62,40 @@ export default {
       translate: 'фондовая биржа',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'generally good',
+      translate: 'достаточно хорошо',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'soared above',
+      translate: 'взлетел выше',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'riddle',
+      translate: 'загадка',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'brusque',
+      translate: 'резкий',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'up until',
+      translate: 'до',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'misinformation',
+      translate: 'дезинформация',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'must be suitable',
+      translate: 'должен быть подходящим',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'as should be',
+      translate: 'как должно быть',
     },
     {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
+      word: 'nuanced problem',
+      translate: 'тонкая проблема',
     },
     {
       word: 'empty',
