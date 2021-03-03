@@ -118,8 +118,8 @@ export default {
       translate: 'различный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'beyond',
+      translate: 'за , вне',
     },
     {
       word: 'empty',

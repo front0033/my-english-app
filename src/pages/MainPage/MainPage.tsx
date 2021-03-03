@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '80%',
       borderRadius: 10,
       margin: theme.spacing(2),
+      height: '100%',
     },
     select: {
       minWidth: '80%',
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
     typographyWord: {
       color: 'green',
       marginBottom: theme.spacing(2),
-      fontSize: 27,
+      fontSize: 25,
       textAlign: 'center',
       width: '100%',
       height: 60,
@@ -177,8 +178,8 @@ const MainPage = () => {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Grid container direction="column" alignItems="center" justify="center">
-        <Grid className={classes.container} container direction="column" alignItems="center" justify="center">
+      <Grid container direction="column" alignItems="center" justify="center" style={{height: '81%'}}>
+        <Grid className={classes.container} container direction="column" alignItems="center" justify="space-around">
           <TextField
             variant="outlined"
             className={classes.select}

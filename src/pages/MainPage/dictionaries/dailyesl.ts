@@ -38,28 +38,12 @@ export default {
       translate: 'въезжать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'unexpected expenses',
+      translate: 'непредвиденные расходы',
     },
     {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
+      word: 'college tuition',
+      translate: 'обучение в колледже',
     },
     {
       word: 'empty',
