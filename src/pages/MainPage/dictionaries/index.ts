@@ -29,6 +29,7 @@ import different1 from './differendActiveEnglish';
 import newTranslates from './newTransatedWords';
 import dailyesl from './dailyesl';
 import bank from './bank';
+import crime from './crime';
 
 import IDictionary, {IDictionaryItem} from './types';
 
@@ -36,6 +37,7 @@ export const dictionary: Record<string, IDictionary> = {
   dailyesl,
   bank,
   newTranslates,
+  crime,
   irregular,
   irregular1,
   lingoaleo,

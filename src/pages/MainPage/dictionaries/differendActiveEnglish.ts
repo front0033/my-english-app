@@ -122,12 +122,8 @@ export default {
       translate: 'за , вне',
     },
     {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
+      word: 'well off',
+      translate: 'состоятельный, богатый',
     },
     {
       word: 'empty',
