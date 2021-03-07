@@ -46,24 +46,24 @@ export default {
       translate: 'обучение в колледже',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'bite to eat',
+      translate: 'перекусить',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'drop by a local fast food',
+      translate: 'зайти в местный фаст-фуд',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'pick up',
+      translate: 'подбирать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'eats like a horse',
+      translate: 'ест как лошадь',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'I’m really famished',
+      translate: 'I’m really famished,',
     },
     {
       word: 'empty',

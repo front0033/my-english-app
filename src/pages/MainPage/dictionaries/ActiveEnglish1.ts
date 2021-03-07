@@ -6,8 +6,8 @@ export default {
       translate: 'возлюбленный',
     },
     {
-      word: 'tiny',
-      translate: 'крошечный',
+      word: 'a tiny amount of milk',
+      translate: 'небольшое количество молока',
     },
     {
       word: 'bitter',
@@ -118,12 +118,12 @@ export default {
       translate: 'также',
     },
     {
-      word: 'nessesary',
-      translate: 'необходимый',
+      word: 'necessary for you',
+      translate: 'необходимо вам',
     },
     {
-      word: 'calmly',
-      translate: 'спокойно',
+      word: 'he spoke slowly and CALMLY',
+      translate: 'он говорил медленно и СПОКОЙНО',
     },
     {
       word: 'empty',

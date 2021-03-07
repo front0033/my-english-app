@@ -98,8 +98,8 @@ export default {
       translate: 'тонкая проблема',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'almost',
+      translate: 'почти',
     },
     {
       word: 'empty',

@@ -70,7 +70,7 @@ export default {
       translate: 'человек, который бескорыстно заботится о благополучии других',
     },
     {
-      word: 'quet',
+      word: 'qiet',
       translate: 'тихий',
     },
     {

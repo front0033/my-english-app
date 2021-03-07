@@ -82,8 +82,8 @@ export default {
       translate: 'смятение',
     },
     {
-      word: 'regard',
-      translate: 'рассматривать, внимание',
+      word: 'must have regard',
+      translate: 'должен учитывать принцип',
     },
     {
       word: 'quoting',
@@ -138,24 +138,24 @@ export default {
       translate: 'три года спустя',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'appliance',
+      translate: 'прибор, устройство',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'laundromat',
+      translate: 'прачечная самообслуживания',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'dishwasher',
+      translate: 'посудомойка',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'dishes',
+      translate: 'посуда',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'dishwashing detergent',
+      translate: 'средство для мытья посуды',
     },
     {
       word: 'empty',
