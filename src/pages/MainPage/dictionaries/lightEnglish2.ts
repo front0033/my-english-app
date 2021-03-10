@@ -158,12 +158,12 @@ export default {
       translate: 'средство для мытья посуды',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'day off',
+      translate: 'выходной',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'amazing opportunity',
+      translate: 'потрясающая возможность',
     },
     {
       word: 'empty',

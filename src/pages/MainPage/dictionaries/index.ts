@@ -3,18 +3,18 @@ import two from './dictionary1';
 import three from './dictionary2';
 import four from './dictionary3';
 import five from './dictionary4';
-import six from './dictionary5';
+import preposition from './prepositions';
 import irregular from './irregularVerbs';
 import irregular1 from './irregularVerbs1';
-import eith from './dictionary7';
-import nine from './dictionary8';
-import ten from './dictionary9';
-import eleven from './dictionary10';
-import twelve from './dictionary11';
+import eith from './lightEnglish';
+import nine from './airport';
+import ten from './transport';
+import eleven from './bbc_b1';
+import twelve from './bbc_b2';
 import modal from './modal';
 import code from './code';
 import passive from './passiveVoice';
-import bbc1 from './dictionary12';
+import bbc1 from './bbc2021_1';
 import direction from './direction';
 import bbc2 from './bbc2';
 import bbc3 from './bbc3';
@@ -34,6 +34,7 @@ import crime from './crime';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  preposition,
   dailyesl,
   bank,
   newTranslates,
@@ -62,7 +63,6 @@ export const dictionary: Record<string, IDictionary> = {
   three,
   four,
   five,
-  six,
   modal,
   code,
   passive,

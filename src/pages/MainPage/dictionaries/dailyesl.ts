@@ -63,35 +63,35 @@ export default {
     },
     {
       word: 'I’m really famished',
-      translate: 'I’m really famished,',
+      translate: 'Я действительно голоден',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'attendant',
+      translate: 'обслуживающий, сопровождающий',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'engine',
+      translate: 'машина , двигатель',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'pressure in your tires',
+      translate: 'давление в ваших шинах',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'maintanance',
+      translate: 'тех обслуживание',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'fill the car up',
+      translate: 'заправить машину',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'pump',
+      translate: 'насос',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'a more fuel-efficient vehicle',
+      translate: 'более экономичный автомобиль',
     },
     {
       word: 'empty',
