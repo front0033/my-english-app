@@ -154,16 +154,16 @@ export default {
       translate: 'принадлежать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'work for',
+      translate: 'работать на',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'ask for',
+      translate: 'спросить',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'belongs to',
+      translate: 'принадлежит',
     },
     {
       word: 'empty',
