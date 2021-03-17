@@ -94,6 +94,103 @@ export default {
       translate: 'более экономичный автомобиль',
     },
     {
+      word: 'extremely well',
+      translate: 'очень хорошо',
+    },
+    {
+      word: 'Promotion',
+      translate: 'Повышение',
+    },
+    {
+      word: 'otherwise',
+      translate: 'иначе',
+    },
+    {
+      word: 'huge',
+      translate: ' огромный',
+    },
+    {
+      word: 'behaves',
+      translate: 'ведет себя',
+    },
+    {
+      word: 'creature',
+      translate: 'существо',
+    },
+    {
+      word: 'extinct species',
+      translate: 'вымершие виды',
+    },
+    {
+      word: 'exhibited',
+      translate: 'выставлен',
+    },
+    {
+      word: 'skull',
+      translate: 'череп',
+    },
+    {
+      word: 'importance',
+      translate: 'Значимость',
+    },
+    {
+      word: 'influential',
+      translate: 'влиятельный',
+    },
+    {
+      word: 'illegitimate',
+      translate: 'незаконный',
+    },
+    {
+      word: 'Since',
+      translate: 'с тех пор, с',
+    },
+    {
+      word: 'upbring',
+      translate: 'воспитание',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
       word: 'empty',
       translate: 'empty',
     },

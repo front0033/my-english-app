@@ -58,8 +58,8 @@ export default {
       translate: 'Экономить деньги',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'withdraw',
+      translate: 'снять со счета',
     },
     {
       word: 'empty',

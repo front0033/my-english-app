@@ -30,10 +30,12 @@ import newTranslates from './newTransatedWords';
 import dailyesl from './dailyesl';
 import bank from './bank';
 import crime from './crime';
+import phrasalVerbs from './phrasalVerbs';
 
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  phrasalVerbs,
   preposition,
   dailyesl,
   bank,

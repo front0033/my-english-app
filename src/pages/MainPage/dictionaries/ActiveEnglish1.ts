@@ -174,16 +174,16 @@ export default {
       translate: 'привлекать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'attend',
+      translate: 'присутствовать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'fluent',
+      translate: 'беглый',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'mostly',
+      translate: 'в основном',
     },
     {
       word: 'empty',
