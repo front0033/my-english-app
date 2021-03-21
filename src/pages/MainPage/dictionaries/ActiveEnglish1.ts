@@ -175,7 +175,7 @@ export default {
     },
     {
       word: 'attend',
-      translate: 'присутствовать',
+      translate: 'присутствовать, посещать',
     },
     {
       word: 'fluent',

@@ -150,12 +150,12 @@ export default {
       translate: 'воспитание',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'patience',
+      translate: 'терпение',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'conventions',
+      translate: 'условность',
     },
 
     {
