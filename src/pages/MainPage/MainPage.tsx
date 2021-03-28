@@ -25,18 +25,34 @@ import IDictionary from './dictionaries/types';
 
 let allCountWorlds = 0;
 type IDictionaries = Record<string, IDictionary>;
-const prepareDictionaries = (data: IDictionaries): IDictionaries => {
+const mixDictionaries = (data: IDictionaries): IDictionaries => {
   const result: IDictionaries = {};
 
   Object.keys(data).forEach(key => {
     const {name, items} = dictionaries[key];
     const filteredItems = items.filter(item => item.word !== 'empty');
     allCountWorlds += filteredItems.length;
-    const isIrregularVerbs = name === 'irregular verbs 1' || name === 'irregular verbs 2';
+    // const isIrregularVerbs = name === 'irregular verbs 1' || name === 'irregular verbs 2';
 
     result[key] = {
       name,
-      items: isIrregularVerbs ? filteredItems : shuffle(filteredItems),
+      items: shuffle(filteredItems),
+    };
+  });
+
+  return result;
+};
+
+const filterDictionaries = (data: IDictionaries): IDictionaries => {
+  const result: IDictionaries = {};
+
+  Object.keys(data).forEach(key => {
+    const {name, items} = dictionaries[key];
+    const filteredItems = items.filter(item => item.word !== 'empty');
+
+    result[key] = {
+      name,
+      items: filteredItems,
     };
   });
 
@@ -45,6 +61,10 @@ const prepareDictionaries = (data: IDictionaries): IDictionaries => {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    title: {
+      fontWeight: 'bold',
+      marginTop: 12,
+    },
     container: {
       width: '80%',
       borderRadius: 10,
@@ -107,15 +127,19 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
-const preparedDictionaries = prepareDictionaries(dictionaries);
+mixDictionaries(dictionaries);
 
 const MainPage = () => {
   const classes = useStyles();
+
+  const [preparedDictionaries, setPrepareDictionaries] = React.useState(filterDictionaries(dictionaries));
+
   const [selected, setSelected] = React.useState('irregular');
   const [count, setCount] = React.useState(0);
   const [show, setShow] = React.useState(false);
   const [fromRussian, setFromRussian] = React.useState(false);
+  const [googleTranslate, setGoogleTranslate] = React.useState(false);
+  const [mixed, setMixed] = React.useState(false);
   const size = React.useRef(preparedDictionaries[selected].items.length);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,11 +164,28 @@ const MainPage = () => {
   const muchIsleft = () => `${count + 1} / ${preparedDictionaries[selected].items.length}`;
 
   const goToGoogleTranslate = (word: string) => () => {
-    window.open(`https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${word.replace('*', '').trim()}&op=translate`);
+    const url = googleTranslate
+      ? `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${word.replace('*', '').trim()}`
+      : `https://wooordhunt.ru/word/${word.replace('*', '').trim()}`;
+    window.open(url);
   };
 
-  const handleChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  const handleFromChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
     setFromRussian(checked);
+  };
+
+  const handleGoogleChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setGoogleTranslate(checked);
+  };
+
+  const handleMixChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    if (checked) {
+      setMixed(true);
+      setPrepareDictionaries(mixDictionaries(dictionaries));
+    } else {
+      setMixed(false);
+      setPrepareDictionaries(filterDictionaries(dictionaries));
+    }
   };
 
   const iconButtonClasses = {root: `${classes.iconButton} ${classes.button}`};
@@ -170,11 +211,23 @@ const MainPage = () => {
       <AppBar color="transparent" position="static">
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
-            <Typography variant="h6">My English App</Typography>
-            <FormControlLabel
-              control={<Checkbox color="primary" checked={fromRussian} onChange={handleChecked} />}
-              label="from Russian"
-            />
+            <Typography variant="h6" className={classes.title}>
+              ENGLISH CARDS
+            </Typography>
+            <Grid container wrap="nowrap" justify="space-between">
+              <FormControlLabel
+                control={<Checkbox color="primary" checked={googleTranslate} onChange={handleGoogleChecked} />}
+                label="Google"
+              />
+              <FormControlLabel
+                control={<Checkbox color="primary" checked={mixed} onChange={handleMixChecked} />}
+                label="Mix"
+              />
+              <FormControlLabel
+                control={<Checkbox color="primary" checked={fromRussian} onChange={handleFromChecked} />}
+                label="from Russian"
+              />
+            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
@@ -191,11 +244,12 @@ const MainPage = () => {
             value={selected}
             id="business-rules-filter-select-is_summable"
           >
-            {Object.keys(dictionaries).map(key => {
+            {Object.keys(dictionaries).map((key, i) => {
               const {name} = dictionaries[key];
 
               return (
-                <MenuItem key={name} value={key} id={`dictionary-${name}`}>
+                // eslint-disable-next-line react/no-array-index-key
+                <MenuItem key={name + i} value={key} id={`dictionary-${name}`}>
                   {name}
                 </MenuItem>
               );

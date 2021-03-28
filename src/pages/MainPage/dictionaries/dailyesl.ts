@@ -159,28 +159,28 @@ export default {
     },
 
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'carefree',
+      translate: 'беззаботный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'inspect',
+      translate: 'изучать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'encouraged',
+      translate: 'поощрял',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'scary',
+      translate: 'страшный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'trick or treat',
+      translate: 'кошелек или жизнь',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'candy',
+      translate: 'сладкий , конфета',
     },
     {
       word: 'empty',

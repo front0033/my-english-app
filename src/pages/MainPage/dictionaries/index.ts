@@ -32,9 +32,11 @@ import bank from './bank';
 import crime from './crime';
 import catchenglish from './catchenglish';
 import phrasalVerbs from './phrasalVerbs';
+import AE2 from './ActiveEnglish2';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  AE2,
   catchenglish,
   phrasalVerbs,
   preposition,
