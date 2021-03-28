@@ -207,7 +207,7 @@ export default {
     },
     {
       word: 'rather *',
-      translate: 'скорее',
+      translate: 'довольно',
     },
     {
       word: 'imperfection',

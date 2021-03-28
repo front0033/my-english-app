@@ -216,16 +216,13 @@ const MainPage = () => {
             </Typography>
             <Grid container wrap="nowrap" justify="space-between">
               <FormControlLabel
-                control={<Checkbox color="primary" checked={googleTranslate} onChange={handleGoogleChecked} />}
+                control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
                 label="Google"
               />
+              <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
               <FormControlLabel
-                control={<Checkbox color="primary" checked={mixed} onChange={handleMixChecked} />}
-                label="Mix"
-              />
-              <FormControlLabel
-                control={<Checkbox color="primary" checked={fromRussian} onChange={handleFromChecked} />}
-                label="from Russian"
+                control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
+                label="From Russian"
               />
             </Grid>
           </Grid>
