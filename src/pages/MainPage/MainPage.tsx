@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
+import LanguageIcon from '@material-ui/icons/Language';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import dictionaries from './dictionaries';
@@ -262,7 +263,7 @@ const MainPage = () => {
           <Grid className={classes.buttonContainer}>
             <Grid container justify="center">
               <IconButton classes={iconButtonClasses} onClick={goToGoogleTranslate(selectedItem.word)}>
-                <GTranslateIcon color="primary" />
+                {googleTranslate ? <GTranslateIcon color="primary" /> : <LanguageIcon color="primary" />}
               </IconButton>
               <IconButton classes={translateIconClasses} onClick={handleShowTranslate} disabled={show}>
                 <TranslateIcon color={show ? 'disabled' : 'primary'} />
