@@ -15,12 +15,20 @@ import {
   Checkbox,
   FormControlLabel,
   Drawer,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import LanguageIcon from '@material-ui/icons/Language';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ShuffleIcon from '@material-ui/icons/Shuffle';
+import FlagIcon from '@material-ui/icons/Flag';
 import MenuIcon from '@material-ui/icons/Menu';
 import dictionaries from './dictionaries';
 import shuffle from './tools';
@@ -72,6 +80,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+    },
+    drawerHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: 'flex-end',
     },
     container: {
       width: '80%',
@@ -248,16 +264,46 @@ const MainPage = () => {
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerAnchor} onClose={toggleDrawer}>
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={toggleDrawer}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
         <Grid container direction="column" className={classes.checkboxContainer}>
-          <FormControlLabel
-            control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
-            label="Google"
-          />
-          <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
-          <FormControlLabel
-            control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
-            label="From Russian"
-          />
+          <Typography variant="subtitle1">Settings</Typography>
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <GTranslateIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText>
+                <FormControlLabel
+                  control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
+                  label="Google"
+                />
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <ShuffleIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText>
+                <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <FlagIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText>
+                <FormControlLabel
+                  control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
+                  label="From Russian"
+                />
+              </ListItemText>
+            </ListItem>
+          </List>
         </Grid>
       </Drawer>
       <Grid container direction="column" alignItems="center" justify="center" style={{height: '81%'}}>
