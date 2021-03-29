@@ -14,12 +14,14 @@ import {
   Toolbar,
   Checkbox,
   FormControlLabel,
+  Drawer,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import LanguageIcon from '@material-ui/icons/Language';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import MenuIcon from '@material-ui/icons/Menu';
 import dictionaries from './dictionaries';
 import shuffle from './tools';
 import IDictionary from './dictionaries/types';
@@ -64,7 +66,12 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
       fontWeight: 'bold',
-      marginTop: 12,
+    },
+    checkboxContainer: {
+      padding: theme.spacing(2),
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
     },
     container: {
       width: '80%',
@@ -141,6 +148,8 @@ const MainPage = () => {
   const [fromRussian, setFromRussian] = React.useState(false);
   const [googleTranslate, setGoogleTranslate] = React.useState(false);
   const [mixed, setMixed] = React.useState(false);
+  const [drawerAnchor, setDrawerAnchor] = React.useState(false);
+
   const size = React.useRef(preparedDictionaries[selected].items.length);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -189,6 +198,17 @@ const MainPage = () => {
     }
   };
 
+  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    setDrawerAnchor(!drawerAnchor);
+  };
+
   const iconButtonClasses = {root: `${classes.iconButton} ${classes.button}`};
 
   const translateIconClasses = {
@@ -209,26 +229,37 @@ const MainPage = () => {
 
   return (
     <>
-      <AppBar color="transparent" position="static">
+      <AppBar position="static">
         <Toolbar>
-          <Grid container justify="space-between" alignItems="center">
+          <Grid container justify="flex-start" alignItems="center">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
             <Typography variant="h6" className={classes.title}>
               ENGLISH CARDS
             </Typography>
-            <Grid container wrap="nowrap" justify="space-between">
-              <FormControlLabel
-                control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
-                label="Google"
-              />
-              <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
-              <FormControlLabel
-                control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
-                label="From Russian"
-              />
-            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
+      <Drawer anchor="left" open={drawerAnchor} onClose={toggleDrawer}>
+        <Grid container direction="column" className={classes.checkboxContainer}>
+          <FormControlLabel
+            control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
+            label="Google"
+          />
+          <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
+          <FormControlLabel
+            control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
+            label="From Russian"
+          />
+        </Grid>
+      </Drawer>
       <Grid container direction="column" alignItems="center" justify="center" style={{height: '81%'}}>
         <Grid className={classes.container} container direction="column" alignItems="center" justify="space-around">
           <TextField

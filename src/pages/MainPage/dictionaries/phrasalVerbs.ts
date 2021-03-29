@@ -186,8 +186,8 @@ export default {
       translate: 'откладывать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'wrap up',
+      translate: 'завершать',
     },
     {
       word: 'empty',
