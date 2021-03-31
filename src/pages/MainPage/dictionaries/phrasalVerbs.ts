@@ -190,8 +190,8 @@ export default {
       translate: 'завершать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'scare off',
+      translate: 'отпугивать',
     },
     {
       word: 'empty',

@@ -102,12 +102,12 @@ export default {
       translate: 'грязный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'instead',
+      translate: 'вместо',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'upside-down',
+      translate: 'вверх ногами',
     },
     {
       word: 'empty',

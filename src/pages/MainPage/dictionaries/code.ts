@@ -50,8 +50,8 @@ export default {
       translate: 'запуск',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'single-threaded',
+      translate: 'однопоточный',
     },
     {
       word: 'empty',

@@ -33,9 +33,11 @@ import crime from './crime';
 import catchenglish from './catchenglish';
 import phrasalVerbs from './phrasalVerbs';
 import AE2 from './ActiveEnglish2';
+import VERBS from './verbs';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  VERBS,
   AE2,
   catchenglish,
   phrasalVerbs,
