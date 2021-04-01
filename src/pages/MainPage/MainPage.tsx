@@ -162,7 +162,7 @@ const MainPage = () => {
   const [count, setCount] = React.useState(0);
   const [show, setShow] = React.useState(false);
   const [fromRussian, setFromRussian] = React.useState(false);
-  const [googleTranslate, setGoogleTranslate] = React.useState(false);
+  const [googleTranslate, setGoogleTranslate] = React.useState(true);
   const [mixed, setMixed] = React.useState(false);
   const [drawerAnchor, setDrawerAnchor] = React.useState(false);
 
