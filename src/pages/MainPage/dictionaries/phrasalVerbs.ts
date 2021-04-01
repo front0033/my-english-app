@@ -194,32 +194,32 @@ export default {
       translate: 'отпугивать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'set off',
+      translate: 'отправляться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'evaluate',
+      translate: 'оценивать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'list',
+      translate: 'список',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'involve',
+      translate: 'вовлекать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'revolve',
+      translate: 'вращаться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'possess',
+      translate: 'владеть',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'remark',
+      translate: 'отметить',
     },
     {
       word: 'empty',
