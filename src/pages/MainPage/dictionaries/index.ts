@@ -34,9 +34,11 @@ import catchenglish from './catchenglish';
 import phrasalVerbs from './phrasalVerbs';
 import AE2 from './ActiveEnglish2';
 import VERBS from './verbs';
+import weather from './weather';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  weather,
   VERBS,
   AE2,
   catchenglish,

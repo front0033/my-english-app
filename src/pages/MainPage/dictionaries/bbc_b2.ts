@@ -365,5 +365,9 @@ export default {
       word: 'otherworldly',
       translate: 'потусторонний',
     },
+    {
+      word: 'leftovers',
+      translate: 'остатки',
+    },
   ],
 };

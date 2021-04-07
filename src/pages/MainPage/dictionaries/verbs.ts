@@ -242,12 +242,12 @@ export default {
       translate: 'угрожать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'reheat',
+      translate: 'разогреть',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'deserve',
+      translate: 'заслуживать',
     },
     {
       word: 'empty',
