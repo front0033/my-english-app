@@ -102,36 +102,44 @@ export default {
       translate: 'почти',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'sweet tooth',
+      translate: 'сладкоежка',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'nephew',
+      translate: 'племянник',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'at all costs',
+      translate: 'любой ценой',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'plant-based',
+      translate: 'на растительной основе',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'belong',
+      translate: 'принадлежать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'above',
+      translate: 'над',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'special treat',
+      translate: 'особая награда',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'enormous',
+      translate: 'огромный',
+    },
+    {
+      word: 'creatures',
+      translate: 'существа',
+    },
+    {
+      word: 'These people point ',
+      translate: 'Эти люди указывают',
     },
   ],
 };

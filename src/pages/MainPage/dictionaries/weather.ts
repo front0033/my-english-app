@@ -35,7 +35,7 @@ export default {
     },
     {
       word: 'mild',
-      translate: 'комфортная магкая погода',
+      translate: 'комфортная мягкая погода',
     },
     {
       word: 'pouring rain',

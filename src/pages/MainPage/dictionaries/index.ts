@@ -38,6 +38,7 @@ import weather from './weather';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  bbc4,
   weather,
   VERBS,
   AE2,
@@ -58,7 +59,6 @@ export const dictionary: Record<string, IDictionary> = {
   bbc1,
   bbc2,
   bbc3,
-  bbc4,
   le02,
   direction,
   film,

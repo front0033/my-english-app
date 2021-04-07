@@ -250,8 +250,8 @@ export default {
       translate: 'заслуживать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'belong',
+      translate: 'принадлежать',
     },
     {
       word: 'empty',
