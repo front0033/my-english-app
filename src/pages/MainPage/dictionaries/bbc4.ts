@@ -141,5 +141,9 @@ export default {
       word: 'These people point ',
       translate: 'Эти люди указывают',
     },
+    {
+      word: 'passion',
+      translate: 'страсть',
+    },
   ],
 };

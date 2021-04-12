@@ -35,9 +35,11 @@ import phrasalVerbs from './phrasalVerbs';
 import AE2 from './ActiveEnglish2';
 import VERBS from './verbs';
 import weather from './weather';
+import streamline from './streamline';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  streamline,
   bbc4,
   weather,
   VERBS,

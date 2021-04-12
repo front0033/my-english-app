@@ -254,20 +254,20 @@ export default {
       translate: 'принадлежать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'retain',
+      translate: 'удерживать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'spoil',
+      translate: 'портиться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'to wed',
+      translate: 'жениться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'seed',
+      translate: 'сеять',
     },
     {
       word: 'empty',
