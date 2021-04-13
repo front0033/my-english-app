@@ -6,6 +6,18 @@ export default {
       translate: 'должен (до договоренности)',
     },
     {
+      word: 'ought to',
+      translate: 'должен (до договоренности)',
+    },
+    {
+      word: 'need to',
+      translate: 'нужно',
+    },
+    {
+      word: 'better to',
+      translate: 'лучше ',
+    },
+    {
       word: 'should',
       translate: 'может сделать (рекомендация) с i think, i dont think',
     },
