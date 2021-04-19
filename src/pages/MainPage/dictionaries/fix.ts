@@ -89,5 +89,9 @@ export default {
       word: 'drill a hole',
       translate: 'просверлить отверстие',
     },
+    {
+      word: 'addicted to',
+      translate: 'зависим',
+    },
   ],
 };

@@ -36,9 +36,11 @@ import AE2 from './ActiveEnglish2';
 import VERBS from './verbs';
 import weather from './weather';
 import streamline from './streamline';
+import activeArile from './active_aprile';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  activeArile,
   streamline,
   bbc4,
   weather,

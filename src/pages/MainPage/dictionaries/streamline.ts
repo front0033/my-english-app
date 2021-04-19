@@ -66,8 +66,17 @@ export default {
       translate: 'забочусь о',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'since last year',
+      translate: 'с прошлого года',
+    },
+    {
+      word: 'in 2 days',
+      translate: 'через 2 дня',
+    },
+
+    {
+      word: 'I taught my lessons FOR 2 hours',
+      translate: 'Я учил уроки 2 часа',
     },
   ],
 };
