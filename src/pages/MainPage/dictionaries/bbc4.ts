@@ -145,5 +145,69 @@ export default {
       word: 'passion',
       translate: 'страсть',
     },
+    {
+      word: 'artificial',
+      translate: 'искусственный',
+    },
+    {
+      word: 'insect',
+      translate: 'насекомое',
+    },
+    {
+      word: 'we start as ever',
+      translate: 'мы начинаем как всегда',
+    },
+    {
+      word: 'disproving',
+      translate: 'опровергающий',
+    },
+    {
+      word: 'hunch',
+      translate: 'догадываться',
+    },
+    {
+      word: 'particular',
+      translate: 'специфический',
+    },
+    {
+      word: 'restrictions',
+      translate: 'ограничения',
+    },
+    {
+      word: 'stringent',
+      translate: 'строгий',
+    },
+    {
+      word: 'ingesting food',
+      translate: 'глотание пищи',
+    },
+    {
+      word: 'tough',
+      translate: 'жесткий',
+    },
+    {
+      word: 'shelves',
+      translate: 'полки',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
   ],
 };

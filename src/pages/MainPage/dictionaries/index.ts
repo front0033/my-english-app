@@ -40,9 +40,9 @@ import activeArile from './active_aprile';
 import IDictionary, {IDictionaryItem} from './types';
 
 export const dictionary: Record<string, IDictionary> = {
+  bbc4,
   activeArile,
   streamline,
-  bbc4,
   weather,
   VERBS,
   AE2,
