@@ -190,24 +190,24 @@ export default {
       translate: 'полки',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'confident',
+      translate: 'уверенная в себе',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'painful',
+      translate: 'болезненный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'infancy',
+      translate: 'младенчество',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'prevalence',
+      translate: 'распространенность',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'meantime',
+      translate: 'тем временем',
     },
   ],
 };
