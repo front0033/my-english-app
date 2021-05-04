@@ -1,9 +1,12 @@
+import IDictionary from './types';
+
 export default {
   name: 'VERBS',
   items: [
     {
       word: 'Rely',
-      translate: ' полагаться',
+      translate: 'полагаться',
+      example: 'I know I can rely on your discretion',
     },
     {
       word: 'behave',
@@ -228,6 +231,7 @@ export default {
     {
       word: 'hike',
       translate: 'идти пешком',
+      example: 'we planned to hike another mile up a steep trail',
     },
     {
       word: 'devote',
@@ -298,4 +302,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;

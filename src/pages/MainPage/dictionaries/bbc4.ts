@@ -209,5 +209,13 @@ export default {
       word: 'meantime',
       translate: 'тем временем',
     },
+    {
+      word: 'affordable',
+      translate: 'доступный',
+    },
+    {
+      word: 'foodie',
+      translate: 'Гурман',
+    },
   ],
 };

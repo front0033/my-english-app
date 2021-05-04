@@ -20,6 +20,11 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
@@ -30,6 +35,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import FlagIcon from '@material-ui/icons/Flag';
 import MenuIcon from '@material-ui/icons/Menu';
+import DescriptionIcon from '@material-ui/icons/Description';
 import dictionaries from './dictionaries';
 import shuffle from './tools';
 import IDictionary from './dictionaries/types';
@@ -122,7 +128,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
       fontSize: 16,
       textAlign: 'center',
-      width: '!00%',
+      width: '100%',
     },
     buttonContainer: {
       border: `2px solid ${theme.palette.primary.main}`,
@@ -146,8 +152,13 @@ const useStyles = makeStyles((theme: Theme) =>
     important: {
       backgroundColor: theme.palette.secondary.light,
       color: theme.palette.common.white,
-      paddingLeft: theme.spacing(1),
+
       paddingRight: theme.spacing(2),
+    },
+    exampleIcon: {
+      marginLeft: theme.spacing(1),
+      marginBottom: -3,
+      height: 16,
     },
   })
 );
@@ -165,6 +176,7 @@ const MainPage = () => {
   const [googleTranslate, setGoogleTranslate] = React.useState(true);
   const [mixed, setMixed] = React.useState(false);
   const [drawerAnchor, setDrawerAnchor] = React.useState(false);
+  const [example, setExample] = React.useState('');
 
   const size = React.useRef(preparedDictionaries[selected].items.length);
 
@@ -334,8 +346,11 @@ const MainPage = () => {
           <Typography className={`${classes.typographyWord} ${isImportant ? classes.important : ''}`}>
             {fromRussian ? selectedItem.translate : selectedItem.word}
           </Typography>
-          <Typography className={classes.typographyTranslate}>
+          <Typography className={classes.typographyTranslate} noWrap>
             {show && (fromRussian ? selectedItem.word : selectedItem.translate)}
+            {show && selectedItem.example && (
+              <DescriptionIcon className={classes.exampleIcon} onClick={() => setExample(selectedItem.example || '')} />
+            )}
           </Typography>
           <Grid className={classes.buttonContainer}>
             <Grid container justify="center">
@@ -361,6 +376,19 @@ const MainPage = () => {
         <Typography variant="subtitle2">{`Всего: ${allCountWorlds} слов`}</Typography>
         <Typography variant="subtitle2">Developed by Igor B.</Typography>
       </Grid>
+      {!!example && (
+        <Dialog onClose={() => setExample('')} aria-labelledby="customized-dialog-title" open={!!example}>
+          <DialogTitle id="customized-dialog-title">Example</DialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>{example}</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={() => setExample('')} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

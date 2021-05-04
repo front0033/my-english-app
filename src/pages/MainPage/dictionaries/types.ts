@@ -1,6 +1,7 @@
 export interface IDictionaryItem {
   word: string;
   translate: string;
+  example?: string;
 }
 
 interface IDictionary {
