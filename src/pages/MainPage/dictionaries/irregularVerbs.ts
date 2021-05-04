@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'irregular verbs 1',
   items: [
@@ -274,4 +276,4 @@ export default {
       translate: 'рисовать',
     },
   ],
-};
+} as IDictionary;

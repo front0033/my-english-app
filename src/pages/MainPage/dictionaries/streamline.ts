@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'streamline',
   items: [
@@ -79,4 +81,4 @@ export default {
       translate: 'Я учил уроки 2 часа',
     },
   ],
-};
+} as IDictionary;

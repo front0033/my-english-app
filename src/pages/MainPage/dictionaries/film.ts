@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'film',
   items: [
@@ -70,4 +72,4 @@ export default {
       translate: 'саундтрек',
     },
   ],
-};
+} as IDictionary;

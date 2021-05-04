@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'transport',
   items: [
@@ -90,4 +92,4 @@ export default {
       translate: 'путешествие',
     },
   ],
-};
+} as IDictionary;

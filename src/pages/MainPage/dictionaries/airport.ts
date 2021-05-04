@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'airport',
   items: [
@@ -38,4 +40,4 @@ export default {
       translate: 'проход',
     },
   ],
-};
+} as IDictionary;

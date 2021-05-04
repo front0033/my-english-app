@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'BBC Learning English B1',
   items: [
@@ -242,4 +244,4 @@ export default {
       translate: 'ссылаться',
     },
   ],
-};
+} as IDictionary;

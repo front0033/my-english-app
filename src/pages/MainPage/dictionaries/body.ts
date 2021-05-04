@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Body',
   items: [
@@ -142,4 +144,4 @@ export default {
       translate: 'глаза',
     },
   ],
-};
+} as IDictionary;

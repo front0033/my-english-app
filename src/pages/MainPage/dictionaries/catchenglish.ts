@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'dailyesl',
   items: [
@@ -198,4 +200,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;

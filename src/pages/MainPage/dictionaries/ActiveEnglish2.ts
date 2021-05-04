@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Active English 2',
   items: [
@@ -250,4 +252,4 @@ export default {
       translate: 'неохотно',
     },
   ],
-};
+} as IDictionary;

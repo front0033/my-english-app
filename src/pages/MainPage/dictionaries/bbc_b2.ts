@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'BBC Learning English B2',
   items: [
@@ -370,4 +372,4 @@ export default {
       translate: 'остатки',
     },
   ],
-};
+} as IDictionary;

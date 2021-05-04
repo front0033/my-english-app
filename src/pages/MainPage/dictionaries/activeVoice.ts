@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Active voice',
   items: [
@@ -10,4 +12,4 @@ export default {
       translate: 'Открыли дверь',
     },
   ],
-};
+} as IDictionary;

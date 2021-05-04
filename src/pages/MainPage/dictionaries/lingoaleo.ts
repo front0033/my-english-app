@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'lingoaleo',
   items: [
@@ -234,4 +236,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;

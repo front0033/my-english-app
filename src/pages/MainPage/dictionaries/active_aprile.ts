@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Active Aprile 2021',
   items: [
@@ -90,4 +92,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;

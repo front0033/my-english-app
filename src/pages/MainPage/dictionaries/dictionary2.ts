@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'three',
   items: [
@@ -202,4 +204,4 @@ export default {
       translate: 'соревнование',
     },
   ],
-};
+} as IDictionary;

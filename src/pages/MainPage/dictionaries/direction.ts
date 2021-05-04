@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Direction',
   items: [
@@ -94,4 +96,4 @@ export default {
       translate: 'Поверните вправо на кольцевой развязке дороги.',
     },
   ],
-};
+} as IDictionary;

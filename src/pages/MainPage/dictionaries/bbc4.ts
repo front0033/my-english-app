@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'BBC 2021 4',
   items: [
@@ -218,4 +220,4 @@ export default {
       translate: 'Гурман',
     },
   ],
-};
+} as IDictionary;

@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Passive voice',
   items: [
@@ -22,4 +24,4 @@ export default {
       translate: 'История была написана',
     },
   ],
-};
+} as IDictionary;

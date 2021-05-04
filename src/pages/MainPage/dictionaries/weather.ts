@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Weather',
   items: [
@@ -282,4 +284,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;

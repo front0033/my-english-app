@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'Modal Verbs',
   items: [
@@ -42,4 +44,4 @@ export default {
       translate: 'иметь мужество или наглость сделать',
     },
   ],
-};
+} as IDictionary;

@@ -1,3 +1,5 @@
+import IDictionary from './types';
+
 export default {
   name: 'crime',
   items: [
@@ -118,4 +120,4 @@ export default {
       translate: 'empty',
     },
   ],
-};
+} as IDictionary;
