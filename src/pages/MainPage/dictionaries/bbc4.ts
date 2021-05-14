@@ -219,5 +219,25 @@ export default {
       word: 'foodie',
       translate: 'Гурман',
     },
+    {
+      word: 'equipment',
+      translate: 'оборудование',
+    },
+    {
+      word: 'who are isolating',
+      translate: 'которые изолированы',
+    },
+    {
+      word: 'catering',
+      translate: 'общественное питание',
+    },
+    {
+      word: 'shape',
+      translate: 'форма',
+    },
+    {
+      word: 'recently',
+      translate: 'совсем недавно',
+    },
   ],
 } as IDictionary;
