@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Chip,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
@@ -331,13 +332,16 @@ const MainPage = () => {
             value={selected}
             id="business-rules-filter-select-is_summable"
           >
-            {Object.keys(dictionaries).map((key, i) => {
-              const {name} = dictionaries[key];
+            {Object.keys(dictionaries).map(key => {
+              const {name, items} = dictionaries[key];
+              const {length} = items;
 
               return (
-                // eslint-disable-next-line react/no-array-index-key
-                <MenuItem key={name + i} value={key} id={`dictionary-${name}`}>
-                  {name}
+                <MenuItem key={name + key} value={key} id={`dictionary-${name}`}>
+                  <Grid container wrap="nowrap" alignItems="center" justify="space-between">
+                    <Typography>{name}</Typography>
+                    <Chip label={length} />
+                  </Grid>
                 </MenuItem>
               );
             })}

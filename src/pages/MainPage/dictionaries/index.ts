@@ -39,9 +39,11 @@ import streamline from './streamline';
 import activeArile from './active_aprile';
 import IDictionary, {IDictionaryItem} from './types';
 import activemay from './active_may_2021';
+import ecology from './nature';
 
 export const dictionary: Record<string, IDictionary> = {
   activemay,
+  ecology,
   bbc4,
   activeArile,
   streamline,
