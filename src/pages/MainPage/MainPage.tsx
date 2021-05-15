@@ -332,8 +332,8 @@ const MainPage = () => {
             value={selected}
             id="business-rules-filter-select-is_summable"
           >
-            {Object.keys(dictionaries).map(key => {
-              const {name, items} = dictionaries[key];
+            {Object.keys(preparedDictionaries).map(key => {
+              const {name, items} = preparedDictionaries[key];
               const {length} = items;
 
               return (
