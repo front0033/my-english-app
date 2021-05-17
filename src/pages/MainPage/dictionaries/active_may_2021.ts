@@ -157,40 +157,88 @@ export default {
       translate: 'богат в',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'outlook',
+      translate: 'кругозор ,перспектива',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'treatment',
+      translate: 'лечение',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'withdraw',
+      translate: 'отзывать, забирать, увести',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'mentally disturbed',
+      translate: 'психически неуравновешенный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'persisted',
+      translate: 'настойчивый',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'recruit',
+      translate: 'принимать на работу',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'comforted',
+      translate: 'утешенный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'battle-scarred',
+      translate: 'травмированный в боях',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'rekindled',
+      translate: 'возродился',
+    },
+    {
+      word: 'suspicion',
+      translate: 'подозрение',
+    },
+    {
+      word: 'set out',
+      translate: 'изложить',
+    },
+    {
+      word: 'pressure',
+      translate: 'давление',
+    },
+    {
+      word: 'gazing',
+      translate: 'пристальный взгляд',
+    },
+    {
+      word: 'fulfill',
+      translate: 'выполнить',
+    },
+    {
+      word: 'current',
+      translate: 'текущий',
+    },
+    {
+      word: 'spearheading',
+      translate: 'во главе',
+    },
+    {
+      word: 'cause of',
+      translate: 'причиной',
+    },
+    {
+      word: 'dispel tension',
+      translate: 'снять напряжение',
+    },
+    {
+      word: 'disturbances',
+      translate: 'беспорядки',
+    },
+    {
+      word: 'compassion',
+      translate: 'сострадание',
+    },
+    {
+      word: 'reverence',
+      translate: 'благоговение',
     },
     {
       word: 'empty',
