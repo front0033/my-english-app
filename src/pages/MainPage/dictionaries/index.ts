@@ -40,8 +40,10 @@ import activeArile from './active_aprile';
 import IDictionary, {IDictionaryItem} from './types';
 import activemay from './active_may_2021';
 import ecology from './nature';
+import inworld from './in';
 
 export const dictionary: Record<string, IDictionary> = {
+  inworld,
   activemay,
   ecology,
   bbc4,

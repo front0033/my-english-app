@@ -239,5 +239,25 @@ export default {
       word: 'recently',
       translate: 'совсем недавно',
     },
+    {
+      word: 'rapidly spreading',
+      translate: 'быстро распространяющийся',
+    },
+    {
+      word: 'reproduce',
+      translate: 'размножаться',
+    },
+    {
+      word: 'suggestion',
+      translate: 'предложение',
+    },
+    {
+      word: 'counterintuitive',
+      translate: 'нелогичный',
+    },
+    {
+      word: 'general term',
+      translate: 'общий термин',
+    },
   ],
 } as IDictionary;

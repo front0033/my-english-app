@@ -160,6 +160,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(1),
       marginBottom: -3,
       height: 16,
+      cursor: 'pointer',
     },
   })
 );

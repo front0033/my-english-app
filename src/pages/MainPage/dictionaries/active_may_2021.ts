@@ -240,17 +240,5 @@ export default {
       word: 'reverence',
       translate: 'благоговение',
     },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
   ],
 } as IDictionary;
