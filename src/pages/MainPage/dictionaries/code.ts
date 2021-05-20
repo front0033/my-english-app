@@ -41,7 +41,7 @@ export default {
     },
     {
       word: 'foundation',
-      translate: 'empty',
+      translate: 'основы',
     },
     {
       word: 'initially',

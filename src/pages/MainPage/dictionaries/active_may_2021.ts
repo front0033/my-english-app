@@ -240,5 +240,175 @@ export default {
       word: 'reverence',
       translate: 'благоговение',
     },
+    {
+      word: 'desire',
+      translate: 'желание',
+    },
+    {
+      word: 'govern',
+      translate: 'управлять',
+    },
+    {
+      word: 'mandatory',
+      translate: 'обязательный',
+    },
+    {
+      word: 'majority',
+      translate: 'большинство',
+    },
+    {
+      word: 'correctness',
+      translate: 'правильность',
+    },
+    {
+      word: 'censorship',
+      translate: 'цензура',
+    },
+    {
+      word: 'belief',
+      translate: 'вера',
+      example: 'a belief that solitude(одиночество) nourishes(питает, кормит) creativity(творчество)',
+    },
+    {
+      word: 'duty',
+      translate: 'долг',
+      example: 'duty of protect citizens',
+    },
+    {
+      word: 'assumes',
+      translate: 'предполагает',
+    },
+    {
+      word: 'constitutes',
+      translate: 'составляет',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
   ],
 } as IDictionary;
