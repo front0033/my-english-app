@@ -342,7 +342,7 @@ export default {
     },
     {
       word: 'suburb',
-      translate: 'остановить',
+      translate: 'пригород',
     },
     {
       word: 'pull up',
