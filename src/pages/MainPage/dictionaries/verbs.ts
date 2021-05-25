@@ -274,8 +274,8 @@ export default {
       translate: 'сеять',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'swap',
+      translate: 'менять',
     },
     {
       word: 'empty',
