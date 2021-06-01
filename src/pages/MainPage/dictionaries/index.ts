@@ -41,12 +41,14 @@ import IDictionary, {IDictionaryItem} from './types';
 import activemay from './active_may_2021';
 import ecology from './nature';
 import inworld from './in';
+import bbc5 from './bbc5';
 
 export const dictionary: Record<string, IDictionary> = {
+  bbc5,
+  bbc4,
   inworld,
   activemay,
   ecology,
-  bbc4,
   activeArile,
   streamline,
   weather,
