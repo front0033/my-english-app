@@ -225,6 +225,75 @@ export default {
       translate: 'перебивать',
     },
     {
+      word: 'fascinate',
+      translate: 'очаровывать',
+    },
+    {
+      word: 'pinch points',
+      translate: 'точки защемления',
+    },
+    {
+      word: 'i am sort of',
+      translate: 'я вроде как',
+    },
+    {
+      word: 'keep someone company',
+      translate: 'составить кому-нибудь компанию',
+    },
+    {
+      word: 'apart',
+      translate: 'отдельно',
+    },
+    {
+      word: 'apartments',
+      translate: 'квартиры',
+    },
+    {
+      word: 'hermit, recluse',
+      translate: 'отшельник',
+    },
+    {
+      word: 'dictum',
+      translate: 'изречение',
+    },
+    {
+      word: 'drop out',
+      translate: 'выбывать',
+    },
+    {
+      word: 'encounter',
+      translate: 'сталкиваться',
+    },
+    {
+      word: 'vice',
+      translate: 'порок (vice city - город пороков)',
+    },
+    {
+      word: 'reward',
+      translate: 'вознаграждение',
+    },
+    {
+      word: 'least',
+      translate: 'наименее',
+      example: `it's the least I can do`,
+    },
+    {
+      word: 'stillness',
+      translate: 'тишина, неподвижность',
+    },
+    {
+      word: 'income level',
+      translate: 'уровень дохода',
+    },
+    {
+      word: 'generosity',
+      translate: 'щедрость',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
       word: 'empty',
       translate: 'empty',
     },

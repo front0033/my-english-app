@@ -42,8 +42,10 @@ import activemay from './active_may_2021';
 import ecology from './nature';
 import inworld from './in';
 import bbc5 from './bbc5';
+import june from './active_june';
 
 export const dictionary: Record<string, IDictionary> = {
+  june,
   bbc5,
   bbc4,
   inworld,
