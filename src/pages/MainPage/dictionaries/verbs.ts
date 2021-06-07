@@ -4,13 +4,14 @@ export default {
   name: 'VERBS',
   items: [
     {
-      word: 'Rely',
+      word: 'rely',
       translate: 'полагаться',
       example: 'I know I can rely on your discretion',
     },
     {
       word: 'behave',
       translate: 'вести себя',
+      example: 'you should behave affectionately(ласково) toward the patient',
     },
     {
       word: 'concern',
@@ -19,18 +20,22 @@ export default {
     {
       word: 'matter',
       translate: 'имеет значения',
+      example: 'the evidence is a matter for the courts',
     },
     {
       word: 'reside',
       translate: 'проживать',
+      example: 'people who work in the city actually reside in neighboring towns',
     },
     {
       word: 'bless',
       translate: 'благословить',
+      example: 'bless my soul, Alan, what are you doing?',
     },
     {
       word: 'harm',
       translate: 'приносить вред',
+      example: 'smoking when pregnant can harm your baby',
     },
     {
       word: 'face',
@@ -43,14 +48,17 @@ export default {
     {
       word: 'suggest',
       translate: 'предложить (например идею)',
+      example: 'I suggest that we wait a day or two',
     },
     {
       word: 'supply',
       translate: 'поставлять, снабжать',
+      example: 'the two reservoirs(водохранилища) supply about 1% of the city`s needs',
     },
     {
       word: 'offend',
       translate: 'обидеть, оскорблять',
+      example: 'those activities which offend against public order and decency',
     },
     {
       word: 'embarrass',
@@ -58,11 +66,12 @@ export default {
     },
     {
       word: 'recall',
-      translate: 'отзывать',
+      translate: 'отзывать, помнить',
     },
     {
       word: 'introduce',
       translate: 'представлять',
+      example: 'I hope to introduce Jenny to them very soon',
     },
     {
       word: 'sail',
@@ -276,6 +285,10 @@ export default {
     {
       word: 'swap',
       translate: 'менять',
+    },
+    {
+      word: 'remark',
+      translate: 'отметить',
     },
     {
       word: 'empty',

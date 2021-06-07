@@ -4,7 +4,7 @@ export default {
   name: 'Active JUNE 2021',
   items: [
     {
-      word: 'i`m against',
+      word: "i'm against",
       translate: 'я против (i am opposite to)',
     },
     {
@@ -48,40 +48,41 @@ export default {
       translate: 'Кстати',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'placement',
+      translate: 'стажировка, практика',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'tutor',
+      translate: 'наставник, репетитор',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'it is just like',
+      translate: 'это просто как',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'hostile',
+      translate: 'враждебный',
+      example: 'people are very hostile to the idea',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'charitable foundation',
+      translate: 'благотворительный фонд',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'effort',
+      translate: 'усилие',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'crossbow',
+      translate: 'самострел, арбалет',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'nurge',
+      translate: 'воспитывать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'affectionately',
+      translate: 'ласково',
     },
     {
       word: 'empty',

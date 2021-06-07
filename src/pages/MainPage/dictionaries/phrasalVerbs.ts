@@ -200,32 +200,8 @@ export default {
       translate: 'отправляться',
     },
     {
-      word: 'evaluate',
-      translate: 'оценивать',
-    },
-    {
-      word: 'list',
-      translate: 'список',
-    },
-    {
-      word: 'involve',
-      translate: 'вовлекать',
-    },
-    {
-      word: 'revolve',
-      translate: 'вращаться',
-    },
-    {
-      word: 'possess',
-      translate: 'владеть',
-    },
-    {
-      word: 'remark',
-      translate: 'отметить',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
+      word: 'pry into',
+      translate: 'заглядывать в',
     },
     {
       word: 'empty',
