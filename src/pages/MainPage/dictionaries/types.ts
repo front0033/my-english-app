@@ -9,4 +9,6 @@ interface IDictionary {
   items: IDictionaryItem[];
 }
 
+export type IDictionaries = Record<string, IDictionary>;
+
 export default IDictionary;

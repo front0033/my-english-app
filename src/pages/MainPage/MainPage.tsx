@@ -5,9 +5,6 @@ import {
   IconButton,
   TextField,
   MenuItem,
-  makeStyles,
-  createStyles,
-  Theme,
   Grid,
   Typography,
   AppBar,
@@ -39,11 +36,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DescriptionIcon from '@material-ui/icons/Description';
 // import wordApi from 'api/words';
 import dictionaries from './dictionaries';
-import shuffle from './tools';
-import IDictionary from './dictionaries/types';
+import {shuffle, filterDictionaries} from './tools';
+import {IDictionaries} from './dictionaries/types';
+import useStyles from './styles';
 
 let allCountWorlds = 0;
-type IDictionaries = Record<string, IDictionary>;
+
 const mixDictionaries = (data: IDictionaries): IDictionaries => {
   const result: IDictionaries = {};
 
@@ -62,109 +60,6 @@ const mixDictionaries = (data: IDictionaries): IDictionaries => {
   return result;
 };
 
-const filterDictionaries = (data: IDictionaries): IDictionaries => {
-  const result: IDictionaries = {};
-
-  Object.keys(data).forEach(key => {
-    const {name, items} = dictionaries[key];
-    const filteredItems = items.filter(item => item.word !== 'empty');
-
-    result[key] = {
-      name,
-      items: filteredItems,
-    };
-  });
-
-  return result;
-};
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    title: {
-      fontWeight: 'bold',
-    },
-    checkboxContainer: {
-      padding: theme.spacing(2),
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-    container: {
-      width: '80%',
-      borderRadius: 10,
-      margin: theme.spacing(2),
-      height: '100%',
-    },
-    select: {
-      minWidth: '80%',
-      margin: theme.spacing(1),
-      marginTop: theme.spacing(3),
-    },
-    button: {
-      margin: theme.spacing(2),
-    },
-    typographyCount: {
-      margin: theme.spacing(1),
-      color: theme.palette.grey[700],
-      fontSize: 16,
-    },
-    typographyWord: {
-      color: 'green',
-      marginBottom: theme.spacing(2),
-      fontSize: 25,
-      textAlign: 'center',
-      width: '100%',
-      height: 60,
-    },
-    typographyTranslate: {
-      height: 50,
-      color: theme.palette.grey[700],
-      marginBottom: theme.spacing(2),
-      fontSize: 16,
-      textAlign: 'center',
-      width: '100%',
-    },
-    buttonContainer: {
-      border: `2px solid ${theme.palette.primary.main}`,
-      borderRadius: '30%',
-      margin: theme.spacing(2),
-      padding: theme.spacing(2),
-    },
-    iconButton: {
-      border: `2px solid ${theme.palette.primary.main}`,
-    },
-    disabledColor: {
-      border: `2px solid rgba(0, 0, 0, 0.26)`,
-    },
-    signature: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      padding: theme.spacing(1),
-      color: theme.palette.grey[500],
-    },
-    important: {
-      backgroundColor: theme.palette.secondary.light,
-      color: theme.palette.common.white,
-
-      paddingRight: theme.spacing(2),
-    },
-    exampleIcon: {
-      marginLeft: theme.spacing(1),
-      marginBottom: -3,
-      height: 16,
-      cursor: 'pointer',
-    },
-  })
-);
 mixDictionaries(dictionaries);
 
 const MainPage = () => {
