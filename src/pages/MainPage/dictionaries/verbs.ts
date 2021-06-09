@@ -291,20 +291,23 @@ export default {
       translate: 'отметить',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'impact on',
+      translate: 'воздействовать, влиять',
+      example: 'our regional measures have had a significant impact on unemployment',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'attempt to',
+      translate: 'пытаться',
+      example: 'we made an attempt(мы сделали попытку)',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'decrease',
+      translate: 'снижаться',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'seek',
+      translate: 'стремиться, искать',
+      example: 'seek to improve',
     },
     {
       word: 'empty',

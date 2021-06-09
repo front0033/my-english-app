@@ -37,6 +37,7 @@ import ShuffleIcon from '@material-ui/icons/Shuffle';
 import FlagIcon from '@material-ui/icons/Flag';
 import MenuIcon from '@material-ui/icons/Menu';
 import DescriptionIcon from '@material-ui/icons/Description';
+// import wordApi from 'api/words';
 import dictionaries from './dictionaries';
 import shuffle from './tools';
 import IDictionary from './dictionaries/types';
@@ -168,6 +169,9 @@ mixDictionaries(dictionaries);
 
 const MainPage = () => {
   const classes = useStyles();
+  // React.useEffect(() => {
+  //   wordApi.getByDictionaryName('first');
+  // }, []);
 
   const [preparedDictionaries, setPrepareDictionaries] = React.useState(filterDictionaries(dictionaries));
 
@@ -357,6 +361,7 @@ const MainPage = () => {
               <DescriptionIcon className={classes.exampleIcon} onClick={() => setExample(selectedItem.example || '')} />
             )}
           </Typography>
+          {/** TODO: убрать кнопки, сделать перелистывание по свайпу, и оставшивеся кнопки убрать в тулбар */}
           <Grid className={classes.buttonContainer}>
             <Grid container justify="center">
               <IconButton classes={iconButtonClasses} onClick={goToGoogleTranslate(selectedItem.word)}>

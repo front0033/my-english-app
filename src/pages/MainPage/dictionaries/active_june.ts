@@ -85,48 +85,37 @@ export default {
       translate: 'ласково',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'reckon',
+      translate: 'считать',
+      example: 'I reckon I can manage that',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'narrative',
+      translate: 'повествование, рассказ',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'frequently',
+      translate: 'часто',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'genre',
+      translate: 'жанр',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'abandon',
+      translate: 'покидать',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'seek to improve fortunes',
+      translate: 'стремиться улучшить состояние',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'smuggle',
+      translate: 'провозить контрабандой',
     },
     {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
-    },
-    {
-      word: 'empty',
-      translate: 'empty',
+      word: 'rather well',
+      translate: 'довольно хорошо',
     },
     {
       word: 'empty',
