@@ -2,6 +2,7 @@ import IDictionary from './types';
 
 export default {
   name: 'PREPOSITIONS',
+  lastChange: true,
   items: [
     {
       word: 'look at...',
@@ -133,7 +134,7 @@ export default {
     },
     {
       word: 'pleased with',
-      translate: 'pleased with',
+      translate: 'доволен',
     },
     {
       word: 'rude to',
@@ -168,12 +169,12 @@ export default {
       translate: 'принадлежит',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'exited about',
+      translate: 'взволнован по поводу',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'laugh at',
+      translate: 'смеяться над',
     },
     {
       word: 'empty',

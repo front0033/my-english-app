@@ -30,12 +30,13 @@ export const filterDictionaries = (data: IDictionaries): IDictionaries => {
   const result: IDictionaries = {};
 
   Object.keys(data).forEach(key => {
-    const {name, items} = data[key];
+    const {name, items, lastChange} = data[key];
     const filteredItems = items.filter(item => item.word !== 'empty');
 
     result[key] = {
       name,
       items: filteredItems,
+      lastChange,
     };
   });
 

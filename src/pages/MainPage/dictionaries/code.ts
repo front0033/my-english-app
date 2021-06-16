@@ -2,6 +2,7 @@ import IDictionary from './types';
 
 export default {
   name: 'Programmers Words',
+  lastChange: true,
   items: [
     {
       word: 'Immediately-invoked Function Expression (IIFE)',
@@ -181,8 +182,8 @@ export default {
       translate: 'поддерживать much easier',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'source',
+      translate: 'источник',
     },
     {
       word: 'empty',

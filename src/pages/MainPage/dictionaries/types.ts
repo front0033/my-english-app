@@ -7,6 +7,7 @@ export interface IDictionaryItem {
 interface IDictionary {
   name: string;
   items: IDictionaryItem[];
+  lastChange?: boolean;
 }
 
 export type IDictionaries = Record<string, IDictionary>;

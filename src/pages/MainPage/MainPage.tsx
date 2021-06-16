@@ -23,6 +23,7 @@ import {
   DialogActions,
   Button,
   Chip,
+  colors,
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
@@ -46,7 +47,7 @@ const mixDictionaries = (data: IDictionaries): IDictionaries => {
   const result: IDictionaries = {};
 
   Object.keys(data).forEach(key => {
-    const {name, items} = dictionaries[key];
+    const {name, items, lastChange} = dictionaries[key];
     const filteredItems = items.filter(item => item.word !== 'empty');
     allCountWorlds += filteredItems.length;
     // const isIrregularVerbs = name === 'irregular verbs 1' || name === 'irregular verbs 2';
@@ -54,6 +55,7 @@ const mixDictionaries = (data: IDictionaries): IDictionaries => {
     result[key] = {
       name,
       items: shuffle(filteredItems),
+      lastChange,
     };
   });
 
@@ -233,13 +235,14 @@ const MainPage = () => {
             id="business-rules-filter-select-is_summable"
           >
             {Object.keys(preparedDictionaries).map(key => {
-              const {name, items} = preparedDictionaries[key];
+              const {name, items, lastChange} = preparedDictionaries[key];
               const {length} = items;
-
               return (
                 <MenuItem key={name + key} value={key} id={`dictionary-${name}`}>
                   <Grid container wrap="nowrap" alignItems="center" justify="space-between">
-                    <Typography>{name}</Typography>
+                    <Typography style={lastChange ? {color: colors.deepOrange[500], fontWeight: 'bold'} : {}}>
+                      {name}
+                    </Typography>
                     <Chip label={length} />
                   </Grid>
                 </MenuItem>
