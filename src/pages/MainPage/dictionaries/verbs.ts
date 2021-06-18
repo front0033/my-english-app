@@ -310,8 +310,8 @@ export default {
       example: 'seek to improve',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'impose',
+      translate: 'навязывать',
     },
     {
       word: 'empty',

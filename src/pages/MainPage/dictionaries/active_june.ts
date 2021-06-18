@@ -5,6 +5,14 @@ export default {
   lastChange: true,
   items: [
     {
+      word: 'keep in touch',
+      translate: 'поддерживать связь',
+    },
+    {
+      word: 'lack of energy',
+      translate: 'недостаток энергии',
+    },
+    {
       word: "i'm against",
       translate: 'я против (i am opposite to)',
     },
@@ -193,48 +201,48 @@ export default {
       translate: 'действительно ужасно',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'hell',
+      translate: 'ад',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'proper job',
+      translate: 'правильная работа',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'self-esteems',
+      translate: 'самоуважение',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'sense of well-being',
+      translate: 'чувство благополучия',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'ourselves',
+      translate: 'мы сами',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'agency',
+      translate: 'агентство',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'genuine',
+      translate: 'подлинный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'deprived',
+      translate: 'лишенный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'lethargic',
+      translate: 'вялый, летаргический',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'redundant',
+      translate: 'избыточный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'me too',
+      translate: 'я тоже',
     },
     {
       word: 'empty',

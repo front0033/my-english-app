@@ -177,8 +177,49 @@ export default {
       translate: 'смеяться над',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'apply for',
+      translate: 'подать заявку на',
+    },
+    {
+      word: 'resinger from',
+      translate: 'воздерживаться от',
+    },
+    {
+      word: 'insited on',
+      translate: 'настоял на',
+    },
+    {
+      word: 'prepare for',
+      translate: 'подготовиться к',
+    },
+    {
+      word: 'believe in',
+      translate: 'верить в',
+    },
+    {
+      word: 'complain about',
+      translate: 'жаловаться на',
+    },
+    {
+      word: 'pay for',
+      translate: 'платить за',
+    },
+    {
+      word: 'succeeded in',
+      translate: 'преуспеть в',
+    },
+    {
+      word: 'considered of',
+      translate: 'рассмотреть',
+      example: 'considered of finding job',
+    },
+    {
+      word: 'passionate about',
+      translate: 'увлечены',
+    },
+    {
+      word: 'differend on',
+      translate: 'отличаться от',
     },
     {
       word: 'empty',
@@ -200,5 +241,16 @@ export default {
       word: 'empty',
       translate: 'empty',
     },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    /**
+     * interested in, keen on, fond of - одно и тоже
+     */
   ],
 } as IDictionary;
