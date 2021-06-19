@@ -245,24 +245,24 @@ export default {
       translate: 'я тоже',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'uncommon',
+      translate: 'необычный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'addict',
+      translate: 'наркоман',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'irritable',
+      translate: 'раздражительный',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'death rates',
+      translate: 'уровень смертности',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'significantly',
+      translate: 'существенно',
     },
     {
       word: 'empty',
