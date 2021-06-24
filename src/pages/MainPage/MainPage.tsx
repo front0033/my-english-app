@@ -222,7 +222,14 @@ const MainPage = () => {
         </Grid>
       </Drawer>
       <Grid container direction="column" alignItems="center" justify="center" style={{height: '81%'}}>
-        <Grid className={classes.container} container direction="column" alignItems="center" justify="space-around">
+        <Grid
+          className={classes.container}
+          container
+          direction="column"
+          alignItems="center"
+          justify="space-around"
+          wrap="nowrap"
+        >
           <TextField
             variant="outlined"
             className={classes.select}

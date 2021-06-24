@@ -265,8 +265,8 @@ export default {
       translate: 'существенно',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'milestones',
+      translate: 'этапы',
     },
     {
       word: 'empty',
