@@ -43,8 +43,10 @@ import ecology from './nature';
 import inworld from './in';
 import bbc5 from './bbc5';
 import june from './active_june';
+import upWorkWords from './up_work_words';
 
 export const dictionary: Record<string, IDictionary> = {
+  upWorkWords,
   june,
   bbc5,
   bbc4,
