@@ -64,8 +64,8 @@ export default {
       translate: 'свекровь',
     },
     {
-      word: 'keep in touch',
-      translate: 'держи связь',
+      word: 'keep in touch by',
+      translate: 'держи связь по (например Telegramm)',
     },
     {
       word: 'attend',

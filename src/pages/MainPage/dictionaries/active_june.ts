@@ -5,8 +5,8 @@ export default {
   lastChange: true,
   items: [
     {
-      word: 'keep in touch',
-      translate: 'поддерживать связь',
+      word: 'keep in touch by',
+      translate: 'поддерживать связь по (например Telegramm)',
     },
     {
       word: 'lack of energy',

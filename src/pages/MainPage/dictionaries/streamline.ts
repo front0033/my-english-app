@@ -80,5 +80,185 @@ export default {
       word: 'I taught my lessons FOR 2 hours',
       translate: 'Я учил уроки 2 часа',
     },
+    {
+      word: 'easy-going',
+      translate: 'с легким характером',
+    },
+    {
+      word: 'i can be myself',
+      translate: 'я могу быть собой',
+    },
+    {
+      word: 'intimidated',
+      translate: 'запуганный',
+    },
+    {
+      word: 'sincere',
+      translate: 'искренний',
+    },
+    {
+      word: 'he has to be',
+      translate: 'он должен быть',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
   ],
 } as IDictionary;

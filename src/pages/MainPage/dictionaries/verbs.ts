@@ -314,6 +314,80 @@ export default {
       translate: 'навязывать',
     },
     {
+      word: 'absent from',
+      translate: 'отсутствует',
+      example: 'absent from school',
+    },
+    {
+      word: 'accuse of',
+      translate: 'обвиняют в',
+    },
+    {
+      word: 'admire for',
+      translate: 'восхищаться',
+      example: 'admire sombody for something',
+    },
+    {
+      word: 'assess at',
+      translate: 'оценить на',
+    },
+    {
+      word: 'betray to',
+      translate: 'предать',
+    },
+    {
+      word: 'charge to account',
+      translate: 'списать на счет',
+    },
+    {
+      word: 'claim from',
+      translate: 'требовать от',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
+      word: 'empty',
+      translate: 'empty',
+    },
+    {
       word: 'empty',
       translate: 'empty',
     },
