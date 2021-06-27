@@ -269,8 +269,8 @@ export default {
       translate: 'этапы',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'motionless',
+      translate: 'неподвижен',
     },
     {
       word: 'empty',

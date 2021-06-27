@@ -290,8 +290,8 @@ export default {
       translate: 'щедрость',
     },
     {
-      word: 'empty',
-      translate: 'empty',
+      word: 'wellington boots',
+      translate: 'резиновые сапоги',
     },
     {
       word: 'empty',
