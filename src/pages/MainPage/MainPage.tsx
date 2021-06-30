@@ -7,16 +7,6 @@ import {
   MenuItem,
   Grid,
   Typography,
-  AppBar,
-  Toolbar,
-  Checkbox,
-  FormControlLabel,
-  Drawer,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -27,13 +17,8 @@ import {
 } from '@material-ui/core';
 import TranslateIcon from '@material-ui/icons/Translate';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
-import LanguageIcon from '@material-ui/icons/Language';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ShuffleIcon from '@material-ui/icons/Shuffle';
-import FlagIcon from '@material-ui/icons/Flag';
-import MenuIcon from '@material-ui/icons/Menu';
 import DescriptionIcon from '@material-ui/icons/Description';
 // import wordApi from 'api/words';
 import dictionaries from './dictionaries';
@@ -64,21 +49,14 @@ const mixDictionaries = (data: IDictionaries): IDictionaries => {
 
 mixDictionaries(dictionaries);
 
+const preparedDictionaries = filterDictionaries(dictionaries);
+
 const MainPage = () => {
   const classes = useStyles();
-  // React.useEffect(() => {
-  //   wordApi.getByDictionaryName('first');
-  // }, []);
-
-  const [preparedDictionaries, setPrepareDictionaries] = React.useState(filterDictionaries(dictionaries));
 
   const [selected, setSelected] = React.useState('irregular');
   const [count, setCount] = React.useState(0);
   const [show, setShow] = React.useState(false);
-  const [fromRussian, setFromRussian] = React.useState(false);
-  const [googleTranslate, setGoogleTranslate] = React.useState(true);
-  const [mixed, setMixed] = React.useState(false);
-  const [drawerAnchor, setDrawerAnchor] = React.useState(false);
   const [example, setExample] = React.useState('');
 
   const size = React.useRef(preparedDictionaries[selected].items.length);
@@ -105,39 +83,8 @@ const MainPage = () => {
   const muchIsleft = () => `${count + 1} / ${preparedDictionaries[selected].items.length}`;
 
   const goToGoogleTranslate = (word: string) => () => {
-    const url = googleTranslate
-      ? `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${word.replace('*', '').trim()}`
-      : `https://wooordhunt.ru/word/${word.replace('*', '').trim()}`;
+    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${word.replace('*', '').trim()}`;
     window.open(url);
-  };
-
-  const handleFromChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    setFromRussian(checked);
-  };
-
-  const handleGoogleChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    setGoogleTranslate(checked);
-  };
-
-  const handleMixChecked = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    if (checked) {
-      setMixed(true);
-      setPrepareDictionaries(mixDictionaries(dictionaries));
-    } else {
-      setMixed(false);
-      setPrepareDictionaries(filterDictionaries(dictionaries));
-    }
-  };
-
-  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-
-    setDrawerAnchor(!drawerAnchor);
   };
 
   const iconButtonClasses = {root: `${classes.iconButton} ${classes.button}`};
@@ -160,67 +107,6 @@ const MainPage = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Toolbar>
-          <Grid container justify="flex-start" alignItems="center">
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              ENGLISH CARDS
-            </Typography>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      <Drawer anchor="left" open={drawerAnchor} onClose={toggleDrawer}>
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={toggleDrawer}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <Grid container direction="column" className={classes.checkboxContainer}>
-          <Typography variant="subtitle1">Settings</Typography>
-          <List>
-            <ListItem button>
-              <ListItemIcon>
-                <GTranslateIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText>
-                <FormControlLabel
-                  control={<Checkbox checked={googleTranslate} onChange={handleGoogleChecked} />}
-                  label="Google"
-                />
-              </ListItemText>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ShuffleIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText>
-                <FormControlLabel control={<Checkbox checked={mixed} onChange={handleMixChecked} />} label="Mix" />
-              </ListItemText>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <FlagIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText>
-                <FormControlLabel
-                  control={<Checkbox checked={fromRussian} onChange={handleFromChecked} />}
-                  label="From Russian"
-                />
-              </ListItemText>
-            </ListItem>
-          </List>
-        </Grid>
-      </Drawer>
       <Grid container direction="column" alignItems="center" justify="center" style={{height: '81%'}}>
         <Grid
           className={classes.container}
@@ -258,10 +144,10 @@ const MainPage = () => {
           </TextField>
           <Typography className={classes.typographyCount}>{muchIsleft()}</Typography>
           <Typography className={`${classes.typographyWord} ${isImportant ? classes.important : ''}`}>
-            {fromRussian ? selectedItem.translate : selectedItem.word}
+            {selectedItem.word}
           </Typography>
           <Typography className={classes.typographyTranslate} noWrap>
-            {show && (fromRussian ? selectedItem.word : selectedItem.translate)}
+            {show && selectedItem.translate}
             {show && selectedItem.example && (
               <DescriptionIcon className={classes.exampleIcon} onClick={() => setExample(selectedItem.example || '')} />
             )}
@@ -270,7 +156,7 @@ const MainPage = () => {
           <Grid className={classes.buttonContainer}>
             <Grid container justify="center">
               <IconButton classes={iconButtonClasses} onClick={goToGoogleTranslate(selectedItem.word)}>
-                {googleTranslate ? <GTranslateIcon color="primary" /> : <LanguageIcon color="primary" />}
+                <GTranslateIcon color="primary" />
               </IconButton>
               <IconButton classes={translateIconClasses} onClick={handleShowTranslate} disabled={show}>
                 <TranslateIcon color={show ? 'disabled' : 'primary'} />
