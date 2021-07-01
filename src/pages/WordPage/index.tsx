@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {TextField, Button, Grid, FormControl, InputLabel, Select, MenuItem} from '@material-ui/core';
+import {useGetWordsByIdQuery} from 'services/words';
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -26,6 +27,9 @@ const topics = [
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
+  const {data, isLoading, error} = useGetWordsByIdQuery({});
+  // eslint-disable-next-line no-console
+  console.log(data, isLoading, error);
   const [fields, setFields] = React.useState<IFields>({word: '', translate: '', expample: '', topicId: ''});
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {

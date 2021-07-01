@@ -41,10 +41,10 @@ export const graphqlBaseQuery = ({
 
 export const api = createApi({
   baseQuery: graphqlBaseQuery({
-    baseUrl: '/graphql',
+    baseUrl: 'http://localhost:5000/graphql',
   }),
   endpoints: builder => ({
-    getWords: builder.query<GetWordsResponse, {page?: number; per_page?: number}>({
+    getWords: builder.query<GetWordsResponse, {}>({
       query: () => ({
         document: gql`
           query {
@@ -52,8 +52,8 @@ export const api = createApi({
               id
               word
               translate
-              example
             }
+          }
         `,
         variables: {},
       }),
