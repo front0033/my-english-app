@@ -1,19 +1,21 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import {ApiProvider} from '@reduxjs/toolkit/query/react';
-import {BrowserRouter} from 'react-router-dom';
+
+import {ConnectedRouter} from 'connected-react-router';
+import history from 'shared/history';
+import {Provider} from 'react-redux';
+import store from 'redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {api} from './services/words';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApiProvider api={api}>
-      <BrowserRouter>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
         <App />
-      </BrowserRouter>
-    </ApiProvider>
+      </ConnectedRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

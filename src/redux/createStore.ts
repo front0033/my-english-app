@@ -3,6 +3,7 @@ import {configureStore as createStore} from '@reduxjs/toolkit';
 
 import createSagaMiddleware from 'redux-saga';
 import {History} from 'history';
+import {wordSlice} from 'services/words';
 import {routerMiddleware} from 'connected-react-router';
 import createRootReducer from './stores/createRootReducer';
 import rootSaga from './stores/rootSaga';
@@ -15,7 +16,9 @@ const configureStore = (history: History): Store => {
 
   const store = createStore({
     reducer: rootReducer,
-    middleware: middlewares,
+    middleware: getDefaultMiddleware => {
+      return getDefaultMiddleware().concat([...middlewares, wordSlice.middleware]);
+    },
   });
 
   sagaMiddleware.run(rootSaga);

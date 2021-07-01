@@ -39,10 +39,11 @@ export const graphqlBaseQuery = ({
   }
 };
 
-export const api = createApi({
+export const wordSlice = createApi({
   baseQuery: graphqlBaseQuery({
     baseUrl: 'http://localhost:5000/graphql',
   }),
+  reducerPath: 'apiWords',
   endpoints: builder => ({
     getWords: builder.query<GetWordsResponse, {}>({
       query: () => ({
@@ -77,7 +78,7 @@ export const api = createApi({
 });
 
 // TODO: update typescript
-const useGetWordByIdQuery = api.endpoints.getWord.useQuery;
-const useGetWordsByIdQuery = api.endpoints.getWords.useQuery;
+const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
+const useGetWordsByIdQuery = wordSlice.endpoints.getWords.useQuery;
 
 export {useGetWordByIdQuery, useGetWordsByIdQuery};
