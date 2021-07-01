@@ -11,6 +11,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
+import {useAddWordMutation} from 'redux/stores/words/wordSlice';
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -23,13 +24,14 @@ enum FieldsNames {
 export interface IFields {
   [FieldsNames.word]: string;
   [FieldsNames.translate]: string;
-  [FieldsNames.expample]?: string;
-  [FieldsNames.topicId]?: string;
+  [FieldsNames.expample]: string;
+  [FieldsNames.topicId]: string;
 }
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
   const {data, isLoading, error} = useGetTopics({});
+  const [addWord, {isLoading: savePending}] = useAddWordMutation({});
 
   const topics = data?.topics ?? [];
 
@@ -46,8 +48,7 @@ const WordForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log(fields);
+    addWord(fields);
   };
 
   return (
@@ -95,6 +96,7 @@ const WordForm: React.FC = () => {
             ))}
           </Select>
         </FormControl>
+        {savePending && <LinearProgress />}
         <Button className={classes.submitButton} color="primary" variant="contained" size="large" type="submit">
           Save
         </Button>

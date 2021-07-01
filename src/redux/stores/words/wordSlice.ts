@@ -5,8 +5,8 @@ import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
 export interface IWord {
   word: string;
   translate: string;
-  expample?: string;
-  topicId?: string;
+  expample: string;
+  topicId: string;
 }
 
 export interface GetWordsResponse {
@@ -52,11 +52,33 @@ export const wordSlice = createApi({
       }),
       transformResponse: (response: WordResponse) => response.word,
     }),
+    addWord: builder.mutation<IWord, IWord>({
+      query: params => {
+        const {word, translate, expample, topicId} = params;
+
+        return {
+          document: gql`
+            mutation($word: String, $translate: String, $example: String, $topicId: String) {
+              addWord(word: $word, translate: $translate, example: $example, topicId: $topicId) {
+                word
+                translate
+                example
+                topic {
+                  name
+                }
+              }
+            }
+          `,
+          variables: {word, translate, expample, topicId},
+        };
+      },
+    }),
   }),
 });
 
 // TODO: update typescript
 const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
 const useGetWordsByIdQuery = wordSlice.endpoints.getWords.useQuery;
+const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
 
-export {useGetWordByIdQuery, useGetWordsByIdQuery};
+export {useGetWordByIdQuery, useGetWordsByIdQuery, useAddWordMutation};
