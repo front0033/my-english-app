@@ -5,6 +5,7 @@ import {CssBaseline, AppBar, Typography} from '@material-ui/core';
 import MainPage from 'pages/MainPage';
 import {Switch, Route} from 'react-router-dom';
 import routes from 'routes';
+import AuthPage from 'pages/AuthPage';
 import TopicPage from 'pages/TopicPage';
 import WordPage from 'pages/WordPage';
 
@@ -29,6 +30,9 @@ const App: React.FC<IApp> = (): ReactElement => (
       <Switch>
         <Route exact path={routes.main()}>
           <MainPage />
+        </Route>
+        <Route exact path={routes.auth()}>
+          <AuthPage />
         </Route>
         <Route exact path={routes.topic()}>
           <TopicPage />
