@@ -1,6 +1,16 @@
 import * as React from 'react';
-import {TextField, Button, Grid, FormControl, InputLabel, Select, MenuItem} from '@material-ui/core';
-import {useGetWordsByIdQuery} from 'services/words';
+import {
+  TextField,
+  Button,
+  Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  LinearProgress,
+  Typography,
+} from '@material-ui/core';
+import {useGetTopicsByIdQuery} from 'redux/stores/topics/topicSlice';
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -17,19 +27,12 @@ export interface IFields {
   [FieldsNames.topicId]?: string;
 }
 
-const topics = [
-  {id: '60dc6ff8c87ec43e777ff8ef', name: 'Verb B1'},
-  {id: '60dc7024c87ec43e777ff8f0', name: 'Active English'},
-  {id: '60dc703ac87ec43e777ff8f1', name: 'Irregular verbs 1'},
-  {id: '60dc7041c87ec43e777ff8f2', name: 'Irregular verbs 2'},
-  {id: '60dc7055c87ec43e777ff8f3', name: 'Phrasal verbs'},
-];
-
 const WordForm: React.FC = () => {
   const classes = useStyles();
-  const {data, isLoading, error} = useGetWordsByIdQuery({});
-  // eslint-disable-next-line no-console
-  console.log(data, isLoading, error);
+  const {data, isLoading, error} = useGetTopicsByIdQuery({});
+
+  const topics = data?.topics ?? [];
+
   const [fields, setFields] = React.useState<IFields>({word: '', translate: '', expample: '', topicId: ''});
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +52,8 @@ const WordForm: React.FC = () => {
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+      {isLoading && <LinearProgress />}
+      {!!error && <Typography>Error</Typography>}
       <Grid container direction="column" alignContent="center" justify="center">
         <TextField
           id="word-field"
@@ -84,7 +89,7 @@ const WordForm: React.FC = () => {
               <em>None</em>
             </MenuItem>
             {topics.map(topic => (
-              <MenuItem key={topic.name[0]} value={topic.id}>
+              <MenuItem key={topic.name} value={topic.id}>
                 {topic.name}
               </MenuItem>
             ))}

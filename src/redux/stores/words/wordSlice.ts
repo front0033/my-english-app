@@ -1,6 +1,6 @@
-import {DocumentNode} from 'graphql';
-import {ClientError, request, gql} from 'graphql-request';
-import {BaseQueryFn, createApi} from '@reduxjs/toolkit/query/react';
+import {gql} from 'graphql-request';
+import {createApi} from '@reduxjs/toolkit/query/react';
+import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
 
 export interface IWord {
   word: string;
@@ -10,38 +10,16 @@ export interface IWord {
 }
 
 export interface GetWordsResponse {
-  data: {
-    words: IWord[];
-  };
+  words: IWord[];
 }
 
 interface WordResponse {
-  data: {
-    word: IWord;
-  };
+  word: IWord;
 }
-
-export const graphqlBaseQuery = ({
-  baseUrl,
-}: {
-  baseUrl: string;
-}): BaseQueryFn<{document: string | DocumentNode; variables?: any}, unknown, ClientError> => async ({
-  document,
-  variables,
-}) => {
-  try {
-    return {data: await request(baseUrl, document, variables)};
-  } catch (error) {
-    if (error instanceof ClientError) {
-      return {error};
-    }
-    throw error;
-  }
-};
 
 export const wordSlice = createApi({
   baseQuery: graphqlBaseQuery({
-    baseUrl: 'http://localhost:5000/graphql',
+    baseUrl: process.env.REACT_APP_WORDS_API_URL || DEV_API_URL,
   }),
   reducerPath: 'apiWords',
   endpoints: builder => ({
@@ -72,7 +50,7 @@ export const wordSlice = createApi({
         }
         `,
       }),
-      transformResponse: (response: WordResponse) => response.data.word,
+      transformResponse: (response: WordResponse) => response.word,
     }),
   }),
 });
