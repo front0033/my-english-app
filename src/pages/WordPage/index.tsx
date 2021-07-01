@@ -10,7 +10,7 @@ import {
   LinearProgress,
   Typography,
 } from '@material-ui/core';
-import {useGetTopicsByIdQuery} from 'redux/stores/topics/topicSlice';
+import {useGetTopics} from 'redux/stores/topics/topicSlice';
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -29,7 +29,7 @@ export interface IFields {
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
-  const {data, isLoading, error} = useGetTopicsByIdQuery({});
+  const {data, isLoading, error} = useGetTopics({});
 
   const topics = data?.topics ?? [];
 

@@ -37,21 +37,36 @@ export const topicSlice = createApi({
     getTopic: builder.query<ITopic, string>({
       query: id => ({
         document: gql`
-        query ($id: ID!) {
-          topic(id: ${id}) {
-            id
-            name
+          query($id: ID!) {
+            topic(id: $id) {
+              id
+              name
+            }
           }
-        }
         `,
+        variables: {id},
       }),
       transformResponse: (response: TopicResponse) => response.topic,
+    }),
+    addTopic: builder.mutation<ITopic, string>({
+      query: name => ({
+        document: gql`
+          mutation($name: String!) {
+            addTopic(name: $name) {
+              id
+              name
+            }
+          }
+        `,
+        variables: {name},
+      }),
     }),
   }),
 });
 
 // TODO: update typescript
-const useGetTopicsByIdQuery = topicSlice.endpoints.getTopics.useQuery;
+const useGetTopics = topicSlice.endpoints.getTopics.useQuery;
 const useGetTopicByIdQuery = topicSlice.endpoints.getTopic.useQuery;
+const useAddTopicMutation = topicSlice.endpoints.addTopic.useMutation;
 
-export {useGetTopicsByIdQuery, useGetTopicByIdQuery};
+export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation};
