@@ -9,7 +9,7 @@ enum FieldsNames {
   topicId = 'topicId',
 }
 
-interface IFields {
+export interface IFields {
   [FieldsNames.word]: string;
   [FieldsNames.translate]: string;
   [FieldsNames.expample]?: string;
