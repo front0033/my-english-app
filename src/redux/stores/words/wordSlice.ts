@@ -10,7 +10,7 @@ export interface IWord {
 }
 
 export interface GetWordsResponse {
-  words: IWord[];
+  wordsByTopicId: IWord[];
 }
 
 interface WordResponse {
@@ -23,18 +23,19 @@ export const wordSlice = createApi({
   }),
   reducerPath: 'apiWords',
   endpoints: builder => ({
-    getWords: builder.query<GetWordsResponse, {}>({
-      query: () => ({
+    getWordsByTopicId: builder.query<GetWordsResponse, string>({
+      query: topicId => ({
         document: gql`
-          query {
-            words {
+          query($topicId: ID) {
+            wordsByTopicId(topicId: $topicId) {
               id
               word
               translate
+              example
             }
           }
         `,
-        variables: {},
+        variables: {topicId},
       }),
     }),
     getWord: builder.query<IWord, string>({
@@ -78,7 +79,7 @@ export const wordSlice = createApi({
 
 // TODO: update typescript
 const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
-const useGetWordsByIdQuery = wordSlice.endpoints.getWords.useQuery;
+const usegetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
 const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
 
-export {useGetWordByIdQuery, useGetWordsByIdQuery, useAddWordMutation};
+export {useGetWordByIdQuery, usegetWordsByTopicId, useAddWordMutation};
