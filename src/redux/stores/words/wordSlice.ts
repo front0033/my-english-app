@@ -59,7 +59,7 @@ export const wordSlice = createApi({
 
         return {
           document: gql`
-            mutation($word: String, $translate: String, $example: String, $topicId: String) {
+            mutation($word: String, $translate: String, $example: String, $topicId: ID) {
               addWord(word: $word, translate: $translate, example: $example, topicId: $topicId) {
                 word
                 translate

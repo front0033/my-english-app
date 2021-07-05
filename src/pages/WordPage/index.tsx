@@ -1,5 +1,15 @@
 import * as React from 'react';
-import {TextField, Button, Grid, FormControl, InputLabel, Select, MenuItem, LinearProgress} from '@material-ui/core';
+import {
+  TextField,
+  Button,
+  Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  LinearProgress,
+  Snackbar,
+} from '@material-ui/core';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
 import {useAddWordMutation} from 'redux/stores/words/wordSlice';
 import {Alert} from '@material-ui/lab';
@@ -22,7 +32,7 @@ export interface IFields {
 const WordForm: React.FC = () => {
   const classes = useStyles();
   const {data, isLoading, error} = useGetTopics({});
-  const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
+  const [addWord, {isLoading: savePending, isError: saveError, isSuccess}] = useAddWordMutation({});
 
   const topics = data?.topics ?? [];
 
@@ -92,6 +102,9 @@ const WordForm: React.FC = () => {
         <Button className={classes.submitButton} color="primary" variant="contained" size="large" type="submit">
           Save
         </Button>
+        <Snackbar open={isSuccess} autoHideDuration={2000}>
+          <Alert severity="success">save word is susses</Alert>
+        </Snackbar>
       </Grid>
     </form>
   );

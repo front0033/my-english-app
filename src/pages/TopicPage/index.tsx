@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {TextField, Button, Grid, LinearProgress} from '@material-ui/core';
+import {TextField, Button, Grid, LinearProgress, Snackbar} from '@material-ui/core';
 import {useAddTopicMutation} from 'redux/stores/topics/topicSlice';
 import {Alert} from '@material-ui/lab';
 import useStyles from './styles';
@@ -8,7 +8,7 @@ import useStyles from './styles';
 const TopicForm: React.FC = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
-  const [addTopic, {isLoading, isError}] = useAddTopicMutation({});
+  const [addTopic, {isLoading, isError, isSuccess}] = useAddTopicMutation({});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -35,6 +35,9 @@ const TopicForm: React.FC = () => {
         <Button className={classes.submitButton} color="primary" variant="contained" size="large" type="submit">
           Save
         </Button>
+        <Snackbar open={isSuccess} autoHideDuration={2000}>
+          <Alert severity="success">save topic is susses</Alert>
+        </Snackbar>
       </Grid>
     </form>
   );
