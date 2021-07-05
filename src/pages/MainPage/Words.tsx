@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Grid, CircularProgress} from '@material-ui/core';
+import {Grid, CircularProgress, Typography} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, {Pagination, Navigation} from 'swiper/core';
@@ -24,6 +24,7 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
   const {data, isSuccess, isLoading, isError} = usegetWordsByTopicId(topicId);
 
   const words = data?.wordsByTopicId ?? [];
+
   return (
     <>
       {isError && <Alert severity="error">words: server error</Alert>}
@@ -31,15 +32,19 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
       {isSuccess && (
         <Grid container className={classes.swiperContainer}>
           <Swiper
+            observer
+            observeParents
+            slidesPerView={1}
             pagination={{
               type: 'fraction',
             }}
+            scrollbar={{draggable: true}}
             navigation
           >
             {words.map(item => (
               <SwiperSlide key={item.word}>
                 <Grid container justify="center" alignItems="center" className={classes.slide}>
-                  {item.word}
+                  <Typography>{item.word}</Typography>
                 </Grid>
               </SwiperSlide>
             ))}
