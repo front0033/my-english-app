@@ -8,14 +8,7 @@ import routes from 'routes';
 import TopicPage from 'pages/TopicPage';
 import WordPage from 'pages/WordPage';
 
-const theme = createMuiTheme(
-  {
-    palette: {
-      type: 'dark',
-    },
-  },
-  ruRU
-);
+const theme = createMuiTheme({}, ruRU);
 
 interface IApp {}
 
