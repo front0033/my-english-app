@@ -2,7 +2,7 @@ import {DocumentNode} from 'graphql';
 import {ClientError, request} from 'graphql-request';
 import {BaseQueryFn} from '@reduxjs/toolkit/query/react';
 
-export const DEV_API_URL = 'http://localhost:5000/graphql';
+export const DEV_API_URL = 'http://localhost:5000';
 
 const graphqlBaseQuery = ({
   baseUrl,
