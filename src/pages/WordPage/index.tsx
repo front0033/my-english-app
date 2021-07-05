@@ -1,17 +1,8 @@
 import * as React from 'react';
-import {
-  TextField,
-  Button,
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  LinearProgress,
-  Typography,
-} from '@material-ui/core';
+import {TextField, Button, Grid, FormControl, InputLabel, Select, MenuItem, LinearProgress} from '@material-ui/core';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
 import {useAddWordMutation} from 'redux/stores/words/wordSlice';
+import {Alert} from '@material-ui/lab';
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -31,7 +22,7 @@ export interface IFields {
 const WordForm: React.FC = () => {
   const classes = useStyles();
   const {data, isLoading, error} = useGetTopics({});
-  const [addWord, {isLoading: savePending}] = useAddWordMutation({});
+  const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
 
   const topics = data?.topics ?? [];
 
@@ -54,7 +45,8 @@ const WordForm: React.FC = () => {
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
       {isLoading && <LinearProgress />}
-      {!!error && <Typography>Error</Typography>}
+      {error && <Alert severity="error">topics: server error</Alert>}
+      {saveError && <Alert severity="error">saving: server error</Alert>}
       <Grid container direction="column" alignContent="center" justify="center">
         <TextField
           id="word-field"
