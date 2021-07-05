@@ -20,10 +20,19 @@ interface IWordsProps {
 
 const Words: React.FC<IWordsProps> = ({topicId}) => {
   const classes = useStyles();
+  const [showTranslate, setShowTranslate] = React.useState(false);
 
   const {data, isSuccess, isLoading, isError} = usegetWordsByTopicId(topicId);
 
   const words = data?.wordsByTopicId ?? [];
+
+  const habdleToggleTranslateClick = () => {
+    setShowTranslate(!showTranslate);
+  };
+
+  const handleSliderChange = () => {
+    setShowTranslate(false);
+  };
 
   return (
     <>
@@ -40,11 +49,19 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
             }}
             scrollbar={{draggable: true}}
             navigation
+            onSlideChange={handleSliderChange}
           >
             {words.map(item => (
               <SwiperSlide key={item.word}>
-                <Grid container justify="center" alignItems="center" className={classes.slide}>
-                  <Typography>{item.word}</Typography>
+                <Grid
+                  container
+                  justify="center"
+                  alignItems="center"
+                  className={classes.slide}
+                  onClick={habdleToggleTranslateClick}
+                >
+                  <Typography>{showTranslate ? item.translate : item.word}</Typography>
+                  {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
                 </Grid>
               </SwiperSlide>
             ))}
