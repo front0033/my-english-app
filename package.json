@@ -1,6 +1,10 @@
 {
-  "name": "boilerplate",
+  "name": "my-english-words",
   "version": "0.0.1",
+  "author": {
+    "name": "Bezdenezhnykh Igor",
+    "email": "servis0033@gmail.com"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
