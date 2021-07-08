@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
     progress: {
       marginTop: theme.spacing(2),
     },
+    translateButton: {
+      marginTop: theme.spacing(6),
+    },
   })
 );
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {Grid, CircularProgress, Typography} from '@material-ui/core';
+import {Grid, CircularProgress, Typography, IconButton} from '@material-ui/core';
+import GTranslateIcon from '@material-ui/icons/GTranslate';
 import {Alert} from '@material-ui/lab';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, {Pagination, Navigation} from 'swiper/core';
@@ -21,6 +22,7 @@ interface IWordsProps {
 const Words: React.FC<IWordsProps> = ({topicId}) => {
   const classes = useStyles();
   const [showTranslate, setShowTranslate] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   const {data, isSuccess, isLoading, isError} = usegetWordsByTopicId(topicId);
 
@@ -30,8 +32,14 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
     setShowTranslate(!showTranslate);
   };
 
-  const handleSliderChange = () => {
+  const handleSliderChange = (swiper: SwiperCore) => {
+    setActiveIndex(swiper.activeIndex);
     setShowTranslate(false);
+  };
+
+  const goToGoogleTranslate = () => {
+    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${words[activeIndex].word.trim()}`;
+    window.open(url);
   };
 
   return (
@@ -53,15 +61,18 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
           >
             {words.map(item => (
               <SwiperSlide key={item.word}>
-                <Grid
-                  container
-                  justify="center"
-                  alignItems="center"
-                  className={classes.slide}
-                  onClick={habdleToggleTranslateClick}
-                >
-                  <Typography>{showTranslate ? item.translate : item.word}</Typography>
-                  {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
+                <Grid container direction="column" justify="center" alignItems="center" className={classes.slide}>
+                  <Grid onClick={habdleToggleTranslateClick}>
+                    <Typography>{showTranslate ? item.translate : item.word}</Typography>
+                    {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
+                  </Grid>
+                  <IconButton
+                    className={classes.translateButton}
+                    disabled={!words[activeIndex]}
+                    onClick={goToGoogleTranslate}
+                  >
+                    <GTranslateIcon color="primary" />
+                  </IconButton>
                 </Grid>
               </SwiperSlide>
             ))}
