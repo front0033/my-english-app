@@ -29,6 +29,8 @@ export interface IFields {
   [FieldsNames.topicId]: string;
 }
 
+const initialFields = {word: '', translate: '', expample: '', topicId: ''};
+
 const WordForm: React.FC = () => {
   const classes = useStyles();
   const {data, isLoading, error} = useGetTopics({});
@@ -36,7 +38,7 @@ const WordForm: React.FC = () => {
 
   const topics = data?.topics ?? [];
 
-  const [fields, setFields] = React.useState<IFields>({word: '', translate: '', expample: '', topicId: ''});
+  const [fields, setFields] = React.useState<IFields>(initialFields);
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setFields({...fields, [fieldName]: event.target.value});
@@ -46,20 +48,25 @@ const WordForm: React.FC = () => {
     setFields({...fields, [FieldsNames.topicId]: event.target.value as string});
   };
 
+  const handleResetClick = () => {
+    setFields(initialFields);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    addWord(fields);
+    addWord(fields).then(() => {
+      handleResetClick();
+    });
   };
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      {isLoading && <LinearProgress />}
-      {error && <Alert severity="error">topics: server error</Alert>}
-      {saveError && <Alert severity="error">saving: server error</Alert>}
-      <Grid container direction="column" alignContent="center" justify="center">
+      <Grid container direction="column" alignContent="center" justify="center" className={classes.container}>
         <TextField
           id="word-field"
+          fullWidth
+          required
           className={classes.textField}
           label="word"
           value={fields.word}
@@ -67,6 +74,8 @@ const WordForm: React.FC = () => {
         />
         <TextField
           id="translate-field"
+          fullWidth
+          required
           className={classes.textField}
           label="translate"
           value={fields.translate}
@@ -74,6 +83,7 @@ const WordForm: React.FC = () => {
         />
         <TextField
           id="example-field"
+          fullWidth
           className={classes.textField}
           label="example"
           value={fields.expample}
@@ -84,6 +94,8 @@ const WordForm: React.FC = () => {
           <Select
             labelId="topic-field-label"
             id="topic-field"
+            fullWidth
+            required
             value={fields.topicId}
             autoWidth
             onChange={handleChangeSelect}
@@ -98,10 +110,31 @@ const WordForm: React.FC = () => {
             ))}
           </Select>
         </FormControl>
-        {savePending && <LinearProgress />}
-        <Button className={classes.submitButton} color="primary" variant="contained" size="large" type="submit">
+        <Button
+          className={classes.submitButton}
+          color="primary"
+          variant="contained"
+          size="large"
+          type="submit"
+          disabled={savePending || !fields.word || !fields.translate || !fields.topicId}
+        >
           Save
         </Button>
+        <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
+          Reset
+        </Button>
+        {savePending && <LinearProgress className={classes.progress} />}
+        {error && (
+          <Alert severity="error" className={classes.error}>
+            topics: server error
+          </Alert>
+        )}
+        {isLoading && <LinearProgress className={classes.progress} />}
+        {saveError && (
+          <Alert severity="error" className={classes.error}>
+            saving: server error
+          </Alert>
+        )}
         <Snackbar open={isSuccess} autoHideDuration={2000}>
           <Alert severity="success">save word is susses</Alert>
         </Snackbar>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as React from 'react';
 
-import {TextField, MenuItem, Grid, Typography, CircularProgress} from '@material-ui/core';
+import {TextField, MenuItem, Grid, Typography, LinearProgress} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
 
@@ -28,7 +28,7 @@ const MainPage = () => {
   return (
     <>
       {isTopicsError && <Alert severity="error">topics: server error</Alert>}
-      {isTopicLoading && <CircularProgress />}
+      {isTopicLoading && <LinearProgress className={classes.progress} />}
       {isTopicSuccess && (
         <Grid className={classes.container} container direction="column" justify="space-around" wrap="nowrap">
           <TextField
