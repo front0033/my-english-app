@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Grid, CircularProgress, Typography, IconButton} from '@material-ui/core';
+import {Grid, Typography, IconButton, CircularProgress} from '@material-ui/core';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import {Alert} from '@material-ui/lab';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -45,10 +45,17 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
   return (
     <>
       {isError && <Alert severity="error">words: server error</Alert>}
-      {isLoading && <CircularProgress color="secondary" />}
-      {!words.length && <Alert severity="info">Words are missing.</Alert>}
+      {isLoading && (
+        <Grid container direction="column" alignItems="center" className={classes.wordsContainer}>
+          <Typography className={classes.progressCaption} variant="caption">
+            Loading words...
+          </Typography>
+          <CircularProgress className={classes.progress} />
+        </Grid>
+      )}
+      {isSuccess && !words.length && <Alert severity="info">Words are missing.</Alert>}
       {isSuccess && (
-        <Grid container className={classes.swiperContainer}>
+        <Grid container className={classes.wordsContainer}>
           <Swiper
             observer
             observeParents

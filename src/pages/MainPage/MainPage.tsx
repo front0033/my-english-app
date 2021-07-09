@@ -30,11 +30,14 @@ const MainPage = () => {
       {isTopicsError && <Alert severity="error">topics: server error</Alert>}
       {isTopicLoading && (
         <Grid container direction="column" alignItems="center">
-          <Typography variant="caption">Loading...</Typography>
+          <Typography className={classes.progressCaption} variant="caption">
+            Loading topics...
+          </Typography>
           <LinearProgress className={classes.progress} />
         </Grid>
       )}
-      {isTopicSuccess && (
+      {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
+      {isTopicSuccess && !!topicId && (
         <Grid className={classes.container} container direction="column" justify="space-around" wrap="nowrap">
           <TextField
             variant="outlined"

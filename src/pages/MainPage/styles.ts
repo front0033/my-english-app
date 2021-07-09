@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       marginTop: theme.spacing(3),
     },
-    swiperContainer: {
+    wordsContainer: {
       height: '85%',
     },
     slide: {
@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
       boxPack: 'center',
     },
     progress: {
+      marginTop: theme.spacing(1),
+      width: '100%',
+    },
+    circularProgress: {
+      marginTop: theme.spacing(1),
+    },
+    progressCaption: {
       marginTop: theme.spacing(2),
     },
     translateButton: {
