@@ -28,7 +28,12 @@ const MainPage = () => {
   return (
     <>
       {isTopicsError && <Alert severity="error">topics: server error</Alert>}
-      {isTopicLoading && <LinearProgress className={classes.progress} />}
+      {isTopicLoading && (
+        <Grid container direction="column" alignItems="center">
+          <Typography variant="caption">Loading...</Typography>
+          <LinearProgress className={classes.progress} />
+        </Grid>
+      )}
       {isTopicSuccess && (
         <Grid className={classes.container} container direction="column" justify="space-around" wrap="nowrap">
           <TextField

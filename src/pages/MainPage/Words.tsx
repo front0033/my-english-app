@@ -46,6 +46,7 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
     <>
       {isError && <Alert severity="error">words: server error</Alert>}
       {isLoading && <CircularProgress color="secondary" />}
+      {!words.length && <Alert severity="info">Words are missing.</Alert>}
       {isSuccess && (
         <Grid container className={classes.swiperContainer}>
           <Swiper
@@ -61,9 +62,11 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
           >
             {words.map(item => (
               <SwiperSlide key={item.word}>
-                <Grid container direction="column" justify="center" alignItems="center" className={classes.slide}>
+                <Grid container direction="column" justify="space-around" alignItems="center" className={classes.slide}>
                   <Grid onClick={habdleToggleTranslateClick}>
-                    <Typography>{showTranslate ? item.translate : item.word}</Typography>
+                    <Typography color={showTranslate ? 'secondary' : 'primary'} variant="h5">
+                      {showTranslate ? item.translate : item.word}
+                    </Typography>
                     {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
                   </Grid>
                   <IconButton

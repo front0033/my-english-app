@@ -56,7 +56,7 @@ const WordForm: React.FC = () => {
     event.preventDefault();
 
     addWord(fields).then(() => {
-      handleResetClick();
+      setFields({...initialFields, topicId: fields.topicId});
     });
   };
 
