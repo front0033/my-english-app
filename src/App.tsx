@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import {MuiThemeProvider, createMuiTheme, StylesProvider} from '@material-ui/core/styles';
 import {ruRU} from '@material-ui/core/locale';
-import {CssBaseline, AppBar, Typography, Grid, IconButton} from '@material-ui/core';
+import {CssBaseline, AppBar, Typography, Grid, IconButton, colors} from '@material-ui/core';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import MainPage from 'pages/MainPage';
 import {Switch, Route, useLocation, Link} from 'react-router-dom';
@@ -24,7 +24,7 @@ const App: React.FC<IApp> = (): ReactElement => {
           <Grid container wrap="nowrap" justify="space-between" alignItems="center">
             {page && (
               <IconButton component={Link} to={routes.main()}>
-                <ArrowBackIosOutlinedIcon />
+                <ArrowBackIosOutlinedIcon style={{color: colors.common.white}} />
               </IconButton>
             )}
             <Typography variant="h6" style={{marginLeft: 8}}>
