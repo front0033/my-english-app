@@ -33,8 +33,9 @@ const initialFields = {word: '', translate: '', expample: '', topicId: ''};
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
   const {data, isLoading, error} = useGetTopics({});
-  const [addWord, {isLoading: savePending, isError: saveError, isSuccess}] = useAddWordMutation({});
+  const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
 
   const topics = data?.topics ?? [];
 
@@ -57,8 +58,11 @@ const WordForm: React.FC = () => {
 
     addWord(fields).then(() => {
       setFields({...initialFields, topicId: fields.topicId});
+      setShowSnackbar(true);
     });
   };
+
+  const handleHideSnackBar = () => setShowSnackbar(false);
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -135,7 +139,7 @@ const WordForm: React.FC = () => {
             saving: server error
           </Alert>
         )}
-        <Snackbar open={isSuccess} autoHideDuration={2000}>
+        <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
           <Alert severity="success">save word is susses</Alert>
         </Snackbar>
       </Grid>

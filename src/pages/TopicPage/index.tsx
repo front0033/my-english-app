@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {TextField, Button, Grid, LinearProgress, Snackbar} from '@material-ui/core';
-import {useAddTopicMutation} from 'redux/stores/topics/topicSlice';
+import {useAddTopicMutation, useGetTopics} from 'redux/stores/topics/topicSlice';
 import {Alert} from '@material-ui/lab';
 import useStyles from './styles';
 
@@ -10,7 +10,9 @@ const defaultValue = '';
 const TopicForm: React.FC = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(defaultValue);
-  const [addTopic, {isLoading, isError, isSuccess}] = useAddTopicMutation({});
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
+  const [addTopic, {isLoading, isError}] = useAddTopicMutation({});
+  const {refetch: refetchTopics} = useGetTopics({});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -24,8 +26,12 @@ const TopicForm: React.FC = () => {
     event.preventDefault();
     addTopic(value).then(() => {
       handleResetClick();
+      refetchTopics();
+      setShowSnackbar(true);
     });
   };
+
+  const handleHideSnackBar = () => setShowSnackbar(false);
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -59,7 +65,7 @@ const TopicForm: React.FC = () => {
             saving: server error
           </Alert>
         )}
-        <Snackbar open={isSuccess} autoHideDuration={2000}>
+        <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
           <Alert severity="success">save topic is susses</Alert>
         </Snackbar>
       </Grid>
