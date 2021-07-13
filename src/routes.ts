@@ -3,6 +3,8 @@ const routes = {
   auth: () => '/auth',
   topic: () => '/topic',
   word: () => '/word',
+  topics: () => '/topics',
+  words: () => '/words',
 };
 
 export default routes;
