@@ -19,7 +19,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import {Link} from 'react-router-dom';
 import routes from 'routes';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
-import {usegetWordsByTopicId} from 'redux/stores/words/wordSlice';
+import {useGetWordsByTopicId} from 'redux/stores/words/wordSlice';
 
 import useStyles from './styles';
 
@@ -34,7 +34,7 @@ const WordList: React.FC = () => {
     isSuccess: isWordSuccess,
     isLoading: isWordLoading,
     isError: isWordError,
-  } = usegetWordsByTopicId(topicId || '');
+  } = useGetWordsByTopicId(topicId || '');
 
   const words = wordData?.wordsByTopicId ?? [];
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {

@@ -1,6 +1,7 @@
 import {gql} from 'graphql-request';
 import {createApi} from '@reduxjs/toolkit/query/react';
 import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
+import {ITopic} from '../topics/topicSlice';
 
 export interface INewWord {
   word: string;
@@ -14,7 +15,7 @@ export interface IWord {
   word: string;
   translate: string;
   expample: string;
-  topicId: string;
+  topic: ITopic;
 }
 
 export interface GetWordsResponse {
@@ -49,15 +50,19 @@ export const wordSlice = createApi({
     getWord: builder.query<IWord, string>({
       query: id => ({
         document: gql`
-        query ($id: ID!) {
-          word(id: ${id}) {
-            id
-            word
-            translate
-            example
+          query($id: ID!) {
+            word(id: $id) {
+              id
+              word
+              translate
+              example
+              topic {
+                id
+              }
+            }
           }
-        }
         `,
+        variables: {id},
       }),
       transformResponse: (response: WordResponse) => response.word,
     }),
@@ -82,7 +87,7 @@ export const wordSlice = createApi({
         };
       },
     }),
-    updateWord: builder.mutation<IWord, IWord>({
+    updateWord: builder.mutation<IWord, Pick<IWord, 'id' | 'word' | 'expample' | 'translate'> & {topicId: string}>({
       query: params => {
         const {id, word, translate, expample, topicId} = params;
 
@@ -117,9 +122,9 @@ export const wordSlice = createApi({
 
 // TODO: update typescript
 const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
-const usegetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
+const useGetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
 const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
 const useUpdateWordMutation = wordSlice.endpoints.updateWord.useMutation;
 const useDeleteWordMutation = wordSlice.endpoints.deleteWord.useMutation;
 
-export {useGetWordByIdQuery, usegetWordsByTopicId, useAddWordMutation, useUpdateWordMutation, useDeleteWordMutation};
+export {useGetWordByIdQuery, useGetWordsByTopicId, useAddWordMutation, useUpdateWordMutation, useDeleteWordMutation};

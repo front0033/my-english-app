@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   TextField,
   Button,
@@ -11,8 +12,11 @@ import {
   Snackbar,
 } from '@material-ui/core';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
-import {useAddWordMutation} from 'redux/stores/words/wordSlice';
+import {useParams, Redirect} from 'react-router-dom';
+import {useAddWordMutation, useGetWordByIdQuery, useUpdateWordMutation} from 'redux/stores/words/wordSlice';
 import {Alert} from '@material-ui/lab';
+import routes from 'routes';
+
 import useStyles from './styles';
 
 enum FieldsNames {
@@ -33,13 +37,34 @@ const initialFields = {word: '', translate: '', expample: '', topicId: ''};
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
+  const {wordId} = useParams<{wordId: string}>();
   const [showSnackbar, setShowSnackbar] = React.useState(false);
-  const {data, isLoading, error} = useGetTopics({});
+  const [fields, setFields] = React.useState<IFields>(initialFields);
+
+  // query
+  const {data, isLoading, error, isSuccess: isTopicsSuccess} = useGetTopics({});
+  const {
+    data: wordData,
+    isLoading: isWordLoading,
+    isError: isWordError,
+    isSuccess: isWordSuccess,
+  } = useGetWordByIdQuery(wordId);
+
+  // mutations
   const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
+  const [
+    updateWord,
+    {isLoading: updatePending, isError: updateError, isSuccess: updateSuccess},
+  ] = useUpdateWordMutation({});
 
   const topics = data?.topics ?? [];
 
-  const [fields, setFields] = React.useState<IFields>(initialFields);
+  React.useEffect(() => {
+    if (wordData) {
+      const {word, translate, expample, topic} = wordData;
+      setFields({word, translate, expample, topicId: topic.id});
+    }
+  }, [isTopicsSuccess, isWordSuccess]);
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setFields({...fields, [fieldName]: event.target.value});
@@ -56,10 +81,17 @@ const WordForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    addWord(fields).then(() => {
-      setFields({...initialFields, topicId: fields.topicId});
-      setShowSnackbar(true);
-    });
+    if (wordId) {
+      updateWord({id: wordId, ...fields}).then(() => {
+        setFields({...initialFields, topicId: fields.topicId});
+        setShowSnackbar(true);
+      });
+    } else {
+      addWord(fields).then(() => {
+        setFields({...initialFields, topicId: fields.topicId});
+        setShowSnackbar(true);
+      });
+    }
   };
 
   const handleHideSnackBar = () => setShowSnackbar(false);
@@ -127,13 +159,14 @@ const WordForm: React.FC = () => {
         <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
           Reset
         </Button>
-        {savePending && <LinearProgress className={classes.progress} />}
-        {error && (
+        {(savePending || updatePending || isLoading || isWordLoading) && (
+          <LinearProgress className={classes.progress} />
+        )}
+        {(error || isWordError || updateError) && (
           <Alert severity="error" className={classes.error}>
             topics: server error
           </Alert>
         )}
-        {isLoading && <LinearProgress className={classes.progress} />}
         {saveError && (
           <Alert severity="error" className={classes.error}>
             saving: server error
@@ -142,6 +175,7 @@ const WordForm: React.FC = () => {
         <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
           <Alert severity="success">save word is susses</Alert>
         </Snackbar>
+        {!!wordId && updateSuccess && <Redirect to={routes.words()} />}
       </Grid>
     </form>
   );
