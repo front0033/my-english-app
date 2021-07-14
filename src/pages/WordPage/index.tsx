@@ -48,7 +48,7 @@ const WordForm: React.FC = () => {
     isLoading: isWordLoading,
     isError: isWordError,
     isSuccess: isWordSuccess,
-  } = useGetWordByIdQuery(wordId, {});
+  } = useGetWordByIdQuery(wordId, {skip: !wordId});
 
   // mutations
   const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
