@@ -2,7 +2,15 @@ import {gql} from 'graphql-request';
 import {createApi} from '@reduxjs/toolkit/query/react';
 import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
 
+export interface INewWord {
+  word: string;
+  translate: string;
+  expample: string;
+  topicId: string;
+}
+
 export interface IWord {
+  id: string;
   word: string;
   translate: string;
   expample: string;
@@ -53,7 +61,7 @@ export const wordSlice = createApi({
       }),
       transformResponse: (response: WordResponse) => response.word,
     }),
-    addWord: builder.mutation<IWord, IWord>({
+    addWord: builder.mutation<IWord, INewWord>({
       query: params => {
         const {word, translate, expample, topicId} = params;
 
@@ -71,6 +79,36 @@ export const wordSlice = createApi({
             }
           `,
           variables: {word, translate, expample, topicId},
+        };
+      },
+    }),
+    updateWord: builder.mutation<IWord, IWord>({
+      query: params => {
+        const {id, word, translate, expample, topicId} = params;
+
+        return {
+          document: gql`
+            mutation($id: ID, $word: String, $translate: String, $example: String, $topicId: String) {
+              updateWord(id: $id, word: $word, translate: $translate, example: $example, topicId: $topicId) {
+                id
+              }
+            }
+          `,
+          variables: {id, word, translate, expample, topicId},
+        };
+      },
+    }),
+    deleteWord: builder.mutation<IWord, string>({
+      query: id => {
+        return {
+          document: gql`
+            mutation($id: ID) {
+              deleteWord(id: $id) {
+                id
+              }
+            }
+          `,
+          variables: {id},
         };
       },
     }),

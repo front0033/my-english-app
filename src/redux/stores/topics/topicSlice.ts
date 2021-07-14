@@ -61,6 +61,31 @@ export const topicSlice = createApi({
         variables: {name},
       }),
     }),
+    updateTopic: builder.mutation<ITopic, ITopic>({
+      query: ({id, name}) => ({
+        document: gql`
+          mutation($id: ID, $name: String) {
+            updateTopic(id: $id, name: $name) {
+              id
+              name
+            }
+          }
+        `,
+        variables: {id, name},
+      }),
+    }),
+    deleteTopic: builder.mutation<ITopic, string>({
+      query: id => ({
+        document: gql`
+          mutation($id: ID) {
+            deleteTopic(id: $id) {
+              id
+            }
+          }
+        `,
+        variables: {id},
+      }),
+    }),
   }),
 });
 
