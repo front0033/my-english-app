@@ -8,7 +8,8 @@ import {
   useUpdateTopicMutation,
 } from 'redux/stores/topics/topicSlice';
 import {Alert} from '@material-ui/lab';
-import {useParams} from 'react-router-dom';
+import {useParams, Redirect} from 'react-router-dom';
+import routes from 'routes';
 
 import useStyles from './styles';
 
@@ -20,10 +21,12 @@ const TopicForm: React.FC = () => {
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [addTopic, {isLoading, isError}] = useAddTopicMutation({});
-  const [updateTopic, {isLoading: isUpdating, isError: isUpdateError}] = useUpdateTopicMutation({});
+  const [updateTopic, {isLoading: isUpdating, isError: isUpdateError, isSuccess}] = useUpdateTopicMutation({});
   const {refetch: refetchTopics} = useGetTopics({});
 
-  const {data: editedTopic, isLoading: isWordLoading, isError: IsWordError} = useGetTopicByIdQuery(topicId);
+  const {data: editedTopic, isLoading: isWordLoading, isError: IsWordError} = useGetTopicByIdQuery(topicId, {
+    skip: !topicId,
+  });
 
   React.useEffect(() => {
     if (editedTopic) {
@@ -42,13 +45,17 @@ const TopicForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (topicId) {
-      updateTopic({id: topicId, name: value});
+      updateTopic({id: topicId, name: value}).then(() => {
+        refetchTopics();
+        setShowSnackbar(true);
+      });
+    } else {
+      addTopic(value).then(() => {
+        handleResetClick();
+        setShowSnackbar(true);
+        refetchTopics();
+      });
     }
-    addTopic(value).then(() => {
-      handleResetClick();
-      refetchTopics();
-      setShowSnackbar(true);
-    });
   };
 
   const handleHideSnackBar = () => setShowSnackbar(false);
@@ -88,6 +95,7 @@ const TopicForm: React.FC = () => {
         <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
           <Alert severity="success">save topic is susses</Alert>
         </Snackbar>
+        {!!topicId && isSuccess && <Redirect to={routes.topics()} />}
       </Grid>
     </form>
   );

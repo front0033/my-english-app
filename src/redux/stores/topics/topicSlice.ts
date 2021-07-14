@@ -19,6 +19,7 @@ export const topicSlice = createApi({
   baseQuery: graphqlBaseQuery({
     baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql`,
   }),
+  tagTypes: ['Topic'],
   reducerPath: 'apiTopics',
   endpoints: builder => ({
     getTopics: builder.query<GetTopicsResponse, {}>({
@@ -33,6 +34,7 @@ export const topicSlice = createApi({
         `,
         variables: {},
       }),
+      providesTags: ['Topic'],
     }),
     getTopic: builder.query<ITopic, string>({
       query: id => ({
@@ -46,6 +48,7 @@ export const topicSlice = createApi({
         `,
         variables: {id},
       }),
+      providesTags: ['Topic'],
       transformResponse: (response: TopicResponse) => response.topic,
     }),
     addTopic: builder.mutation<ITopic, string>({
@@ -60,6 +63,7 @@ export const topicSlice = createApi({
         `,
         variables: {name},
       }),
+      invalidatesTags: ['Topic'],
     }),
     updateTopic: builder.mutation<ITopic, ITopic>({
       query: ({id, name}) => ({
@@ -73,6 +77,7 @@ export const topicSlice = createApi({
         `,
         variables: {id, name},
       }),
+      invalidatesTags: ['Topic'],
     }),
     deleteTopic: builder.mutation<ITopic, string>({
       query: id => ({
@@ -85,6 +90,7 @@ export const topicSlice = createApi({
         `,
         variables: {id},
       }),
+      invalidatesTags: ['Topic'],
     }),
   }),
 });
