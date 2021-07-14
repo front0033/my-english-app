@@ -119,5 +119,7 @@ export const wordSlice = createApi({
 const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
 const usegetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
 const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
+const useUpdateWordMutation = wordSlice.endpoints.updateWord.useMutation;
+const useDeleteWordMutation = wordSlice.endpoints.deleteWord.useMutation;
 
-export {useGetWordByIdQuery, usegetWordsByTopicId, useAddWordMutation};
+export {useGetWordByIdQuery, usegetWordsByTopicId, useAddWordMutation, useUpdateWordMutation, useDeleteWordMutation};

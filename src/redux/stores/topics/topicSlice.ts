@@ -93,5 +93,7 @@ export const topicSlice = createApi({
 const useGetTopics = topicSlice.endpoints.getTopics.useQuery;
 const useGetTopicByIdQuery = topicSlice.endpoints.getTopic.useQuery;
 const useAddTopicMutation = topicSlice.endpoints.addTopic.useMutation;
+const useUpdateTopicMutation = topicSlice.endpoints.updateTopic.useMutation;
+const useDeleteTopicMutation = topicSlice.endpoints.deleteTopic.useMutation;
 
-export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation};
+export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation, useUpdateTopicMutation, useDeleteTopicMutation};

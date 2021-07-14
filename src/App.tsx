@@ -53,7 +53,13 @@ const App: React.FC<IApp> = (): ReactElement => {
           <Route exact path={routes.topic()}>
             <TopicPage />
           </Route>
+          <Route exact path={routes.editTopic()}>
+            <TopicPage />
+          </Route>
           <Route exact path={routes.word()}>
+            <WordPage />
+          </Route>
+          <Route exact path={routes.editWord()}>
             <WordPage />
           </Route>
           <Route exact path={routes.words()}>

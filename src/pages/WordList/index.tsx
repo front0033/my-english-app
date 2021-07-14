@@ -16,6 +16,8 @@ import {
 import {Alert} from '@material-ui/lab';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
+import {Link} from 'react-router-dom';
+import routes from 'routes';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
 import {usegetWordsByTopicId} from 'redux/stores/words/wordSlice';
 
@@ -55,7 +57,7 @@ const WordList: React.FC = () => {
       {isTopicSuccess && (
         <List>
           {topics.map(topic => (
-            <Accordion expanded={topicId === topic.id} onChange={handleChange(topic.id)}>
+            <Accordion key={topic.id} expanded={topicId === topic.id} onChange={handleChange(topic.id)}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`${topic.id}bh-content`}
@@ -68,11 +70,11 @@ const WordList: React.FC = () => {
                 {isWordError && <Alert severity="error">words: server error</Alert>}
                 {isWordSuccess && !!words.length && (
                   <List className={classes.width100}>
-                    {words.map(word => (
-                      <ListItem divider key={word.word}>
-                        <ListItemText id={word.word} primary={word.word} />
+                    {words.map(item => (
+                      <ListItem divider key={item.id}>
+                        <ListItemText id={item.id} primary={item.word} />
                         <ListItemSecondaryAction>
-                          <IconButton>
+                          <IconButton component={Link} to={routes.editWord(item.id)}>
                             <EditIcon />
                           </IconButton>
                         </ListItemSecondaryAction>

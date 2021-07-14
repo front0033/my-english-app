@@ -12,7 +12,10 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import {Alert} from '@material-ui/lab';
+import {Link} from 'react-router-dom';
+import routes from 'routes';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
+
 import useStyles from './styles';
 
 const TopicList: React.FC = () => {
@@ -39,7 +42,7 @@ const TopicList: React.FC = () => {
             <ListItem divider key={topic.id}>
               <ListItemText id={topic.id} primary={topic.name} />
               <ListItemSecondaryAction>
-                <IconButton>
+                <IconButton component={Link} to={routes.editTopic(topic.id)}>
                   <EditIcon />
                 </IconButton>
               </ListItemSecondaryAction>
