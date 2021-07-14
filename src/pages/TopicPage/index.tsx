@@ -23,7 +23,7 @@ const TopicForm: React.FC = () => {
   const [updateTopic, {isLoading: isUpdating, isError: isUpdateError}] = useUpdateTopicMutation({});
   const {refetch: refetchTopics} = useGetTopics({});
 
-  const {data: editedTopic} = useGetTopicByIdQuery(topicId);
+  const {data: editedTopic, isLoading: isWordLoading, isError: IsWordError} = useGetTopicByIdQuery(topicId);
 
   React.useEffect(() => {
     if (editedTopic) {
@@ -79,8 +79,8 @@ const TopicForm: React.FC = () => {
         <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
           Reset
         </Button>
-        {(isLoading || isUpdating) && <LinearProgress className={classes.progress} />}
-        {(isError || isUpdateError) && (
+        {(isLoading || isUpdating || isWordLoading) && <LinearProgress className={classes.progress} />}
+        {(isError || isUpdateError || IsWordError) && (
           <Alert severity="error" className={classes.error}>
             saving: server error
           </Alert>
