@@ -74,7 +74,7 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
                     <Typography color={showTranslate ? 'secondary' : 'primary'} variant="h5">
                       {showTranslate ? item.translate : item.word}
                     </Typography>
-                    {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
+                    {showTranslate && item.example && <Typography variant="caption">{item.example}</Typography>}
                   </Grid>
                   <IconButton
                     className={classes.translateButton}

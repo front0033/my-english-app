@@ -22,18 +22,18 @@ import useStyles from './styles';
 enum FieldsNames {
   word = 'word',
   translate = 'translate',
-  expample = 'expample',
+  example = 'example',
   topicId = 'topicId',
 }
 
 export interface IFields {
   [FieldsNames.word]: string;
   [FieldsNames.translate]: string;
-  [FieldsNames.expample]: string;
+  [FieldsNames.example]: string;
   [FieldsNames.topicId]: string;
 }
 
-const initialFields = {word: '', translate: '', expample: '', topicId: ''};
+const initialFields = {word: '', translate: '', example: '', topicId: ''};
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
@@ -48,7 +48,7 @@ const WordForm: React.FC = () => {
     isLoading: isWordLoading,
     isError: isWordError,
     isSuccess: isWordSuccess,
-  } = useGetWordByIdQuery(wordId);
+  } = useGetWordByIdQuery(wordId, {});
 
   // mutations
   const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
@@ -61,8 +61,8 @@ const WordForm: React.FC = () => {
 
   React.useEffect(() => {
     if (wordData) {
-      const {word, translate, expample, topic} = wordData;
-      setFields({word, translate, expample, topicId: topic.id});
+      const {word, translate, example, topic} = wordData;
+      setFields({word, translate, example, topicId: topic.id});
     }
   }, [isTopicsSuccess, isWordSuccess]);
 
@@ -122,8 +122,8 @@ const WordForm: React.FC = () => {
           fullWidth
           className={classes.textField}
           label="example"
-          value={fields.expample}
-          onChange={handleChange(FieldsNames.expample)}
+          value={fields.example}
+          onChange={handleChange(FieldsNames.example)}
         />
         <FormControl className={classes.textField}>
           <InputLabel id="topic-field-label">Topic</InputLabel>
