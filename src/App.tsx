@@ -28,14 +28,15 @@ interface IApp {}
 
 const App: React.FC<IApp> = (): ReactElement => {
   const {pathname} = useLocation();
-  const [, page] = pathname.split('/');
+  const [, page, id] = pathname.split('/');
+
   return (
     <MuiThemeProvider theme={theme}>
       <StylesProvider injectFirst>
         <AppBar position="static" title="ENGLISH CARDS">
           <Grid container wrap="nowrap" justify="space-between" alignItems="center">
             {page && (
-              <IconButton component={Link} to={routes.main()}>
+              <IconButton component={Link} to={id ? routes.currentPage(page) : routes.main()}>
                 <ArrowBackIosOutlinedIcon style={{color: colors.common.white}} />
               </IconButton>
             )}
