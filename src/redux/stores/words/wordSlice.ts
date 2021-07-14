@@ -131,6 +131,7 @@ const useGetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
 const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
 const useUpdateWordMutation = wordSlice.endpoints.updateWord.useMutation;
 const useDeleteWordMutation = wordSlice.endpoints.deleteWord.useMutation;
+const useDeleteWordById = wordSlice.endpoints.deleteWord.useMutation;
 
 export {
   useGetWordByIdQuery,
@@ -139,4 +140,5 @@ export {
   useUpdateWordMutation,
   useDeleteWordMutation,
   useRefetchWord,
+  useDeleteWordById,
 };

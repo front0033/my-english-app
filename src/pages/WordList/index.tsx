@@ -19,7 +19,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import {Link} from 'react-router-dom';
 import routes from 'routes';
 import {useGetTopics} from 'redux/stores/topics/topicSlice';
-import {useGetWordsByTopicId} from 'redux/stores/words/wordSlice';
+import {useGetWordsByTopicId, useDeleteWordById} from 'redux/stores/words/wordSlice';
+import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
 
@@ -34,7 +35,16 @@ const WordList: React.FC = () => {
     isSuccess: isWordSuccess,
     isLoading: isWordLoading,
     isError: isWordError,
+    refetch: wordsRefetch,
   } = useGetWordsByTopicId(topicId || '');
+
+  const [deleteWordById] = useDeleteWordById();
+
+  const deleteWord = (id: string) => () => {
+    deleteWordById(id).then(() => {
+      wordsRefetch();
+    });
+  };
 
   const words = wordData?.wordsByTopicId ?? [];
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
@@ -77,6 +87,11 @@ const WordList: React.FC = () => {
                           <IconButton component={Link} to={routes.editWord(item.id)}>
                             <EditIcon />
                           </IconButton>
+                          <DeleteButtonWithConfirmDialog
+                            id={`word-delete-button-${item.id}`}
+                            text="Are you sure?"
+                            action={deleteWord(item.id)}
+                          />
                         </ListItemSecondaryAction>
                       </ListItem>
                     ))}

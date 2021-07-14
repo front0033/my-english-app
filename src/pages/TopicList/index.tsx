@@ -14,15 +14,29 @@ import EditIcon from '@material-ui/icons/Edit';
 import {Alert} from '@material-ui/lab';
 import {Link} from 'react-router-dom';
 import routes from 'routes';
-import {useGetTopics} from 'redux/stores/topics/topicSlice';
+import {useGetTopics, useDeleteTopicMutation} from 'redux/stores/topics/topicSlice';
+import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
 
 const TopicList: React.FC = () => {
   const classes = useStyles();
-  const {data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError} = useGetTopics({});
+  const {
+    data,
+    isSuccess: isTopicSuccess,
+    isLoading: isTopicLoading,
+    isError: isTopicsError,
+    refetch: topicsRefecth,
+  } = useGetTopics({});
+  const [deleteTopic] = useDeleteTopicMutation();
 
   const topics = data?.topics ?? [];
+
+  const handleDeleteById = (id: string) => () => {
+    deleteTopic(id).then(() => {
+      topicsRefecth();
+    });
+  };
 
   return (
     <Grid className={classes.container}>
@@ -45,6 +59,11 @@ const TopicList: React.FC = () => {
                 <IconButton component={Link} to={routes.editTopic(topic.id)}>
                   <EditIcon />
                 </IconButton>
+                <DeleteButtonWithConfirmDialog
+                  id={`topic-delete-button-${topic.id}`}
+                  text="Are you sure?"
+                  action={handleDeleteById(topic.id)}
+                />
               </ListItemSecondaryAction>
             </ListItem>
           ))}
