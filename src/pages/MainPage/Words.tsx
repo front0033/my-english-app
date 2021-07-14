@@ -9,7 +9,7 @@ import SwiperCore, {Pagination, Navigation} from 'swiper/core';
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import {usegetWordsByTopicId} from 'redux/stores/words/wordSlice';
+import {useGetWordsByTopicId} from 'redux/stores/words/wordSlice';
 
 import useStyles from './styles';
 
@@ -24,7 +24,7 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
   const [showTranslate, setShowTranslate] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const {data, isSuccess, isLoading, isError} = usegetWordsByTopicId(topicId);
+  const {data, isSuccess, isLoading, isError} = useGetWordsByTopicId(topicId);
 
   const words = data?.wordsByTopicId ?? [];
 
@@ -74,7 +74,7 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
                     <Typography color={showTranslate ? 'secondary' : 'primary'} variant="h5">
                       {showTranslate ? item.translate : item.word}
                     </Typography>
-                    {showTranslate && item.expample && <Typography variant="caption">{item.expample}</Typography>}
+                    {showTranslate && item.example && <Typography variant="caption">{item.example}</Typography>}
                   </Grid>
                   <IconButton
                     className={classes.translateButton}

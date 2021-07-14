@@ -1,18 +1,38 @@
 import * as React from 'react';
 
 import {TextField, Button, Grid, LinearProgress, Snackbar} from '@material-ui/core';
-import {useAddTopicMutation, useGetTopics} from 'redux/stores/topics/topicSlice';
+import {
+  useAddTopicMutation,
+  useGetTopics,
+  useGetTopicByIdQuery,
+  useUpdateTopicMutation,
+} from 'redux/stores/topics/topicSlice';
 import {Alert} from '@material-ui/lab';
+import {useParams, Redirect} from 'react-router-dom';
+import routes from 'routes';
+
 import useStyles from './styles';
 
 const defaultValue = '';
 
 const TopicForm: React.FC = () => {
   const classes = useStyles();
+  const {topicId} = useParams<{topicId: string}>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [addTopic, {isLoading, isError}] = useAddTopicMutation({});
+  const [updateTopic, {isLoading: isUpdating, isError: isUpdateError, isSuccess}] = useUpdateTopicMutation({});
   const {refetch: refetchTopics} = useGetTopics({});
+
+  const {data: editedTopic, isLoading: isWordLoading, isError: IsWordError} = useGetTopicByIdQuery(topicId, {
+    skip: !topicId,
+  });
+
+  React.useEffect(() => {
+    if (editedTopic) {
+      setValue(editedTopic.name);
+    }
+  }, [editedTopic]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -24,11 +44,18 @@ const TopicForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addTopic(value).then(() => {
-      handleResetClick();
-      refetchTopics();
-      setShowSnackbar(true);
-    });
+    if (topicId) {
+      updateTopic({id: topicId, name: value}).then(() => {
+        refetchTopics();
+        setShowSnackbar(true);
+      });
+    } else {
+      addTopic(value).then(() => {
+        handleResetClick();
+        setShowSnackbar(true);
+        refetchTopics();
+      });
+    }
   };
 
   const handleHideSnackBar = () => setShowSnackbar(false);
@@ -59,8 +86,8 @@ const TopicForm: React.FC = () => {
         <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
           Reset
         </Button>
-        {isLoading && <LinearProgress className={classes.progress} />}
-        {isError && (
+        {(isLoading || isUpdating || isWordLoading) && <LinearProgress className={classes.progress} />}
+        {(isError || isUpdateError || IsWordError) && (
           <Alert severity="error" className={classes.error}>
             saving: server error
           </Alert>
@@ -68,6 +95,7 @@ const TopicForm: React.FC = () => {
         <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
           <Alert severity="success">save topic is susses</Alert>
         </Snackbar>
+        {!!topicId && isSuccess && <Redirect to={routes.topics()} />}
       </Grid>
     </form>
   );

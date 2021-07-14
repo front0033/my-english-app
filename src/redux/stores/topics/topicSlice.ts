@@ -19,6 +19,7 @@ export const topicSlice = createApi({
   baseQuery: graphqlBaseQuery({
     baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql`,
   }),
+  tagTypes: ['Topic'],
   reducerPath: 'apiTopics',
   endpoints: builder => ({
     getTopics: builder.query<GetTopicsResponse, {}>({
@@ -33,6 +34,7 @@ export const topicSlice = createApi({
         `,
         variables: {},
       }),
+      providesTags: ['Topic'],
     }),
     getTopic: builder.query<ITopic, string>({
       query: id => ({
@@ -46,6 +48,7 @@ export const topicSlice = createApi({
         `,
         variables: {id},
       }),
+      providesTags: ['Topic'],
       transformResponse: (response: TopicResponse) => response.topic,
     }),
     addTopic: builder.mutation<ITopic, string>({
@@ -60,6 +63,34 @@ export const topicSlice = createApi({
         `,
         variables: {name},
       }),
+      invalidatesTags: ['Topic'],
+    }),
+    updateTopic: builder.mutation<ITopic, ITopic>({
+      query: ({id, name}) => ({
+        document: gql`
+          mutation($id: ID, $name: String) {
+            updateTopic(id: $id, name: $name) {
+              id
+              name
+            }
+          }
+        `,
+        variables: {id, name},
+      }),
+      invalidatesTags: ['Topic'],
+    }),
+    deleteTopic: builder.mutation<ITopic, string>({
+      query: id => ({
+        document: gql`
+          mutation($id: ID) {
+            deleteTopic(id: $id) {
+              id
+            }
+          }
+        `,
+        variables: {id},
+      }),
+      invalidatesTags: ['Topic'],
     }),
   }),
 });
@@ -68,5 +99,7 @@ export const topicSlice = createApi({
 const useGetTopics = topicSlice.endpoints.getTopics.useQuery;
 const useGetTopicByIdQuery = topicSlice.endpoints.getTopic.useQuery;
 const useAddTopicMutation = topicSlice.endpoints.addTopic.useMutation;
+const useUpdateTopicMutation = topicSlice.endpoints.updateTopic.useMutation;
+const useDeleteTopicMutation = topicSlice.endpoints.deleteTopic.useMutation;
 
-export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation};
+export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation, useUpdateTopicMutation, useDeleteTopicMutation};
