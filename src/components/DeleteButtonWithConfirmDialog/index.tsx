@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {IconButton, Popover, Grid, Typography, makeStyles, createStyles, Button} from '@material-ui/core';
+import { IconButton, Popover, Grid, Typography, makeStyles, createStyles, Button } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -12,7 +12,7 @@ interface IDeleteButtonWithConfirmDialogProps {
   action: () => void;
 }
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     popover: {
       position: 'relative',

@@ -1,4 +1,4 @@
-const {createProxyMiddleware} = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const proxies = [
   {
@@ -7,8 +7,8 @@ const proxies = [
   },
 ];
 
-module.exports = app => {
-  proxies.forEach(({target, url}) => {
+module.exports = (app) => {
+  proxies.forEach(({ target, url }) => {
     app.use(
       url,
       createProxyMiddleware({

@@ -1,14 +1,9 @@
 import * as React from 'react';
 
-import {TextField, Button, Grid, LinearProgress, Snackbar} from '@material-ui/core';
-import {
-  useAddTopicMutation,
-  useGetTopics,
-  useGetTopicByIdQuery,
-  useUpdateTopicMutation,
-} from 'redux/stores/topics/topicSlice';
-import {Alert} from '@material-ui/lab';
-import {useParams, Redirect} from 'react-router-dom';
+import { TextField, Button, Grid, LinearProgress, Snackbar } from '@material-ui/core';
+import { useAddTopicMutation, useGetTopicByIdQuery, useUpdateTopicMutation } from 'redux/stores/topics/topicSlice';
+import { Alert } from '@material-ui/lab';
+import { useParams, Redirect } from 'react-router-dom';
 import routes from 'routes';
 
 import useStyles from './styles';
@@ -17,14 +12,13 @@ const defaultValue = '';
 
 const TopicForm: React.FC = () => {
   const classes = useStyles();
-  const {topicId} = useParams<{topicId: string}>();
+  const { topicId } = useParams<{ topicId: string }>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
-  const [addTopic, {isLoading, isError}] = useAddTopicMutation({});
-  const [updateTopic, {isLoading: isUpdating, isError: isUpdateError, isSuccess}] = useUpdateTopicMutation({});
-  const {refetch: refetchTopics} = useGetTopics({});
+  const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
+  const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
-  const {data: editedTopic, isLoading: isWordLoading, isError: IsWordError} = useGetTopicByIdQuery(topicId, {
+  const { data: editedTopic, isLoading: isWordLoading, isError: IsWordError } = useGetTopicByIdQuery(topicId, {
     skip: !topicId,
   });
 
@@ -45,15 +39,13 @@ const TopicForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (topicId) {
-      updateTopic({id: topicId, name: value}).then(() => {
-        refetchTopics();
+      updateTopic({ id: topicId, name: value }).then(() => {
         setShowSnackbar(true);
       });
     } else {
       addTopic(value).then(() => {
         handleResetClick();
         setShowSnackbar(true);
-        refetchTopics();
       });
     }
   };

@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import {Grid, Typography, IconButton, CircularProgress} from '@material-ui/core';
+import { Grid, Typography, IconButton, CircularProgress } from '@material-ui/core';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
-import {Alert} from '@material-ui/lab';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, {Pagination, Navigation} from 'swiper/core';
+import { Alert } from '@material-ui/lab';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination, Navigation } from 'swiper/core';
 
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import {useGetWordsByTopicId} from 'redux/stores/words/wordSlice';
+import { useGetWordsByTopicId } from 'redux/stores/words/wordSlice';
 
 import useStyles from './styles';
 
@@ -19,12 +19,12 @@ interface IWordsProps {
   topicId: string;
 }
 
-const Words: React.FC<IWordsProps> = ({topicId}) => {
+const Words: React.FC<IWordsProps> = ({ topicId }) => {
   const classes = useStyles();
   const [showTranslate, setShowTranslate] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const {data, isSuccess, isLoading, isError} = useGetWordsByTopicId(topicId);
+  const { data, isSuccess, isLoading, isError } = useGetWordsByTopicId(topicId);
 
   const words = data?.wordsByTopicId ?? [];
 
@@ -63,11 +63,11 @@ const Words: React.FC<IWordsProps> = ({topicId}) => {
             pagination={{
               type: 'fraction',
             }}
-            scrollbar={{draggable: true}}
+            scrollbar={{ draggable: true }}
             navigation
             onSlideChange={handleSliderChange}
           >
-            {words.map(item => (
+            {words.map((item) => (
               <SwiperSlide key={item.word}>
                 <Grid container direction="column" justify="space-around" alignItems="center" className={classes.slide}>
                   <Grid onClick={habdleToggleTranslateClick}>

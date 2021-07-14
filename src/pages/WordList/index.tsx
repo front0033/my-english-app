@@ -13,22 +13,25 @@ import {
   ListItemSecondaryAction,
   IconButton,
 } from '@material-ui/core';
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@material-ui/lab';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import routes from 'routes';
-import {useGetTopics} from 'redux/stores/topics/topicSlice';
-import {useGetWordsByTopicId, useDeleteWordById} from 'redux/stores/words/wordSlice';
+import { useGetTopics } from 'redux/stores/topics/topicSlice';
+import { useGetWordsByTopicId, useDeleteWordById } from 'redux/stores/words/wordSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
 
 const WordList: React.FC = () => {
   const classes = useStyles();
-  const {data: topicData, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError} = useGetTopics(
-    {}
-  );
+  const {
+    data: topicData,
+    isSuccess: isTopicSuccess,
+    isLoading: isTopicLoading,
+    isError: isTopicsError,
+  } = useGetTopics({});
   const [topicId, setTopicId] = React.useState<string | false>(false);
   const {
     data: wordData,
@@ -66,7 +69,7 @@ const WordList: React.FC = () => {
       {isTopicsError && <Alert severity="error">topics: server error</Alert>}
       {isTopicSuccess && (
         <List>
-          {topics.map(topic => (
+          {topics.map((topic) => (
             <Accordion key={topic.id} expanded={topicId === topic.id} onChange={handleChange(topic.id)}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -80,7 +83,7 @@ const WordList: React.FC = () => {
                 {isWordError && <Alert severity="error">words: server error</Alert>}
                 {isWordSuccess && !!words.length && (
                   <List className={classes.width100}>
-                    {words.map(item => (
+                    {words.map((item) => (
                       <ListItem divider key={item.id}>
                         <ListItemText id={item.id} primary={item.word} />
                         <ListItemSecondaryAction>

@@ -1,6 +1,6 @@
-import {gql} from 'graphql-request';
-import {createApi} from '@reduxjs/toolkit/query/react';
-import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
+import { gql } from 'graphql-request';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import graphqlBaseQuery, { DEV_API_URL } from 'api/baseQuery';
 
 export interface ITopic {
   id: string;
@@ -21,7 +21,8 @@ export const topicSlice = createApi({
   }),
   tagTypes: ['Topic'],
   reducerPath: 'apiTopics',
-  endpoints: builder => ({
+  keepUnusedDataFor: 10,
+  endpoints: (builder) => ({
     getTopics: builder.query<GetTopicsResponse, {}>({
       query: () => ({
         document: gql`
@@ -37,7 +38,7 @@ export const topicSlice = createApi({
       providesTags: ['Topic'],
     }),
     getTopic: builder.query<ITopic, string>({
-      query: id => ({
+      query: (id) => ({
         document: gql`
           query($id: ID!) {
             topic(id: $id) {
@@ -46,13 +47,13 @@ export const topicSlice = createApi({
             }
           }
         `,
-        variables: {id},
+        variables: { id },
       }),
       providesTags: ['Topic'],
       transformResponse: (response: TopicResponse) => response.topic,
     }),
     addTopic: builder.mutation<ITopic, string>({
-      query: name => ({
+      query: (name) => ({
         document: gql`
           mutation($name: String!) {
             addTopic(name: $name) {
@@ -61,12 +62,12 @@ export const topicSlice = createApi({
             }
           }
         `,
-        variables: {name},
+        variables: { name },
       }),
       invalidatesTags: ['Topic'],
     }),
     updateTopic: builder.mutation<ITopic, ITopic>({
-      query: ({id, name}) => ({
+      query: ({ id, name }) => ({
         document: gql`
           mutation($id: ID, $name: String) {
             updateTopic(id: $id, name: $name) {
@@ -75,12 +76,12 @@ export const topicSlice = createApi({
             }
           }
         `,
-        variables: {id, name},
+        variables: { id, name },
       }),
       invalidatesTags: ['Topic'],
     }),
     deleteTopic: builder.mutation<ITopic, string>({
-      query: id => ({
+      query: (id) => ({
         document: gql`
           mutation($id: ID) {
             deleteTopic(id: $id) {
@@ -88,7 +89,7 @@ export const topicSlice = createApi({
             }
           }
         `,
-        variables: {id},
+        variables: { id },
       }),
       invalidatesTags: ['Topic'],
     }),
@@ -102,4 +103,4 @@ const useAddTopicMutation = topicSlice.endpoints.addTopic.useMutation;
 const useUpdateTopicMutation = topicSlice.endpoints.updateTopic.useMutation;
 const useDeleteTopicMutation = topicSlice.endpoints.deleteTopic.useMutation;
 
-export {useGetTopics, useGetTopicByIdQuery, useAddTopicMutation, useUpdateTopicMutation, useDeleteTopicMutation};
+export { useGetTopics, useGetTopicByIdQuery, useAddTopicMutation, useUpdateTopicMutation, useDeleteTopicMutation };

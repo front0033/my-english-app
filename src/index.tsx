@@ -2,9 +2,9 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 
-import {ConnectedRouter} from 'connected-react-router';
+import { ConnectedRouter } from 'connected-react-router';
 import history from 'shared/history';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from 'redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

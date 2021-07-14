@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as React from 'react';
 
-import {TextField, MenuItem, Grid, Typography, LinearProgress} from '@material-ui/core';
-import {Alert} from '@material-ui/lab';
-import {useGetTopics} from 'redux/stores/topics/topicSlice';
+import { TextField, MenuItem, Grid, Typography, LinearProgress } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import { useGetTopics } from 'redux/stores/topics/topicSlice';
 
 import useStyles from './styles';
 import Words from './Words';
 
 const MainPage = () => {
   const classes = useStyles();
-  const {data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError} = useGetTopics({});
+  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopics({});
   const [topicId, setTopicId] = React.useState<string>('');
 
   const topics = data?.topics ?? [];
@@ -19,6 +19,7 @@ const MainPage = () => {
     if (isTopicSuccess) {
       setTopicId(topics.length ? topics[0].id : '');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTopicSuccess]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,8 +51,8 @@ const MainPage = () => {
             value={topicId}
             id="business-rules-filter-select-is_summable"
           >
-            {topics.map(topic => {
-              const {name, id} = topic;
+            {topics.map((topic) => {
+              const { name, id } = topic;
               return (
                 <MenuItem key={name} value={id} id={`dictionary-${name}`}>
                   <Grid container wrap="nowrap" alignItems="center" justify="space-between">

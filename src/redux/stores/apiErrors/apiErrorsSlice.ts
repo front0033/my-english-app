@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import moduleName from './constants';
-import {IErrorsData, IError} from './types';
+import { IErrorsData, IError } from './types';
 
 const apiErrorsSlice = createSlice({
   name: moduleName,
@@ -8,23 +8,23 @@ const apiErrorsSlice = createSlice({
     items: {} as IErrorsData['items'],
   },
   reducers: {
-    setError(state, {payload}: PayloadAction<{error: IError}>) {
+    setError(state, { payload }: PayloadAction<{ error: IError }>) {
       return {
-        items: {...state.items, [payload.error.name]: payload.error.message},
+        items: { ...state.items, [payload.error.name]: payload.error.message },
       };
     },
-    resetError(state, {payload}: PayloadAction<{errorName: string}>) {
-      const newErrors = {...state.items};
+    resetError(state, { payload }: PayloadAction<{ errorName: string }>) {
+      const newErrors = { ...state.items };
       delete newErrors[payload.errorName];
 
-      return {items: newErrors};
+      return { items: newErrors };
     },
     resetErrors() {
-      return {items: {}};
+      return { items: {} };
     },
   },
 });
 
-export const {setError, resetErrors} = apiErrorsSlice.actions;
+export const { setError, resetErrors } = apiErrorsSlice.actions;
 
 export default apiErrorsSlice.reducer;

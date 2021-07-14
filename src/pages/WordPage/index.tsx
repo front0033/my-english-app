@@ -11,10 +11,10 @@ import {
   LinearProgress,
   Snackbar,
 } from '@material-ui/core';
-import {useGetTopics} from 'redux/stores/topics/topicSlice';
-import {useParams, Redirect} from 'react-router-dom';
-import {useAddWordMutation, useGetWordByIdQuery, useUpdateWordMutation} from 'redux/stores/words/wordSlice';
-import {Alert} from '@material-ui/lab';
+import { useGetTopics } from 'redux/stores/topics/topicSlice';
+import { useParams, Redirect } from 'react-router-dom';
+import { useAddWordMutation, useGetWordByIdQuery, useUpdateWordMutation } from 'redux/stores/words/wordSlice';
+import { Alert } from '@material-ui/lab';
 import routes from 'routes';
 
 import useStyles from './styles';
@@ -33,45 +33,46 @@ export interface IFields {
   [FieldsNames.topicId]: string;
 }
 
-const initialFields = {word: '', translate: '', example: '', topicId: ''};
+const initialFields = { word: '', translate: '', example: '', topicId: '' };
 
 const WordForm: React.FC = () => {
   const classes = useStyles();
-  const {wordId} = useParams<{wordId: string}>();
+  const { wordId } = useParams<{ wordId: string }>();
   const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [fields, setFields] = React.useState<IFields>(initialFields);
 
   // query
-  const {data, isLoading, error, isSuccess: isTopicsSuccess} = useGetTopics({});
+  const { data, isLoading, error, isSuccess: isTopicsSuccess } = useGetTopics({});
   const {
     data: wordData,
     isLoading: isWordLoading,
     isError: isWordError,
     isSuccess: isWordSuccess,
-  } = useGetWordByIdQuery(wordId, {skip: !wordId});
+  } = useGetWordByIdQuery(wordId, { skip: !wordId });
 
   // mutations
-  const [addWord, {isLoading: savePending, isError: saveError}] = useAddWordMutation({});
+  const [addWord, { isLoading: savePending, isError: saveError }] = useAddWordMutation({});
   const [
     updateWord,
-    {isLoading: updatePending, isError: updateError, isSuccess: updateSuccess},
+    { isLoading: updatePending, isError: updateError, isSuccess: updateSuccess },
   ] = useUpdateWordMutation({});
 
   const topics = data?.topics ?? [];
 
   React.useEffect(() => {
     if (wordData) {
-      const {word, translate, example, topic} = wordData;
-      setFields({word, translate, example, topicId: topic.id});
+      const { word, translate, example, topic } = wordData;
+      setFields({ word, translate, example, topicId: topic.id });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTopicsSuccess, isWordSuccess]);
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFields({...fields, [fieldName]: event.target.value});
+    setFields({ ...fields, [fieldName]: event.target.value });
   };
 
-  const handleChangeSelect = (event: React.ChangeEvent<{value: unknown}>) => {
-    setFields({...fields, [FieldsNames.topicId]: event.target.value as string});
+  const handleChangeSelect = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFields({ ...fields, [FieldsNames.topicId]: event.target.value as string });
   };
 
   const handleResetClick = () => {
@@ -82,13 +83,13 @@ const WordForm: React.FC = () => {
     event.preventDefault();
 
     if (wordId) {
-      updateWord({id: wordId, ...fields}).then(() => {
-        setFields({...initialFields, topicId: fields.topicId});
+      updateWord({ id: wordId, ...fields }).then(() => {
+        setFields({ ...initialFields, topicId: fields.topicId });
         setShowSnackbar(true);
       });
     } else {
       addWord(fields).then(() => {
-        setFields({...initialFields, topicId: fields.topicId});
+        setFields({ ...initialFields, topicId: fields.topicId });
         setShowSnackbar(true);
       });
     }
@@ -139,7 +140,7 @@ const WordForm: React.FC = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {topics.map(topic => (
+            {topics.map((topic) => (
               <MenuItem key={topic.name} value={topic.id}>
                 {topic.name}
               </MenuItem>

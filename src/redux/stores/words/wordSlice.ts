@@ -1,7 +1,7 @@
-import {gql} from 'graphql-request';
-import {createApi} from '@reduxjs/toolkit/query/react';
-import graphqlBaseQuery, {DEV_API_URL} from 'api/baseQuery';
-import {ITopic} from '../topics/topicSlice';
+import { gql } from 'graphql-request';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import graphqlBaseQuery, { DEV_API_URL } from 'api/baseQuery';
+import { ITopic } from '../topics/topicSlice';
 
 export interface INewWord {
   word: string;
@@ -32,9 +32,9 @@ export const wordSlice = createApi({
   }),
   reducerPath: 'apiWords',
   tagTypes: ['Word'],
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getWordsByTopicId: builder.query<GetWordsResponse, string>({
-      query: topicId => ({
+      query: (topicId) => ({
         document: gql`
           query($topicId: ID) {
             wordsByTopicId(topicId: $topicId) {
@@ -45,12 +45,12 @@ export const wordSlice = createApi({
             }
           }
         `,
-        variables: {topicId},
+        variables: { topicId },
       }),
       providesTags: ['Word'],
     }),
     getWord: builder.query<IWord, string>({
-      query: id => ({
+      query: (id) => ({
         document: gql`
           query($id: ID!) {
             word(id: $id) {
@@ -64,14 +64,14 @@ export const wordSlice = createApi({
             }
           }
         `,
-        variables: {id},
+        variables: { id },
       }),
       providesTags: ['Word'],
       transformResponse: (response: WordResponse) => response.word,
     }),
     addWord: builder.mutation<IWord, INewWord>({
-      query: params => {
-        const {word, translate, example, topicId} = params;
+      query: (params) => {
+        const { word, translate, example, topicId } = params;
 
         return {
           document: gql`
@@ -86,13 +86,13 @@ export const wordSlice = createApi({
               }
             }
           `,
-          variables: {word, translate, example, topicId},
+          variables: { word, translate, example, topicId },
         };
       },
     }),
-    updateWord: builder.mutation<IWord, Pick<IWord, 'id' | 'word' | 'example' | 'translate'> & {topicId: string}>({
-      query: params => {
-        const {id, word, translate, example, topicId} = params;
+    updateWord: builder.mutation<IWord, Pick<IWord, 'id' | 'word' | 'example' | 'translate'> & { topicId: string }>({
+      query: (params) => {
+        const { id, word, translate, example, topicId } = params;
 
         return {
           document: gql`
@@ -102,24 +102,22 @@ export const wordSlice = createApi({
               }
             }
           `,
-          variables: {id, word, translate, example, topicId},
+          variables: { id, word, translate, example, topicId },
         };
       },
       invalidatesTags: ['Word'],
     }),
     deleteWord: builder.mutation<IWord, string>({
-      query: id => {
-        return {
-          document: gql`
-            mutation($id: ID) {
-              deleteWord(id: $id) {
-                id
-              }
+      query: (id) => ({
+        document: gql`
+          mutation($id: ID) {
+            deleteWord(id: $id) {
+              id
             }
-          `,
-          variables: {id},
-        };
-      },
+          }
+        `,
+        variables: { id },
+      }),
     }),
   }),
 });

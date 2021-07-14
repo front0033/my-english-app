@@ -11,10 +11,10 @@ import {
   IconButton,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import {Alert} from '@material-ui/lab';
-import {Link} from 'react-router-dom';
+import { Alert } from '@material-ui/lab';
+import { Link } from 'react-router-dom';
 import routes from 'routes';
-import {useGetTopics, useDeleteTopicMutation} from 'redux/stores/topics/topicSlice';
+import { useGetTopics, useDeleteTopicMutation } from 'redux/stores/topics/topicSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
@@ -52,7 +52,7 @@ const TopicList: React.FC = () => {
       {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
       {isTopicSuccess && !!topics.length && (
         <List className={classes.width100}>
-          {topics.map(topic => (
+          {topics.map((topic) => (
             <ListItem divider key={topic.id}>
               <ListItemText id={topic.id} primary={topic.name} />
               <ListItemSecondaryAction>

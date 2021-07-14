@@ -1,28 +1,24 @@
 {
-  "extends": [
-    "react-app",
-    "airbnb-typescript",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["react-app", "airbnb-typescript", "prettier", "plugin:react/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-curly-newline": "off",
+    "prettier/prettier": ["error"]
+  },
   "overrides": [
     {
-      "files": [
-        "**/*.ts?(x)"
-      ],
+      "files": ["**/*.ts?(x)"],
       "rules": {
         "react/jsx-curly-newline": "off",
         "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/camelcase": "off",
         "react/prop-types": "off",
-        "react-hooks/exhaustive-deps": "off",
         "react/jsx-props-no-spreading": 0,
+        "react/jsx-one-expression-per-line": "off",
         "no-console": [
           "warn",
           {
-            "allow": [
-              "warn",
-              "error"
-            ]
+            "allow": ["warn", "error"]
           }
         ]
       }
@@ -31,9 +27,8 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
       "react": {
         "version": "detect"
