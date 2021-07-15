@@ -3,14 +3,14 @@ import * as React from 'react';
 
 import { TextField, MenuItem, Grid, Typography, LinearProgress } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useGetTopics } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
 
 import useStyles from './styles';
 import Words from './Words';
 
 const MainPage = () => {
   const classes = useStyles();
-  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopics({});
+  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopicsQuery({});
   const [topicId, setTopicId] = React.useState<string>('');
 
   const topics = data?.topics ?? [];

@@ -96,11 +96,12 @@ export const topicSlice = createApi({
   }),
 });
 
-// TODO: update typescript
-const useGetTopics = topicSlice.endpoints.getTopics.useQuery;
-const useGetTopicByIdQuery = topicSlice.endpoints.getTopic.useQuery;
-const useAddTopicMutation = topicSlice.endpoints.addTopic.useMutation;
-const useUpdateTopicMutation = topicSlice.endpoints.updateTopic.useMutation;
-const useDeleteTopicMutation = topicSlice.endpoints.deleteTopic.useMutation;
-
-export { useGetTopics, useGetTopicByIdQuery, useAddTopicMutation, useUpdateTopicMutation, useDeleteTopicMutation };
+export const {
+  useGetTopicQuery,
+  useGetTopicsQuery,
+  useLazyGetTopicQuery,
+  useLazyGetTopicsQuery,
+  useAddTopicMutation,
+  useUpdateTopicMutation,
+  useDeleteTopicMutation,
+} = topicSlice;

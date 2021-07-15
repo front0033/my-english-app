@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TextField, Button, Grid, LinearProgress, Snackbar } from '@material-ui/core';
-import { useAddTopicMutation, useGetTopicByIdQuery, useUpdateTopicMutation } from 'redux/stores/topics/topicSlice';
+import { useAddTopicMutation, useGetTopicQuery, useUpdateTopicMutation } from 'redux/stores/topics/topicSlice';
 import { Alert } from '@material-ui/lab';
 import { useParams, Redirect } from 'react-router-dom';
 import routes from 'routes';
@@ -18,7 +18,7 @@ const TopicForm: React.FC = () => {
   const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
   const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
-  const { data: editedTopic, isLoading: isWordLoading, isError: IsWordError } = useGetTopicByIdQuery(topicId, {
+  const { data: editedTopic, isLoading: isWordLoading, isError: IsWordError } = useGetTopicQuery(topicId, {
     skip: !topicId,
   });
 

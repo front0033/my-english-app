@@ -122,21 +122,13 @@ export const wordSlice = createApi({
   }),
 });
 
-// TODO: update typescript
-const useGetWordByIdQuery = wordSlice.endpoints.getWord.useQuery;
-const useRefetchWord = wordSlice.endpoints.getWord.useQuerySubscription;
-const useGetWordsByTopicId = wordSlice.endpoints.getWordsByTopicId.useQuery;
-const useAddWordMutation = wordSlice.endpoints.addWord.useMutation;
-const useUpdateWordMutation = wordSlice.endpoints.updateWord.useMutation;
-const useDeleteWordMutation = wordSlice.endpoints.deleteWord.useMutation;
-const useDeleteWordById = wordSlice.endpoints.deleteWord.useMutation;
-
-export {
-  useGetWordByIdQuery,
-  useGetWordsByTopicId,
+export const {
+  useGetWordQuery,
+  useGetWordsByTopicIdQuery,
   useAddWordMutation,
   useUpdateWordMutation,
   useDeleteWordMutation,
-  useRefetchWord,
-  useDeleteWordById,
-};
+  usePrefetch,
+  useLazyGetWordQuery,
+  useLazyGetWordsByTopicIdQuery,
+} = wordSlice;

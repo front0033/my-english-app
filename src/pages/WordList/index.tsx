@@ -18,8 +18,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 import routes from 'routes';
-import { useGetTopics } from 'redux/stores/topics/topicSlice';
-import { useGetWordsByTopicId, useDeleteWordById } from 'redux/stores/words/wordSlice';
+import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
+import { useGetWordsByTopicIdQuery, useDeleteWordMutation } from 'redux/stores/words/wordSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
@@ -31,7 +31,7 @@ const WordList: React.FC = () => {
     isSuccess: isTopicSuccess,
     isLoading: isTopicLoading,
     isError: isTopicsError,
-  } = useGetTopics({});
+  } = useGetTopicsQuery({});
   const [topicId, setTopicId] = React.useState<string | false>(false);
   const {
     data: wordData,
@@ -39,9 +39,9 @@ const WordList: React.FC = () => {
     isLoading: isWordLoading,
     isError: isWordError,
     refetch: wordsRefetch,
-  } = useGetWordsByTopicId(topicId || '');
+  } = useGetWordsByTopicIdQuery(topicId || '');
 
-  const [deleteWordById] = useDeleteWordById();
+  const [deleteWordById] = useDeleteWordMutation();
 
   const deleteWord = (id: string) => () => {
     deleteWordById(id).then(() => {

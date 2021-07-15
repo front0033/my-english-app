@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Alert } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 import routes from 'routes';
-import { useGetTopics, useDeleteTopicMutation } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery, useDeleteTopicMutation } from 'redux/stores/topics/topicSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
@@ -27,7 +27,7 @@ const TopicList: React.FC = () => {
     isLoading: isTopicLoading,
     isError: isTopicsError,
     refetch: topicsRefecth,
-  } = useGetTopics({});
+  } = useGetTopicsQuery({});
   const [deleteTopic] = useDeleteTopicMutation();
 
   const topics = data?.topics ?? [];

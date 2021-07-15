@@ -11,9 +11,9 @@ import {
   LinearProgress,
   Snackbar,
 } from '@material-ui/core';
-import { useGetTopics } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
 import { useParams, Redirect } from 'react-router-dom';
-import { useAddWordMutation, useGetWordByIdQuery, useUpdateWordMutation } from 'redux/stores/words/wordSlice';
+import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/words/wordSlice';
 import { Alert } from '@material-ui/lab';
 import routes from 'routes';
 
@@ -42,13 +42,13 @@ const WordForm: React.FC = () => {
   const [fields, setFields] = React.useState<IFields>(initialFields);
 
   // query
-  const { data, isLoading, error, isSuccess: isTopicsSuccess } = useGetTopics({});
+  const { data, isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
   const {
     data: wordData,
     isLoading: isWordLoading,
     isError: isWordError,
     isSuccess: isWordSuccess,
-  } = useGetWordByIdQuery(wordId, { skip: !wordId });
+  } = useGetWordQuery(wordId, { skip: !wordId });
 
   // mutations
   const [addWord, { isLoading: savePending, isError: saveError }] = useAddWordMutation({});
