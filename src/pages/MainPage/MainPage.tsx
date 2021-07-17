@@ -13,7 +13,7 @@ const MainPage = () => {
   const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopicsQuery({});
   const [topicId, setTopicId] = React.useState<string>('');
 
-  const topics = data?.topics ?? [];
+  const topics = data || [];
 
   React.useEffect(() => {
     if (isTopicSuccess) {

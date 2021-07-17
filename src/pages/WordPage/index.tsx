@@ -57,7 +57,7 @@ const WordForm: React.FC = () => {
     { isLoading: updatePending, isError: updateError, isSuccess: updateSuccess },
   ] = useUpdateWordMutation({});
 
-  const topics = data?.topics ?? [];
+  const topics = data || [];
 
   React.useEffect(() => {
     if (wordData) {

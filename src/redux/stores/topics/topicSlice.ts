@@ -7,6 +7,14 @@ export interface ITopic {
   name: string;
 }
 
+interface IAddResponse {
+  addTopic: ITopic;
+}
+
+interface IUpdateTopic {
+  updateTopic: ITopic;
+}
+
 export interface GetTopicsResponse {
   topics: ITopic[];
 }
@@ -21,9 +29,8 @@ export const topicSlice = createApi({
   }),
   tagTypes: ['Topic'],
   reducerPath: 'apiTopics',
-  keepUnusedDataFor: 10,
   endpoints: (builder) => ({
-    getTopics: builder.query<GetTopicsResponse, {}>({
+    getTopics: builder.query<GetTopicsResponse['topics'], {}>({
       query: () => ({
         document: gql`
           query {
@@ -35,7 +42,11 @@ export const topicSlice = createApi({
         `,
         variables: {},
       }),
-      providesTags: ['Topic'],
+      providesTags: (result) =>
+        result
+          ? [...result.map(({ id }) => ({ type: 'Topic' as const, id })), { type: 'Topic', id: 'LIST' }]
+          : [{ type: 'Topic', id: 'LIST' }],
+      transformResponse: (response: GetTopicsResponse): GetTopicsResponse['topics'] => response.topics,
     }),
     getTopic: builder.query<ITopic, string>({
       query: (id) => ({
@@ -52,7 +63,7 @@ export const topicSlice = createApi({
       providesTags: ['Topic'],
       transformResponse: (response: TopicResponse) => response.topic,
     }),
-    addTopic: builder.mutation<ITopic, string>({
+    addTopic: builder.mutation<IAddResponse['addTopic'], string>({
       query: (name) => ({
         document: gql`
           mutation($name: String!) {
@@ -64,9 +75,10 @@ export const topicSlice = createApi({
         `,
         variables: { name },
       }),
-      invalidatesTags: ['Topic'],
+      transformResponse: (response: IAddResponse) => response.addTopic,
+      invalidatesTags: [{ type: 'Topic', id: 'LIST' }],
     }),
-    updateTopic: builder.mutation<ITopic, ITopic>({
+    updateTopic: builder.mutation<IUpdateTopic['updateTopic'], ITopic>({
       query: ({ id, name }) => ({
         document: gql`
           mutation($id: ID, $name: String) {
@@ -79,6 +91,7 @@ export const topicSlice = createApi({
         variables: { id, name },
       }),
       invalidatesTags: ['Topic'],
+      transformResponse: (response: IUpdateTopic) => response.updateTopic,
     }),
     deleteTopic: builder.mutation<ITopic, string>({
       query: (id) => ({
@@ -105,3 +118,5 @@ export const {
   useUpdateTopicMutation,
   useDeleteTopicMutation,
 } = topicSlice;
+
+export default topicSlice;

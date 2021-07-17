@@ -1,7 +1,12 @@
 import * as React from 'react';
 
 import { TextField, Button, Grid, LinearProgress, Snackbar } from '@material-ui/core';
-import { useAddTopicMutation, useGetTopicQuery, useUpdateTopicMutation } from 'redux/stores/topics/topicSlice';
+import {
+  useAddTopicMutation,
+  useGetTopicQuery,
+  useGetTopicsQuery,
+  useUpdateTopicMutation,
+} from 'redux/stores/topics/topicSlice';
 import { Alert } from '@material-ui/lab';
 import { useParams, Redirect } from 'react-router-dom';
 import routes from 'routes';
@@ -15,6 +20,7 @@ const TopicForm: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
+  const { isLoading: isTopocsLoading, refetch: refetchTopics } = useGetTopicsQuery({});
   const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
   const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
@@ -41,11 +47,13 @@ const TopicForm: React.FC = () => {
     if (topicId) {
       updateTopic({ id: topicId, name: value }).then(() => {
         setShowSnackbar(true);
+        refetchTopics();
       });
     } else {
       addTopic(value).then(() => {
         handleResetClick();
         setShowSnackbar(true);
+        refetchTopics();
       });
     }
   };
@@ -78,7 +86,9 @@ const TopicForm: React.FC = () => {
         <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
           Reset
         </Button>
-        {(isLoading || isUpdating || isWordLoading) && <LinearProgress className={classes.progress} />}
+        {(isLoading || isUpdating || isWordLoading || isTopocsLoading) && (
+          <LinearProgress className={classes.progress} />
+        )}
         {(isError || isUpdateError || IsWordError) && (
           <Alert severity="error" className={classes.error}>
             saving: server error

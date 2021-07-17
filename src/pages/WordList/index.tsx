@@ -54,7 +54,7 @@ const WordList: React.FC = () => {
     setTopicId(isExpanded ? panel : false);
   };
 
-  const topics = topicData?.topics ?? [];
+  const topics = topicData || [];
 
   return (
     <Grid className={classes.container}>

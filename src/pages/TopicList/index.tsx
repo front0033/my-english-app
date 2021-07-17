@@ -30,7 +30,7 @@ const TopicList: React.FC = () => {
   } = useGetTopicsQuery({});
   const [deleteTopic] = useDeleteTopicMutation();
 
-  const topics = data?.topics ?? [];
+  const topics = data || [];
 
   const handleDeleteById = (id: string) => () => {
     deleteTopic(id).then(() => {
