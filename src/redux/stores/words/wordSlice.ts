@@ -33,7 +33,7 @@ export const wordSlice = createApi({
   reducerPath: 'apiWords',
   tagTypes: ['Word'],
   endpoints: (builder) => ({
-    getWordsByTopicId: builder.query<GetWordsResponse, string>({
+    getWordsByTopicId: builder.query<GetWordsResponse['wordsByTopicId'], string>({
       query: (topicId) => ({
         document: gql`
           query($topicId: ID) {
@@ -48,6 +48,7 @@ export const wordSlice = createApi({
         variables: { topicId },
       }),
       providesTags: ['Word'],
+      transformResponse: (response: GetWordsResponse) => response.wordsByTopicId,
     }),
     getWord: builder.query<IWord, string>({
       query: (id) => ({

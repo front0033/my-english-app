@@ -26,7 +26,7 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
 
   const { data, isSuccess, isLoading, isError } = useGetWordsByTopicIdQuery(topicId);
 
-  const words = data?.wordsByTopicId ?? [];
+  const words = data || [];
 
   const habdleToggleTranslateClick = () => {
     setShowTranslate(!showTranslate);

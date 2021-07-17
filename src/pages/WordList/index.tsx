@@ -14,6 +14,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import ReactList from 'react-list';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
@@ -49,12 +50,27 @@ const WordList: React.FC = () => {
     });
   };
 
-  const words = wordData?.wordsByTopicId ?? [];
+  const words = wordData || [];
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
     setTopicId(isExpanded ? panel : false);
   };
 
   const topics = topicData || [];
+  const renderItem = (index: number, key: React.ReactText) => (
+    <ListItem divider key={key}>
+      <ListItemText id={words[index].id} primary={words[index].word} />
+      <ListItemSecondaryAction>
+        <IconButton component={Link} to={routes.editWord(words[index].id)}>
+          <EditIcon />
+        </IconButton>
+        <DeleteButtonWithConfirmDialog
+          id={`word-delete-button-${words[index].id}`}
+          text="Are you sure?"
+          action={deleteWord(words[index].id)}
+        />
+      </ListItemSecondaryAction>
+    </ListItem>
+  );
 
   return (
     <Grid className={classes.container}>
@@ -82,22 +98,8 @@ const WordList: React.FC = () => {
                 {isWordLoading && <Typography>Loading words...</Typography>}
                 {isWordError && <Alert severity="error">words: server error</Alert>}
                 {isWordSuccess && !!words.length && (
-                  <List className={classes.width100}>
-                    {words.map((item) => (
-                      <ListItem divider key={item.id}>
-                        <ListItemText id={item.id} primary={item.word} />
-                        <ListItemSecondaryAction>
-                          <IconButton component={Link} to={routes.editWord(item.id)}>
-                            <EditIcon />
-                          </IconButton>
-                          <DeleteButtonWithConfirmDialog
-                            id={`word-delete-button-${item.id}`}
-                            text="Are you sure?"
-                            action={deleteWord(item.id)}
-                          />
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    ))}
+                  <List className={classes.list}>
+                    <ReactList itemRenderer={renderItem} length={words.length} type="uniform" />
                   </List>
                 )}
                 {isWordSuccess && !words.length && (

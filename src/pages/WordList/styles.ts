@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     list: {
       width: '100%',
+      height: 300,
+      overflow: 'auto',
     },
     width100: {
       width: '100%',
