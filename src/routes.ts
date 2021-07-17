@@ -8,6 +8,7 @@ const routes = {
   words: () => '/words',
   editWord: (id = ':wordId') => `/words/${id}`,
   currentPage: (page: string) => `/${page}`,
+  about: () => '/about',
 };
 
 export default routes;

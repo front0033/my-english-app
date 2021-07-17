@@ -1,7 +1,18 @@
 import React, { ReactElement } from 'react';
-import { MuiThemeProvider, createMuiTheme, StylesProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { ruRU } from '@material-ui/core/locale';
-import { CssBaseline, AppBar, Typography, Grid, IconButton, colors } from '@material-ui/core';
+import {
+  CssBaseline,
+  AppBar,
+  Typography,
+  Grid,
+  IconButton,
+  colors,
+  createStyles,
+  makeStyles,
+  createTheme,
+  Theme,
+} from '@material-ui/core';
 import ViewCarouselIcon from '@material-ui/icons/ViewCarousel';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import SubjectIcon from '@material-ui/icons/Subject';
@@ -15,8 +26,20 @@ import SelectPageMenu from 'components/menu';
 import AppBottomNavigation, { IBotoomNavConfig } from 'components/toolBar';
 import TopicList from 'pages/TopicList';
 import WordList from 'pages/WordList';
+import NotFoundPage from 'pages/NotFound';
+import AboutPage from 'pages/About';
 
-const theme = createMuiTheme({}, ruRU);
+const theme = createTheme({}, ruRU);
+
+const useStyles = makeStyles((currentTheme: Theme) =>
+  createStyles({
+    title: {
+      marginLeft: 8,
+      textDecoration: 'none',
+      color: currentTheme.palette.common.white,
+    },
+  })
+);
 
 const toolbarConfig: IBotoomNavConfig = [
   { value: '', label: 'Cards', url: routes.main(), icon: ViewCarouselIcon },
@@ -27,6 +50,7 @@ const toolbarConfig: IBotoomNavConfig = [
 interface IApp {}
 
 const App: React.FC<IApp> = (): ReactElement => {
+  const classes = useStyles();
   const { pathname } = useLocation();
   const [, page, id] = pathname.split('/');
 
@@ -40,7 +64,7 @@ const App: React.FC<IApp> = (): ReactElement => {
                 <ArrowBackIosOutlinedIcon style={{ color: colors.common.white }} />
               </IconButton>
             )}
-            <Typography variant="h6" style={{ marginLeft: 8 }}>
+            <Typography component={Link} to={routes.about()} variant="h6" className={classes.title}>
               ENGLISH CARDS
             </Typography>
             <SelectPageMenu />
@@ -68,6 +92,12 @@ const App: React.FC<IApp> = (): ReactElement => {
           </Route>
           <Route exact path={routes.topics()}>
             <TopicList />
+          </Route>
+          <Route exact path={routes.about()}>
+            <AboutPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
           </Route>
         </Switch>
         <AppBottomNavigation items={toolbarConfig} currentValue={page} />
