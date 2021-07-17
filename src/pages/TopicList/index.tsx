@@ -61,7 +61,7 @@ const TopicList: React.FC = () => {
                 </IconButton>
                 <DeleteButtonWithConfirmDialog
                   id={`topic-delete-button-${topic.id}`}
-                  text={`Are you sure you want to delete «${topic.name}?»`}
+                  text={`Do you exactly want to delete «${topic.name}?»`}
                   action={handleDeleteById(topic.id)}
                 />
               </ListItemSecondaryAction>

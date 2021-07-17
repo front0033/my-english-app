@@ -65,7 +65,7 @@ const WordList: React.FC = () => {
         </IconButton>
         <DeleteButtonWithConfirmDialog
           id={`word-delete-button-${words[index].id}`}
-          text={`Are you sure you want to delete «${words[index].word}?»`}
+          text={`Do you exactly want to delete «${words[index].word}?»`}
           action={deleteWord(words[index].id)}
         />
       </ListItemSecondaryAction>
