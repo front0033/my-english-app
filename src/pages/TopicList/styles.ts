@@ -2,7 +2,9 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {},
+    container: {
+      paddingTop: theme.spacing(5),
+    },
     progress: {
       marginTop: theme.spacing(1),
       width: '100%',
@@ -15,6 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     width100: {
       width: '100%',
+    },
+    list: {
+      width: '100%',
+      paddingBottom: theme.spacing(7),
     },
   })
 );

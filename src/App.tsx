@@ -57,7 +57,7 @@ const App: React.FC<IApp> = (): ReactElement => {
   return (
     <MuiThemeProvider theme={theme}>
       <StylesProvider injectFirst>
-        <AppBar position="static" title="ENGLISH CARDS">
+        <AppBar position="fixed" title="ENGLISH CARDS">
           <Grid container wrap="nowrap" justify="space-between" alignItems="center">
             {page && (
               <IconButton component={Link} to={id ? routes.currentPage(page) : routes.main()}>

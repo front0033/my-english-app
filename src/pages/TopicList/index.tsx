@@ -51,7 +51,7 @@ const TopicList: React.FC = () => {
       )}
       {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
       {isTopicSuccess && !!topics.length && (
-        <List className={classes.width100}>
+        <List className={classes.list}>
           {topics.map((topic) => (
             <ListItem divider key={topic.id}>
               <ListItemText id={topic.id} primary={topic.name} />
