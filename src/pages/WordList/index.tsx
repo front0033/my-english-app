@@ -39,15 +39,12 @@ const WordList: React.FC = () => {
     isSuccess: isWordSuccess,
     isLoading: isWordLoading,
     isError: isWordError,
-    refetch: wordsRefetch,
   } = useGetWordsByTopicIdQuery(topicId || '');
 
   const [deleteWordById] = useDeleteWordMutation();
 
   const deleteWord = (id: string) => () => {
-    deleteWordById(id).then(() => {
-      wordsRefetch();
-    });
+    deleteWordById(id);
   };
 
   const words = wordData || [];

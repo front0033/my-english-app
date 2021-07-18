@@ -90,6 +90,7 @@ export const wordSlice = createApi({
           variables: { word, translate, example, topicId },
         };
       },
+      invalidatesTags: ['Word'],
     }),
     updateWord: builder.mutation<IWord, Pick<IWord, 'id' | 'word' | 'example' | 'translate'> & { topicId: string }>({
       query: (params) => {

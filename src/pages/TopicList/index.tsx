@@ -21,21 +21,13 @@ import useStyles from './styles';
 
 const TopicList: React.FC = () => {
   const classes = useStyles();
-  const {
-    data,
-    isSuccess: isTopicSuccess,
-    isLoading: isTopicLoading,
-    isError: isTopicsError,
-    refetch: topicsRefecth,
-  } = useGetTopicsQuery({});
+  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopicsQuery({});
   const [deleteTopic] = useDeleteTopicMutation();
 
   const topics = data || [];
 
   const handleDeleteById = (id: string) => () => {
-    deleteTopic(id).then(() => {
-      topicsRefecth();
-    });
+    deleteTopic(id);
   };
 
   return (

@@ -20,7 +20,7 @@ const TopicForm: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
-  const { isLoading: isTopocsLoading, refetch: refetchTopics } = useGetTopicsQuery({});
+  const { isLoading: isTopocsLoading } = useGetTopicsQuery({});
   const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
   const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
@@ -47,13 +47,11 @@ const TopicForm: React.FC = () => {
     if (topicId) {
       updateTopic({ id: topicId, name: value }).then(() => {
         setShowSnackbar(true);
-        refetchTopics();
       });
     } else {
       addTopic(value).then(() => {
         handleResetClick();
         setShowSnackbar(true);
-        refetchTopics();
       });
     }
   };

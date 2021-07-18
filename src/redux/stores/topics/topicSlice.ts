@@ -118,5 +118,3 @@ export const {
   useUpdateTopicMutation,
   useDeleteTopicMutation,
 } = topicSlice;
-
-export default topicSlice;

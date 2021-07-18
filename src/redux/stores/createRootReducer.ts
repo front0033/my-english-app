@@ -11,8 +11,8 @@ const createRootReducer = (history: History) =>
   combineReducers({
     router: connectRouter(history),
     [errorReducerName]: errorReducer,
-    [wordSlice.reducerPath]: wordSlice.reducer,
     [topicSlice.reducerPath]: topicSlice.reducer,
+    [wordSlice.reducerPath]: wordSlice.reducer,
   });
 
 export default createRootReducer;
