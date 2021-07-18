@@ -58,7 +58,7 @@ const App: React.FC<IApp> = (): ReactElement => {
     <MuiThemeProvider theme={theme}>
       <StylesProvider injectFirst>
         <AppBar position="fixed" title="ENGLISH CARDS">
-          <Grid container wrap="nowrap" justify="space-between" alignItems="center">
+          <Grid container wrap="nowrap" justifyContent="space-between" alignItems="center">
             {page && (
               <IconButton component={Link} to={id ? routes.currentPage(page) : routes.main()}>
                 <ArrowBackIosOutlinedIcon style={{ color: colors.common.white }} />

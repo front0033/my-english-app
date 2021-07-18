@@ -99,7 +99,7 @@ const WordForm: React.FC = () => {
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      <Grid container direction="column" alignContent="center" justify="center" className={classes.container}>
+      <Grid container direction="column" alignContent="center" justifyContent="center" className={classes.container}>
         <TextField
           id="word-field"
           fullWidth
@@ -141,7 +141,7 @@ const WordForm: React.FC = () => {
               <em>None</em>
             </MenuItem>
             {topics.map((topic) => (
-              <MenuItem key={topic.name} value={topic.id}>
+              <MenuItem key={topic.id} value={topic.id}>
                 {topic.name}
               </MenuItem>
             ))}

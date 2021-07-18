@@ -26,6 +26,10 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
 
   const { data, isSuccess, isLoading, isError } = useGetWordsByTopicIdQuery(topicId);
 
+  React.useEffect(() => {
+    setShowTranslate(false);
+  }, [topicId]);
+
   const words = data || [];
 
   const habdleToggleTranslateClick = () => {
@@ -37,7 +41,7 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
     setShowTranslate(false);
   };
 
-  const goToGoogleTranslate = () => {
+  const goToGoogleTranslateClick = () => {
     const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${words[activeIndex].word.trim()}`;
     window.open(url);
   };
@@ -68,8 +72,14 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
             onSlideChange={handleSliderChange}
           >
             {words.map((item) => (
-              <SwiperSlide key={item.word}>
-                <Grid container direction="column" justify="space-around" alignItems="center" className={classes.slide}>
+              <SwiperSlide key={item.id}>
+                <Grid
+                  container
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                  className={classes.slide}
+                >
                   <Grid onClick={habdleToggleTranslateClick}>
                     <Typography color={showTranslate ? 'secondary' : 'primary'} variant="h5">
                       {showTranslate ? item.translate : item.word}
@@ -79,7 +89,7 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
                   <IconButton
                     className={classes.translateButton}
                     disabled={!words[activeIndex]}
-                    onClick={goToGoogleTranslate}
+                    onClick={goToGoogleTranslateClick}
                   >
                     <GTranslateIcon color="primary" />
                   </IconButton>

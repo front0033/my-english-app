@@ -39,7 +39,7 @@ const MainPage = () => {
       )}
       {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
       {isTopicSuccess && !!topicId && (
-        <Grid className={classes.container} container direction="column" justify="space-around" wrap="nowrap">
+        <Grid className={classes.container} container direction="column" justifyContent="space-around" wrap="nowrap">
           <TextField
             variant="outlined"
             className={classes.select}
@@ -54,8 +54,8 @@ const MainPage = () => {
             {topics.map((topic) => {
               const { name, id } = topic;
               return (
-                <MenuItem key={name} value={id} id={`dictionary-${name}`}>
-                  <Grid container wrap="nowrap" alignItems="center" justify="space-between">
+                <MenuItem key={id} value={id} id={`dictionary-${name}`}>
+                  <Grid container wrap="nowrap" alignItems="center" justifyContent="space-between">
                     <Typography>{name}</Typography>
                   </Grid>
                 </MenuItem>

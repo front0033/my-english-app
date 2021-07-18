@@ -62,7 +62,7 @@ const TopicForm: React.FC = () => {
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      <Grid container direction="column" alignContent="center" justify="center" className={classes.container}>
+      <Grid container direction="column" alignContent="center" justifyContent="center" className={classes.container}>
         <TextField
           id="topic-name-field"
           fullWidth
