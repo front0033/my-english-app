@@ -12,6 +12,7 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
+  CircularProgress,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import ReactList from 'react-list';
@@ -27,19 +28,20 @@ import useStyles from './styles';
 
 const WordList: React.FC = () => {
   const classes = useStyles();
+  const [topicId, setTopicId] = React.useState<string | false>(false);
+
   const {
     data: topicData,
     isSuccess: isTopicSuccess,
     isLoading: isTopicLoading,
     isError: isTopicsError,
   } = useGetTopicsQuery({});
-  const [topicId, setTopicId] = React.useState<string | false>(false);
   const {
     data: wordData,
     isSuccess: isWordSuccess,
     isLoading: isWordLoading,
     isError: isWordError,
-  } = useGetWordsByTopicIdQuery(topicId || '');
+  } = useGetWordsByTopicIdQuery(topicId || '', { skip: !topicId });
 
   const [deleteWordById] = useDeleteWordMutation();
 
@@ -47,12 +49,13 @@ const WordList: React.FC = () => {
     deleteWordById(id);
   };
 
-  const words = wordData || [];
-  const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
+  const handleChange = (panel: string) => (_event: React.ChangeEvent<{}>, isExpanded: boolean) => {
     setTopicId(isExpanded ? panel : false);
   };
 
+  const words = wordData || [];
   const topics = topicData || [];
+
   const renderItem = (index: number, key: React.ReactText) => (
     <ListItem divider key={key}>
       <ListItemText id={words[index].id} primary={words[index].word} />
@@ -68,6 +71,8 @@ const WordList: React.FC = () => {
       </ListItemSecondaryAction>
     </ListItem>
   );
+
+  const isSameTopicId = (id: string): boolean => topicId === id;
 
   return (
     <Grid className={classes.container}>
@@ -92,14 +97,18 @@ const WordList: React.FC = () => {
                 <Typography className={classes.heading}>{topic.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {isWordLoading && <Typography>Loading words...</Typography>}
-                {isWordError && <Alert severity="error">words: server error</Alert>}
-                {isWordSuccess && !!words.length && (
+                {isWordLoading && (
+                  <Grid container justifyContent="center">
+                    <CircularProgress className={classes.progress} />
+                  </Grid>
+                )}
+                {isSameTopicId(topic.id) && isWordError && <Alert severity="error">words: server error</Alert>}
+                {isSameTopicId(topic.id) && isWordSuccess && !!words.length && (
                   <List className={classes.list}>
-                    <ReactList itemRenderer={renderItem} length={words.length} type="uniform" />
+                    <ReactList key={topic.id} itemRenderer={renderItem} length={words.length} type="uniform" />
                   </List>
                 )}
-                {isWordSuccess && !words.length && (
+                {isSameTopicId(topic.id) && isWordSuccess && !words.length && (
                   <Alert className={classes.width100} severity="info">
                     Words are missing.
                   </Alert>
