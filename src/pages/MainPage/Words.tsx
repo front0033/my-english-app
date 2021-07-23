@@ -58,7 +58,7 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
         </Grid>
       )}
       {isSuccess && !words.length && <Alert severity="info">Words are missing.</Alert>}
-      {isSuccess && (
+      {isSuccess && !!words.length && (
         <Grid container className={classes.wordsContainer}>
           <Swiper
             observer
