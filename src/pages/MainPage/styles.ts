@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100%',
       boxPack: 'center',
     },
+    progressContainer: {
+      marginTop: theme.spacing(5),
+    },
     progress: {
       marginTop: theme.spacing(1),
       width: '100%',

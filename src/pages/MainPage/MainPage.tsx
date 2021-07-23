@@ -30,7 +30,7 @@ const MainPage = () => {
     <>
       {isTopicsError && <Alert severity="error">topics: server error</Alert>}
       {isTopicLoading && (
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" alignItems="center" className={classes.progressContainer}>
           <Typography className={classes.progressCaption} variant="caption">
             Loading topics...
           </Typography>
