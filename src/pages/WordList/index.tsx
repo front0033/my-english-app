@@ -11,15 +11,17 @@ import {
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
+import { setTopicId as setTopicIdAction } from 'redux/stores/topic';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import WordListByTopicId from './list';
 
 import useStyles from './styles';
 
 const WordList: React.FC = () => {
   const classes = useStyles();
-  const [topicId, setTopicId] = React.useState<string | false>(false);
-
+  const { topicId } = useAppSelector((store) => store.topic);
+  const dispatch = useAppDispatch();
   const {
     data: topicData,
     isSuccess: isTopicSuccess,
@@ -28,7 +30,7 @@ const WordList: React.FC = () => {
   } = useGetTopicsQuery({});
 
   const handleChange = (panel: string) => (_event: React.ChangeEvent<{}>, isExpanded: boolean) => {
-    setTopicId(isExpanded ? panel : false);
+    dispatch(setTopicIdAction(isExpanded ? panel : false));
   };
 
   const topics = topicData || [];

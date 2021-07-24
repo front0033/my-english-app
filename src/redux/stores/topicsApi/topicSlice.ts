@@ -28,7 +28,7 @@ export const topicSlice = createApi({
     baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql`,
   }),
   tagTypes: ['Topic'],
-  reducerPath: 'apiTopics',
+  reducerPath: 'topicsApi',
   endpoints: (builder) => ({
     getTopics: builder.query<GetTopicsResponse['topics'], {}>({
       query: () => ({

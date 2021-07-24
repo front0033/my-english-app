@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Alert } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 import routes from 'routes';
-import { useGetTopicsQuery, useDeleteTopicMutation } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery, useDeleteTopicMutation } from 'redux/stores/topicsApi/topicSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';

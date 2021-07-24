@@ -6,7 +6,7 @@ import {
   useGetTopicQuery,
   useGetTopicsQuery,
   useUpdateTopicMutation,
-} from 'redux/stores/topics/topicSlice';
+} from 'redux/stores/topicsApi/topicSlice';
 import { Alert } from '@material-ui/lab';
 import { useParams, Redirect } from 'react-router-dom';
 import routes from 'routes';

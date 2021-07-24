@@ -9,7 +9,7 @@ import SwiperCore, { Pagination, Navigation } from 'swiper/core';
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import { useGetWordsByTopicIdQuery } from 'redux/stores/words/wordSlice';
+import { useGetWordsByTopicIdQuery } from 'redux/stores/wordsApi/wordSlice';
 
 import useStyles from './styles';
 

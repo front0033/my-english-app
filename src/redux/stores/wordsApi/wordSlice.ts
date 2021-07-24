@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import graphqlBaseQuery, { DEV_API_URL } from 'api/baseQuery';
-import { ITopic } from '../topics/topicSlice';
+import { ITopic } from '../topicsApi/topicSlice';
 
 export interface INewWord {
   word: string;
@@ -30,7 +30,7 @@ export const wordSlice = createApi({
   baseQuery: graphqlBaseQuery({
     baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql`,
   }),
-  reducerPath: 'apiWords',
+  reducerPath: 'wordsApi',
   tagTypes: ['Word'],
   endpoints: (builder) => ({
     getWordsByTopicId: builder.query<GetWordsResponse['wordsByTopicId'], string>({

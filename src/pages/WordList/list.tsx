@@ -13,7 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Alert } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 import ReactList from 'react-list';
-import { useDeleteWordMutation, useGetWordsByTopicIdQuery } from 'redux/stores/words/wordSlice';
+import { useDeleteWordMutation, useGetWordsByTopicIdQuery } from 'redux/stores/wordsApi/wordSlice';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 import routes from 'routes';
 

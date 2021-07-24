@@ -11,9 +11,9 @@ import {
   LinearProgress,
   Snackbar,
 } from '@material-ui/core';
-import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
 import { useParams, Redirect } from 'react-router-dom';
-import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/words/wordSlice';
+import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
 import { Alert } from '@material-ui/lab';
 import routes from 'routes';
 

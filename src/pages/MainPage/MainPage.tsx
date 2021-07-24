@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { TextField, MenuItem, Grid, Typography, LinearProgress } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useGetTopicsQuery } from 'redux/stores/topics/topicSlice';
+import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
 
 import useStyles from './styles';
 import Words from './Words';
