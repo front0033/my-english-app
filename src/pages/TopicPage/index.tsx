@@ -20,7 +20,7 @@ const TopicForm: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
-  const { isLoading: isTopocsLoading } = useGetTopicsQuery({});
+  const { isLoading: isTopicsLoading } = useGetTopicsQuery({});
   const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
   const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
@@ -58,46 +58,61 @@ const TopicForm: React.FC = () => {
 
   const handleHideSnackBar = () => setShowSnackbar(false);
 
-  return (
-    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      <Grid container direction="column" alignContent="center" justifyContent="center" className={classes.container}>
-        <TextField
-          id="topic-name-field"
-          fullWidth
-          required
-          className={classes.textField}
-          label="Topic name"
-          variant="outlined"
-          value={value}
-          onChange={handleChange}
-        />
-        <Button
-          className={classes.submitButton}
-          color="primary"
-          variant="contained"
-          size="large"
-          type="submit"
-          disabled={isLoading || !value}
-        >
-          Save
-        </Button>
-        <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
-          Reset
-        </Button>
-        {(isLoading || isUpdating || isWordLoading || isTopocsLoading) && (
-          <LinearProgress className={classes.progress} />
-        )}
-        {(isError || isUpdateError || IsWordError) && (
-          <Alert severity="error" className={classes.error}>
-            saving: server error
-          </Alert>
-        )}
-        <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
-          <Alert severity="success">save topic is susses</Alert>
-        </Snackbar>
-        {!!topicId && isSuccess && <Redirect to={routes.topics()} />}
-      </Grid>
-    </form>
+  return React.useMemo(
+    () => (
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <Grid container direction="column" alignContent="center" justifyContent="center" className={classes.container}>
+          <TextField
+            id="topic-name-field"
+            fullWidth
+            required
+            className={classes.textField}
+            label="Topic name"
+            variant="outlined"
+            value={value}
+            onChange={handleChange}
+          />
+          <Button
+            className={classes.submitButton}
+            color="primary"
+            variant="contained"
+            size="large"
+            type="submit"
+            disabled={isLoading || !value}
+          >
+            Save
+          </Button>
+          <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
+            Reset
+          </Button>
+          {(isLoading || isUpdating || isWordLoading || isTopicsLoading) && (
+            <LinearProgress className={classes.progress} />
+          )}
+          {(isError || isUpdateError || IsWordError) && (
+            <Alert severity="error" className={classes.error}>
+              saving: server error
+            </Alert>
+          )}
+          <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
+            <Alert severity="success">save topic is susses</Alert>
+          </Snackbar>
+          {!!topicId && isSuccess && <Redirect to={routes.topics()} />}
+        </Grid>
+      </form>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      IsWordError,
+      isError,
+      isLoading,
+      isSuccess,
+      isTopicsLoading,
+      isUpdateError,
+      isUpdating,
+      isWordLoading,
+      showSnackbar,
+      value,
+    ]
   );
 };
 
