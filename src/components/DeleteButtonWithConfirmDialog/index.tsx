@@ -67,7 +67,7 @@ const PureDeleteButtonWithConfirmDialog: React.FC<IDeleteButtonWithConfirmDialog
             <Button autoFocus onClick={handleCancelClick} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleActionClick} color="primary">
+            <Button onClick={handleActionClick} color="secondary">
               Delete
             </Button>
           </DialogActions>
