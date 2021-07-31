@@ -7,6 +7,7 @@ import errorReducer from './apiErrors/apiErrorsSlice';
 import { wordSlice as wordApiSlice } from './wordsApi/wordSlice';
 import { topicSlice as topicApiSlice } from './topicsApi/topicSlice';
 import topicReducer, { topicReducerName } from './topic';
+import { translateApi } from './translateApi/translateQuery';
 
 const createRootReducer = (history: History) =>
   combineReducers({
@@ -15,6 +16,7 @@ const createRootReducer = (history: History) =>
     [topicApiSlice.reducerPath]: topicApiSlice.reducer,
     [topicReducerName]: topicReducer,
     [wordApiSlice.reducerPath]: wordApiSlice.reducer,
+    [translateApi.reducerPath]: translateApi.reducer,
   });
 
 export default createRootReducer;

@@ -14,6 +14,7 @@ import {
 import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
 import { useParams, Redirect } from 'react-router-dom';
 import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
+import { useLazyGetTranslateQuery } from 'redux/stores/translateApi/translateQuery';
 import { Alert } from '@material-ui/lab';
 import routes from 'routes';
 
@@ -42,7 +43,7 @@ const WordForm: React.FC = () => {
   const [fields, setFields] = React.useState<IFields>(initialFields);
 
   // query
-  const { data, isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
+  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
   const {
     data: wordData,
     isLoading: isWordLoading,
@@ -57,7 +58,10 @@ const WordForm: React.FC = () => {
     { isLoading: updatePending, isError: updateError, isSuccess: updateSuccess },
   ] = useUpdateWordMutation({});
 
-  const topics = data || [];
+  const [
+    getTranslate,
+    { data: translateData, isLoading: isTranslateLoading, isSuccess: isTranslateSuccess },
+  ] = useLazyGetTranslateQuery();
 
   React.useEffect(() => {
     if (wordData) {
@@ -66,6 +70,13 @@ const WordForm: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTopicsSuccess, isWordSuccess]);
+
+  React.useEffect(() => {
+    if (isTranslateSuccess) {
+      setFields({ ...fields, translate: translateData?.translatedText ?? '' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTranslateSuccess]);
 
   const handleChange = (fieldName: FieldsNames) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setFields({ ...fields, [fieldName]: event.target.value });
@@ -94,6 +105,8 @@ const WordForm: React.FC = () => {
       });
     }
   };
+
+  const handleTranslateClick = (word: string) => () => getTranslate({ q: word, source: 'en', target: 'ru' });
 
   const handleHideSnackBar = () => setShowSnackbar(false);
 
@@ -161,7 +174,15 @@ const WordForm: React.FC = () => {
           <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
             Reset
           </Button>
-          {(savePending || updatePending || isLoading || isWordLoading) && (
+          <Button
+            className={classes.submitButton}
+            variant="outlined"
+            size="large"
+            onClick={handleTranslateClick(fields.word)}
+          >
+            Translate
+          </Button>
+          {(savePending || updatePending || isLoading || isWordLoading || isTranslateLoading) && (
             <LinearProgress className={classes.progress} />
           )}
           {(error || isWordError || updateError) && (
