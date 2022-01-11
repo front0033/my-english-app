@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Grid, Typography, IconButton, CircularProgress, Button } from '@material-ui/core';
+import { Grid, Typography, IconButton, CircularProgress } from '@material-ui/core';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import { Alert } from '@material-ui/lab';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -81,13 +81,13 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
                   className={classes.slide}
                 >
                   <Grid container direction="column">
-                    <Button
+                    <Typography
                       onClick={habdleToggleTranslateClick}
                       color={showTranslate ? 'secondary' : 'primary'}
                       className={classes.wordButton}
                     >
                       {showTranslate ? item.translate : item.word}
-                    </Button>
+                    </Typography>
                     {showTranslate && item.example && <Typography variant="caption">{item.example}</Typography>}
                   </Grid>
                 </Grid>

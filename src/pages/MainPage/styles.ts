@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     wordButton: {
       fontSize: 29,
-      textTransform: 'none',
       wordBreak: 'break-word',
     },
   })
