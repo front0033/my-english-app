@@ -39,7 +39,7 @@ const MainPage = () => {
       )}
       {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
       {isTopicSuccess && !!topicId && (
-        <Grid className={classes.container} container direction="column" justifyContent="space-around" wrap="nowrap">
+        <Grid className={classes.container} container direction="column" wrap="nowrap">
           <TextField
             variant="outlined"
             className={classes.select}

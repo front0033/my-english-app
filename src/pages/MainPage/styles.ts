@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
       border: `2px solid ${theme.palette.primary.main}`,
+      width: 45,
+      height: 45,
+    },
+    wordButton: {
+      fontWeight: 'bold',
     },
   })
 );

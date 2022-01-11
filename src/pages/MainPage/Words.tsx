@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Grid, Typography, IconButton, CircularProgress } from '@material-ui/core';
+import { Grid, Typography, IconButton, CircularProgress, Button } from '@material-ui/core';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import { Alert } from '@material-ui/lab';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -80,23 +80,27 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
                   alignItems="center"
                   className={classes.slide}
                 >
-                  <Grid onClick={habdleToggleTranslateClick}>
-                    <Typography color={showTranslate ? 'secondary' : 'primary'} variant="h5">
+                  <Grid container direction="column">
+                    <Button
+                      onClick={habdleToggleTranslateClick}
+                      color={showTranslate ? 'secondary' : 'primary'}
+                      className={classes.wordButton}
+                    >
                       {showTranslate ? item.translate : item.word}
-                    </Typography>
+                    </Button>
                     {showTranslate && item.example && <Typography variant="caption">{item.example}</Typography>}
                   </Grid>
-                  <IconButton
-                    className={classes.translateButton}
-                    disabled={!words[activeIndex]}
-                    onClick={goToGoogleTranslateClick}
-                  >
-                    <GTranslateIcon color="primary" />
-                  </IconButton>
                 </Grid>
               </SwiperSlide>
             ))}
           </Swiper>
+        </Grid>
+      )}
+      {words[activeIndex] && (
+        <Grid container justifyContent="center">
+          <IconButton className={classes.translateButton} onClick={goToGoogleTranslateClick}>
+            <GTranslateIcon color="primary" />
+          </IconButton>
         </Grid>
       )}
     </>
