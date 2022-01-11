@@ -44,7 +44,9 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 45,
     },
     wordButton: {
-      fontWeight: 'bold',
+      fontSize: 29,
+      textTransform: 'none',
+      wordBreak: 'break-word',
     },
   })
 );
