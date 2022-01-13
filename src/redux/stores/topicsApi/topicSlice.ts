@@ -46,7 +46,8 @@ export const topicSlice = createApi({
         result
           ? [...result.map(({ id }) => ({ type: 'Topic' as const, id })), { type: 'Topic', id: 'LIST' }]
           : [{ type: 'Topic', id: 'LIST' }],
-      transformResponse: (response: GetTopicsResponse): GetTopicsResponse['topics'] => response.topics,
+      transformResponse: (response: GetTopicsResponse): GetTopicsResponse['topics'] =>
+        [...(response.topics || [])].reverse(),
     }),
     getTopic: builder.query<ITopic, string>({
       query: (id) => ({
