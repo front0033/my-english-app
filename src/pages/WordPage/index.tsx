@@ -97,6 +97,11 @@ const WordForm: React.FC = () => {
 
   const handleHideSnackBar = () => setShowSnackbar(false);
 
+  const goToGoogleTranslateClick = () => {
+    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${wordData?.word.trim()}`;
+    window.open(url);
+  };
+
   return React.useMemo(
     () => (
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -160,6 +165,15 @@ const WordForm: React.FC = () => {
           </Button>
           <Button className={classes.submitButton} variant="outlined" size="large" onClick={handleResetClick}>
             Reset
+          </Button>
+          <Button
+            className={classes.submitButton}
+            variant="outlined"
+            size="large"
+            onClick={goToGoogleTranslateClick}
+            disabled={!fields.word}
+          >
+            Translate with Google
           </Button>
           {(savePending || updatePending || isLoading || isWordLoading) && (
             <LinearProgress className={classes.progress} />
