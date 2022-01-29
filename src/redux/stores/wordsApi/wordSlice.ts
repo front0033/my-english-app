@@ -48,7 +48,7 @@ export const wordSlice = createApi({
         variables: { topicId },
       }),
       providesTags: ['Word'],
-      transformResponse: (response: GetWordsResponse) => response.wordsByTopicId,
+      transformResponse: (response: GetWordsResponse) => [...(response.wordsByTopicId || [])].reverse(),
     }),
     getWord: builder.query<IWord, string>({
       query: (id) => ({
