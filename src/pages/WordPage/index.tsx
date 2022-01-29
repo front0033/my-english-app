@@ -11,6 +11,8 @@ import {
   LinearProgress,
   Snackbar,
 } from '@material-ui/core';
+import GTranslateIcon from '@material-ui/icons/GTranslate';
+import TranslateIcon from '@material-ui/icons/Translate';
 import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
 import { useParams, Redirect } from 'react-router-dom';
 import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
@@ -42,7 +44,7 @@ const WordForm: React.FC = () => {
   const [fields, setFields] = React.useState<IFields>(initialFields);
 
   // query
-  const { data, isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
+  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
   const {
     data: wordData,
     isLoading: isWordLoading,
@@ -56,8 +58,6 @@ const WordForm: React.FC = () => {
     updateWord,
     { isLoading: updatePending, isError: updateError, isSuccess: updateSuccess },
   ] = useUpdateWordMutation({});
-
-  const topics = data || [];
 
   React.useEffect(() => {
     if (wordData) {
@@ -98,7 +98,12 @@ const WordForm: React.FC = () => {
   const handleHideSnackBar = () => setShowSnackbar(false);
 
   const goToGoogleTranslateClick = () => {
-    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${wordData?.word.trim()}`;
+    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${fields.word.trim()}`;
+    window.open(url);
+  };
+
+  const goToWooordhuntTranslateClick = () => {
+    const url = `https://wooordhunt.ru/word/${fields.word.trim()}`;
     window.open(url);
   };
 
@@ -172,8 +177,19 @@ const WordForm: React.FC = () => {
             size="large"
             onClick={goToGoogleTranslateClick}
             disabled={!fields.word}
+            startIcon={<GTranslateIcon />}
           >
             Translate with Google
+          </Button>
+          <Button
+            className={classes.submitButton}
+            variant="outlined"
+            size="large"
+            onClick={goToWooordhuntTranslateClick}
+            disabled={!fields.word}
+            startIcon={<TranslateIcon />}
+          >
+            Translate with Wooordhunt
           </Button>
           {(savePending || updatePending || isLoading || isWordLoading) && (
             <LinearProgress className={classes.progress} />
