@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import TranslateIcon from '@material-ui/icons/Translate';
+import SchoolIcon from '@material-ui/icons/School';
 import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
 import { useParams, Redirect } from 'react-router-dom';
 import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
@@ -107,6 +108,11 @@ const WordForm: React.FC = () => {
     window.open(url);
   };
 
+  const goToCambridgeTranslateClick = () => {
+    const url = `https://dictionary.cambridge.org/dictionary/english-russian/${fields.word.trim()}`;
+    window.open(url);
+  };
+
   return React.useMemo(
     () => (
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -190,6 +196,16 @@ const WordForm: React.FC = () => {
             startIcon={<TranslateIcon />}
           >
             Translate with Wooordhunt
+          </Button>
+          <Button
+            className={classes.submitButton}
+            variant="outlined"
+            size="large"
+            onClick={goToCambridgeTranslateClick}
+            disabled={!fields.word}
+            startIcon={<SchoolIcon />}
+          >
+            Translate with Cambridge
           </Button>
           {(savePending || updatePending || isLoading || isWordLoading) && (
             <LinearProgress className={classes.progress} />
