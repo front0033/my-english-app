@@ -28,6 +28,10 @@ import TopicList from 'pages/TopicList';
 import WordList from 'pages/WordList';
 import NotFoundPage from 'pages/NotFound';
 import AboutPage from 'pages/About';
+import AccessNavigator from 'components/AccessNavigator';
+import SingInPage from 'pages/SignInPage';
+import SignUpPage from 'pages/SignUpPage';
+import ProfilePage from 'pages/ProfilePage';
 
 const theme = createTheme({}, ruRU);
 
@@ -71,35 +75,41 @@ const App: React.FC<IApp> = (): ReactElement => {
           </Grid>
         </AppBar>
         <CssBaseline />
-        <Switch>
-          <Route exact path={routes.main()}>
-            <MainPage />
-          </Route>
-          <Route exact path={routes.topic()}>
-            <TopicPage />
-          </Route>
-          <Route exact path={routes.editTopic()}>
-            <TopicPage />
-          </Route>
-          <Route exact path={routes.word()}>
-            <WordPage />
-          </Route>
-          <Route exact path={routes.editWord()}>
-            <WordPage />
-          </Route>
-          <Route exact path={routes.words()}>
-            <WordList />
-          </Route>
-          <Route exact path={routes.topics()}>
-            <TopicList />
-          </Route>
-          <Route exact path={routes.about()}>
-            <AboutPage />
-          </Route>
-          <Route>
-            <NotFoundPage />
-          </Route>
-        </Switch>
+        <AccessNavigator>
+          <Switch>
+            <Route exact path={routes.main()}>
+              <MainPage />
+            </Route>
+            <Route exact path={routes.signIn()} component={SingInPage} />
+            <Route exact path={routes.signUp()} component={SignUpPage} />
+            <Route exact path={routes.profile()} component={ProfilePage} />
+            <Route exact path={routes.topic()}>
+              <TopicPage />
+            </Route>
+            <Route exact path={routes.editTopic()}>
+              <TopicPage />
+            </Route>
+            <Route exact path={routes.word()}>
+              <WordPage />
+            </Route>
+            <Route exact path={routes.editWord()}>
+              <WordPage />
+            </Route>
+            <Route exact path={routes.words()}>
+              <WordList />
+            </Route>
+            <Route exact path={routes.topics()}>
+              <TopicList />
+            </Route>
+            <Route exact path={routes.about()}>
+              <AboutPage />
+            </Route>
+            <Route>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </AccessNavigator>
+
         <AppBottomNavigation items={toolbarConfig} currentValue={page} />
       </StylesProvider>
     </MuiThemeProvider>

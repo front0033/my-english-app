@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
 import { createApi } from '@reduxjs/toolkit/query/react';
-import graphqlBaseQuery, { DEV_API_URL } from 'api/baseQuery';
+import graphqlBaseQuery, { DEV_API_URL } from 'api/baseGraphqlQuery';
 import { ITopic } from '../topicsApi/topicSlice';
 
 export interface INewWord {
