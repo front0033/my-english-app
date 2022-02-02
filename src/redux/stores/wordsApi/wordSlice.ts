@@ -28,7 +28,7 @@ interface WordResponse {
 
 export const wordSlice = createApi({
   baseQuery: graphqlBaseQuery({
-    baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql`,
+    baseUrl: `${DEV_API_URL}/graphql`,
   }),
   reducerPath: 'wordsApi',
   tagTypes: ['Word'],

@@ -12,12 +12,12 @@ export type PostProfileRequest = Pick<IProfile, 'firstName' | 'lastName' | 'user
 // TODO: меняем на graphql
 export const profileApi = createApi({
   reducerPath: 'profileApi',
-  baseQuery: baseGraphqlQuery({ baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql` }),
+  baseQuery: baseGraphqlQuery({ baseUrl: `${DEV_API_URL}/graphql` }),
   endpoints: (builder) => ({
     // создаем новый профиль для юзера или обновляем его
     createOrUpdate: builder.mutation<ResponseDataStatus, PostProfileRequest>({
       async queryFn({ firstName, lastName, username }, queryApi, _extraOptions, apiClient) {
-        const { profile } = queryApi.getState() as { profile: IProfile };
+        const state = queryApi.getState() as { profile: { userProfile: IProfile } };
         try {
           const result = await apiClient({
             document: gql`
@@ -32,9 +32,10 @@ export const profileApi = createApi({
                 }
               }
             `,
-            variables: { userId: profile.user.userId, firstName, lastName, username },
+            variables: { userId: state.profile.userProfile.user.userId, firstName, lastName, username },
           });
-          queryApi.dispatch(setProfile(result.data as IProfile));
+
+          queryApi.dispatch(setProfile((result.data as { createProfile: IProfile }).createProfile ?? {}));
           return { data: ResponseDataStatus.success };
         } catch (error) {
           return { data: ResponseDataStatus.error };

@@ -78,6 +78,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ isSignUp, isLoading, isError, on
             <DialogContent>
               <Grid container direction="column">
                 <TextField
+                  id="english-words-username"
                   name="username"
                   className={classes.textField}
                   variant="outlined"
@@ -101,7 +102,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ isSignUp, isLoading, isError, on
                 <FormControl variant="outlined" className={classes.textField}>
                   <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
                   <OutlinedInput
-                    id="outlined-adornment-password"
+                    id="english-words-password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     value={values.password}

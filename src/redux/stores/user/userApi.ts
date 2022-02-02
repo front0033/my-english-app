@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
 import { DEV_API_URL } from 'api/baseGraphqlQuery';
-import X_CONNECT_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
+import ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
 import { setUser } from '../userProfile/userProfileSlice';
 
 export type UserId = string;
@@ -21,7 +21,7 @@ export interface UserRequest {
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: baseApiClient({ baseUrl: process.env.REACT_APP_WORDS_API_URL || DEV_API_URL }),
+  baseQuery: baseApiClient({ baseUrl: DEV_API_URL }),
   endpoints: (builder) => ({
     // создаем нового юзера
     createUser: builder.mutation<ResponseDataStatus, UserRequest>({
@@ -31,7 +31,7 @@ export const userApi = createApi({
           const user = result.data as User;
           // eslint-disable-next-line no-underscore-dangle
           const formatedUser = { ...user, _id: user.userId };
-          localStorage.setItem(X_CONNECT_LOCALSTORAGE_USER_KEY, formatedUser.userId);
+          localStorage.setItem(ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY, formatedUser.userId);
           queryApi.dispatch(setUser(formatedUser));
           return { data: ResponseDataStatus.success };
         } catch (error) {

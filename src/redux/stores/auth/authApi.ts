@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
 import { DEV_API_URL } from 'api/baseGraphqlQuery';
-import X_CONNECT_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
+import ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
 import { User, resetUserApi } from '../user/userApi';
 import { resetProfileApi } from '../userProfile/userProfileApi';
 import { IProfile, resetProfile, setProfile, setUser } from '../userProfile/userProfileSlice';
@@ -17,7 +17,7 @@ export interface GetUserRequest {
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: baseApiClient({ baseUrl: process.env.REACT_APP_WORDS_API_URL || DEV_API_URL }),
+  baseQuery: baseApiClient({ baseUrl: DEV_API_URL }),
   endpoints: (builder) => ({
     // получаем инфу о user
     getUser: builder.query<ResponseDataStatus, GetUserRequest>({
@@ -28,7 +28,7 @@ export const authApi = createApi({
           // eslint-disable-next-line no-underscore-dangle
           const formatedUser = { ...user, userId: user._id };
           const { userId } = formatedUser;
-          localStorage.setItem(X_CONNECT_LOCALSTORAGE_USER_KEY, userId);
+          localStorage.setItem(ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY, userId);
           queryApi.dispatch(setUser(formatedUser));
 
           const profileResult = await apiClient({ url: '/api/profile/me', method: 'GET', params: { userId } });
@@ -50,9 +50,9 @@ export const authApi = createApi({
           const userResult = await apiClient({ url: '/api/auth', method: 'POST', data: arg });
           const user = userResult.data as User;
           // eslint-disable-next-line no-underscore-dangle
-          const formatedUser = { ...user, userId: user._id };
+          const formatedUser = { ...user, userId: user.userId };
           const { userId } = formatedUser;
-          localStorage.setItem(X_CONNECT_LOCALSTORAGE_USER_KEY, userId);
+          localStorage.setItem(ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY, userId);
           queryApi.dispatch(setUser(formatedUser));
 
           const profileResult = await apiClient({ url: '/api/profile/me', method: 'GET', params: { userId } });
@@ -72,7 +72,7 @@ export const authApi = createApi({
       async queryFn(arg, queryApi, _extraOptions, apiClient) {
         try {
           await apiClient({ url: '/api/auth/logout', method: 'GET' });
-          localStorage.removeItem(X_CONNECT_LOCALSTORAGE_USER_KEY);
+          localStorage.removeItem(ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY);
           queryApi.dispatch(resetProfile());
           queryApi.dispatch(resetUserApi());
           queryApi.dispatch(resetProfileApi());

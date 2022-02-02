@@ -7,12 +7,12 @@ import { useLazyGetUserQuery } from 'redux/stores/auth/authApi';
 
 import routes from 'routes';
 
-import X_CONNECT_LOCALSTORAGE_USER_KEY from './constants';
+import ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY from './constants';
 
 // обеспечивает навигацию приложения в зависимости от доступа
 const AccessNavigator: React.FC = ({ children }) => {
   // единственное место где мы берем userId из localstorage
-  const localStorageUserId: string | null = localStorage.getItem(X_CONNECT_LOCALSTORAGE_USER_KEY);
+  const localStorageUserId: string | null = localStorage.getItem(ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY);
   const [
     getUser,
     { isLoading: isUserLoading, isFetching: isUserFetching, isError: isUserDataError },
