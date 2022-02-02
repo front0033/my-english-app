@@ -1,5 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseApiClient, { PROXY_URL, ResponseDataStatus } from 'api/baseApiClient';
+import { gql } from 'graphql-request';
+import { ResponseDataStatus } from 'api/baseApiClient';
+import baseGraphqlQuery, { DEV_API_URL } from 'api/baseGraphqlQuery';
 import { IProfile, setProfile } from './userProfileSlice';
 
 export interface ProfileRequest {
@@ -7,16 +9,31 @@ export interface ProfileRequest {
 }
 
 export type PostProfileRequest = Pick<IProfile, 'firstName' | 'lastName' | 'username'>;
-
+// TODO: меняем на graphql
 export const profileApi = createApi({
   reducerPath: 'profileApi',
-  baseQuery: baseApiClient({ baseUrl: PROXY_URL }),
+  baseQuery: baseGraphqlQuery({ baseUrl: `${process.env.REACT_APP_WORDS_API_URL || DEV_API_URL}/graphql` }),
   endpoints: (builder) => ({
     // создаем новый профиль для юзера или обновляем его
     createOrUpdate: builder.mutation<ResponseDataStatus, PostProfileRequest>({
-      async queryFn(arg, queryApi, _extraOptions, apiClient) {
+      async queryFn({ firstName, lastName, username }, queryApi, _extraOptions, apiClient) {
+        const { profile } = queryApi.getState() as { profile: IProfile };
         try {
-          const result = await apiClient({ url: '/api/profile/', method: 'POST', data: arg });
+          const result = await apiClient({
+            document: gql`
+              mutation($userId: ID!, $firstName: String!, $lastName: String!, $username: String!) {
+                createProfile(userId: $userId, firstName: $firstName, lastName: $lastName, username: $username) {
+                  firstName
+                  lastName
+                  username
+                  user {
+                    id
+                  }
+                }
+              }
+            `,
+            variables: { userId: profile.user.userId, firstName, lastName, username },
+          });
           queryApi.dispatch(setProfile(result.data as IProfile));
           return { data: ResponseDataStatus.success };
         } catch (error) {
@@ -24,18 +41,25 @@ export const profileApi = createApi({
         }
       },
     }),
-    // получаем все профили
-    getAllProfiles: builder.query<IProfile[], void>({
-      query: () => ({
-        url: '/api/profile',
-        method: 'GET',
-      }),
-    }),
     // получаем профиль юзера по userId
     getProfileByUserId: builder.query<ResponseDataStatus, ProfileRequest>({
-      async queryFn(arg, queryApi, _extraOptions, apiClient) {
+      async queryFn({ userId }, queryApi, _extraOptions, apiClient) {
         try {
-          const result = await apiClient({ url: '/api/profile/me', method: 'GET', params: arg });
+          const result = await apiClient({
+            document: gql`
+              query($userId: ID!) {
+                getMe(userId: $userId) {
+                  firstName
+                  lastName
+                  username
+                  user {
+                    id
+                  }
+                }
+              }
+            `,
+            variables: { userId },
+          });
           queryApi.dispatch(setProfile(result.data as IProfile));
           return { data: ResponseDataStatus.success };
         } catch (error) {
@@ -45,10 +69,17 @@ export const profileApi = createApi({
     }),
     // удаляем профиль юзера по userId
     deleteProfile: builder.query<IProfile, ProfileRequest>({
-      query: (data) => ({
-        url: '/api/profile',
-        method: 'DELETE',
-        data,
+      query: ({ userId }) => ({
+        document: gql`
+          mutation($userId: ID!) {
+            deleteProfile(userId: $userId) {
+              user {
+                id
+              }
+            }
+          }
+        `,
+        variables: { userId },
       }),
     }),
   }),
@@ -59,7 +90,6 @@ export const resetProfileApi = profileApi.util.resetApiState;
 
 export const {
   useCreateOrUpdateMutation,
-  useGetAllProfilesQuery,
   useGetProfileByUserIdQuery,
   useLazyGetProfileByUserIdQuery,
   useDeleteProfileQuery,

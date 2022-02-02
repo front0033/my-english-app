@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseApiClient, { PROXY_URL, ResponseDataStatus } from 'api/baseApiClient';
+import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
+import { DEV_API_URL } from 'api/baseGraphqlQuery';
 import X_CONNECT_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
 import { setUser } from '../userProfile/userProfileSlice';
 
@@ -20,7 +21,7 @@ export interface UserRequest {
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: baseApiClient({ baseUrl: PROXY_URL }),
+  baseQuery: baseApiClient({ baseUrl: process.env.REACT_APP_WORDS_API_URL || DEV_API_URL }),
   endpoints: (builder) => ({
     // создаем нового юзера
     createUser: builder.mutation<ResponseDataStatus, UserRequest>({

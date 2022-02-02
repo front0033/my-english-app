@@ -2,8 +2,6 @@ import { BaseQueryFn } from '@reduxjs/toolkit/query';
 import axios, { AxiosRequestConfig, AxiosError } from 'axios';
 import { setError } from 'redux/stores/apiErrors/apiErrorsSlice';
 
-export const PROXY_URL = '/api/chat';
-
 export enum ResponseDataStatus {
   success = 'success',
   error = 'error',
