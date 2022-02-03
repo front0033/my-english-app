@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) =>
       height: 50,
     },
     title: {
-      marginTop: 3,
-      fontSize: 18,
+      marginLeft: 8,
+      textDecoration: 'none',
+      color: theme.palette.common.white,
     },
   })
 );
