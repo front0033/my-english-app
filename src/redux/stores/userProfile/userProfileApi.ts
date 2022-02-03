@@ -1,7 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { gql } from 'graphql-request';
-import { ResponseDataStatus } from 'api/baseApiClient';
-import baseGraphqlQuery, { DEV_API_URL } from 'api/baseGraphqlQuery';
+import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
+import { API_URL } from 'api/constant';
 import { IProfile, setProfile } from './userProfileSlice';
 
 export interface ProfileRequest {
@@ -9,58 +8,35 @@ export interface ProfileRequest {
 }
 
 export type PostProfileRequest = Pick<IProfile, 'firstName' | 'lastName' | 'username'>;
-// TODO: меняем на graphql
+
 export const profileApi = createApi({
   reducerPath: 'profileApi',
-  baseQuery: baseGraphqlQuery({ baseUrl: `${DEV_API_URL}/graphql` }),
+  baseQuery: baseApiClient({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     // создаем новый профиль для юзера или обновляем его
     createOrUpdate: builder.mutation<ResponseDataStatus, PostProfileRequest>({
-      async queryFn({ firstName, lastName, username }, queryApi, _extraOptions, apiClient) {
-        const state = queryApi.getState() as { profile: { userProfile: IProfile } };
+      async queryFn(arg, queryApi, _extraOptions, apiClient) {
         try {
-          const result = await apiClient({
-            document: gql`
-              mutation($userId: ID!, $firstName: String!, $lastName: String!, $username: String!) {
-                createProfile(userId: $userId, firstName: $firstName, lastName: $lastName, username: $username) {
-                  firstName
-                  lastName
-                  username
-                  user {
-                    id
-                  }
-                }
-              }
-            `,
-            variables: { userId: state.profile.userProfile.user.userId, firstName, lastName, username },
-          });
-
-          queryApi.dispatch(setProfile((result.data as { createProfile: IProfile }).createProfile ?? {}));
+          const result = await apiClient({ url: '/api/profile/', method: 'POST', data: arg });
+          queryApi.dispatch(setProfile(result.data as IProfile));
           return { data: ResponseDataStatus.success };
         } catch (error) {
           return { data: ResponseDataStatus.error };
         }
       },
     }),
+    // получаем все профили
+    getAllProfiles: builder.query<IProfile[], void>({
+      query: () => ({
+        url: '/api/profile',
+        method: 'GET',
+      }),
+    }),
     // получаем профиль юзера по userId
     getProfileByUserId: builder.query<ResponseDataStatus, ProfileRequest>({
-      async queryFn({ userId }, queryApi, _extraOptions, apiClient) {
+      async queryFn(arg, queryApi, _extraOptions, apiClient) {
         try {
-          const result = await apiClient({
-            document: gql`
-              query($userId: ID!) {
-                getMe(userId: $userId) {
-                  firstName
-                  lastName
-                  username
-                  user {
-                    id
-                  }
-                }
-              }
-            `,
-            variables: { userId },
-          });
+          const result = await apiClient({ url: '/api/profile/me', method: 'GET', params: arg });
           queryApi.dispatch(setProfile(result.data as IProfile));
           return { data: ResponseDataStatus.success };
         } catch (error) {
@@ -70,17 +46,10 @@ export const profileApi = createApi({
     }),
     // удаляем профиль юзера по userId
     deleteProfile: builder.query<IProfile, ProfileRequest>({
-      query: ({ userId }) => ({
-        document: gql`
-          mutation($userId: ID!) {
-            deleteProfile(userId: $userId) {
-              user {
-                id
-              }
-            }
-          }
-        `,
-        variables: { userId },
+      query: (data) => ({
+        url: '/api/profile',
+        method: 'DELETE',
+        data,
       }),
     }),
   }),
@@ -91,6 +60,7 @@ export const resetProfileApi = profileApi.util.resetApiState;
 
 export const {
   useCreateOrUpdateMutation,
+  useGetAllProfilesQuery,
   useGetProfileByUserIdQuery,
   useLazyGetProfileByUserIdQuery,
   useDeleteProfileQuery,

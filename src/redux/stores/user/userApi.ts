@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
-import { DEV_API_URL } from 'api/baseGraphqlQuery';
+import { API_URL } from 'api/constant';
+
 import ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
 import { setUser } from '../userProfile/userProfileSlice';
 
@@ -21,7 +22,7 @@ export interface UserRequest {
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: baseApiClient({ baseUrl: DEV_API_URL }),
+  baseQuery: baseApiClient({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     // создаем нового юзера
     createUser: builder.mutation<ResponseDataStatus, UserRequest>({

@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseApiClient, { ResponseDataStatus } from 'api/baseApiClient';
-import { DEV_API_URL } from 'api/baseGraphqlQuery';
+import { API_URL } from 'api/constant';
 import ENGLISH_WORDS_APP_LOCALSTORAGE_USER_KEY from 'components/AccessNavigator/constants';
 import { User, resetUserApi } from '../user/userApi';
 import { resetProfileApi } from '../userProfile/userProfileApi';
@@ -17,7 +17,7 @@ export interface GetUserRequest {
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: baseApiClient({ baseUrl: DEV_API_URL }),
+  baseQuery: baseApiClient({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     // получаем инфу о user
     getUser: builder.query<ResponseDataStatus, GetUserRequest>({
