@@ -36,7 +36,7 @@ const DefaultLayout: React.FC<IDefaultLayoutProps> = ({ page, id, children }) =>
               <ArrowBackIosOutlinedIcon style={{ color: colors.common.white }} />
             </IconButton>
           )}
-          <Typography component={Link} to={routes.about()} variant="h6" className={classes.title}>
+          <Typography component={Link} to={routes.about()} variant="h6" className={classes.title} noWrap>
             ENGLISH CARDS
           </Typography>
           <SelectPageMenu />
