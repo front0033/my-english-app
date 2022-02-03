@@ -84,7 +84,7 @@ const UserInfoWithExitAction: React.FC<IUserInfoWithExitActionProps> = ({ userNa
               horizontal: 'center',
             }}
           >
-            <Grid container direction="column" justify="center" alignItems="center">
+            <Grid container direction="column" justifyContent="center" alignItems="center">
               <Typography className={classes.typography}>{userName}</Typography>
               <Button
                 className={classes.button}
