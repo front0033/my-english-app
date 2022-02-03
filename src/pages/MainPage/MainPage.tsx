@@ -4,13 +4,20 @@ import * as React from 'react';
 import { TextField, MenuItem, Grid, Typography, LinearProgress } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useGetTopicsQuery } from 'redux/stores/topicsApi/topicSlice';
+import { useAppSelector } from 'redux/hooks';
 
 import useStyles from './styles';
 import Words from './Words';
 
 const MainPage = () => {
   const classes = useStyles();
-  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopicsQuery({});
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
+  const {
+    data,
+    isSuccess: isTopicSuccess,
+    isLoading: isTopicLoading,
+    isError: isTopicsError,
+  } = useGetTopicsQuery(user?.userId ?? '', { skip: !user });
   const [topicId, setTopicId] = React.useState<string>('');
 
   const topics = data || [];
@@ -37,7 +44,11 @@ const MainPage = () => {
           <LinearProgress className={classes.progress} />
         </Grid>
       )}
-      {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
+      {isTopicSuccess && !topics.length && (
+        <Alert severity="info" className={classes.emptyDataAlert}>
+          Topics are missing. Please press +
+        </Alert>
+      )}
       {isTopicSuccess && !!topicId && (
         <Grid className={classes.container} container direction="column" wrap="nowrap">
           <TextField

@@ -22,12 +22,13 @@ const WordList: React.FC = () => {
   const classes = useStyles();
   const { topicId } = useAppSelector((store) => store.topic);
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
   const {
     data: topicData,
     isSuccess: isTopicSuccess,
     isLoading: isTopicLoading,
     isError: isTopicsError,
-  } = useGetTopicsQuery({});
+  } = useGetTopicsQuery(user?.userId ?? '', { skip: !user });
 
   const handleChange = (panel: string) => (_event: React.ChangeEvent<{}>, isExpanded: boolean) => {
     dispatch(setTopicIdAction(isExpanded ? panel : false));
@@ -47,13 +48,18 @@ const WordList: React.FC = () => {
           </Grid>
         )}
         {isTopicsError && <Alert severity="error">topics: server error</Alert>}
-        {isTopicSuccess && (
+        {isTopicSuccess && !topics.length && (
+          <Alert severity="info" className={classes.emptyDataAlert}>
+            Topics are missing. Please press +
+          </Alert>
+        )}
+        {isTopicSuccess && !!topics.length && (
           <List>
             {topics.map((topic) => (
               <Accordion key={topic.id} expanded={topicId === topic.id} onChange={handleChange(topic.id)}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`${topic.id}bh-content`}
+                  aria-controls={`${topic.id}-bh-content`}
                   id={`${topic.id}-bh-header`}
                 >
                   <Typography className={classes.heading}>{topic.name}</Typography>

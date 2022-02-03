@@ -10,6 +10,7 @@ import {
 import { Alert } from '@material-ui/lab';
 import { useParams, Redirect } from 'react-router-dom';
 import routes from 'routes';
+import { useAppSelector } from 'redux/hooks';
 
 import useStyles from './styles';
 
@@ -20,13 +21,17 @@ const TopicForm: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
   const [value, setValue] = React.useState(defaultValue);
   const [showSnackbar, setShowSnackbar] = React.useState(false);
-  const { isLoading: isTopicsLoading } = useGetTopicsQuery({});
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
+  const { isLoading: isTopicsLoading } = useGetTopicsQuery(user?.userId ?? '', { skip: !user });
   const [addTopic, { isLoading, isError }] = useAddTopicMutation({});
   const [updateTopic, { isLoading: isUpdating, isError: isUpdateError, isSuccess }] = useUpdateTopicMutation({});
 
-  const { data: editedTopic, isLoading: isWordLoading, isError: IsWordError } = useGetTopicQuery(topicId, {
-    skip: !topicId,
-  });
+  const { data: editedTopic, isLoading: isWordLoading, isError: isGetTopicError } = useGetTopicQuery(
+    { id: topicId, userId: user?.userId ?? '' },
+    {
+      skip: !topicId || !user,
+    }
+  );
 
   React.useEffect(() => {
     if (editedTopic) {
@@ -45,11 +50,11 @@ const TopicForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (topicId) {
-      updateTopic({ id: topicId, name: value }).then(() => {
+      updateTopic({ id: topicId, userId: user?.userId ?? '', name: value }).then(() => {
         setShowSnackbar(true);
       });
     } else {
-      addTopic(value).then(() => {
+      addTopic({ name: value, userId: user?.userId ?? '' }).then(() => {
         handleResetClick();
         setShowSnackbar(true);
       });
@@ -88,9 +93,14 @@ const TopicForm: React.FC = () => {
           {(isLoading || isUpdating || isWordLoading || isTopicsLoading) && (
             <LinearProgress className={classes.progress} />
           )}
-          {(isError || isUpdateError || IsWordError) && (
+          {(isError || isUpdateError) && (
             <Alert severity="error" className={classes.error}>
               saving: server error
+            </Alert>
+          )}
+          {isGetTopicError && (
+            <Alert severity="error" className={classes.error}>
+              get topic: server error
             </Alert>
           )}
           <Snackbar open={showSnackbar} autoHideDuration={1500} onClose={handleHideSnackBar}>
@@ -102,7 +112,7 @@ const TopicForm: React.FC = () => {
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      IsWordError,
+      isGetTopicError,
       isError,
       isLoading,
       isSuccess,

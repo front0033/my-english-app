@@ -19,6 +19,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
 import { Alert } from '@material-ui/lab';
 import routes from 'routes';
+import { useAppSelector } from 'redux/hooks';
 
 import useStyles from './styles';
 
@@ -43,9 +44,10 @@ const WordForm: React.FC = () => {
   const { wordId } = useParams<{ wordId: string }>();
   const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [fields, setFields] = React.useState<IFields>(initialFields);
-
-  // query
-  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
+  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery(user?.userId ?? '', {
+    skip: !user,
+  });
   const {
     data: wordData,
     isLoading: isWordLoading,

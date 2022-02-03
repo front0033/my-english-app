@@ -24,6 +24,8 @@ interface TopicResponse {
   topic: ITopic;
 }
 
+type UserId = string;
+
 export const topicSlice = createApi({
   baseQuery: graphqlBaseQuery({
     baseUrl: `${API_URL}/graphql`,
@@ -31,17 +33,17 @@ export const topicSlice = createApi({
   tagTypes: ['Topic'],
   reducerPath: 'topicsApi',
   endpoints: (builder) => ({
-    getTopics: builder.query<GetTopicsResponse['topics'], {}>({
-      query: () => ({
+    getTopics: builder.query<GetTopicsResponse['topics'], UserId>({
+      query: (userId) => ({
         document: gql`
-          query {
-            topics {
+          query($userId: ID!) {
+            topics(userId: $userId) {
               id
               name
             }
           }
         `,
-        variables: {},
+        variables: { userId },
       }),
       providesTags: (result) =>
         result
@@ -50,47 +52,47 @@ export const topicSlice = createApi({
       transformResponse: (response: GetTopicsResponse): GetTopicsResponse['topics'] =>
         [...(response.topics || [])].reverse(),
     }),
-    getTopic: builder.query<ITopic, string>({
-      query: (id) => ({
+    getTopic: builder.query<ITopic, { id: string; userId: string }>({
+      query: ({ id, userId }) => ({
         document: gql`
-          query($id: ID!) {
-            topic(id: $id) {
+          query($id: ID!, $userId: ID!) {
+            topic(id: $id, userId: $userId) {
               id
               name
             }
           }
         `,
-        variables: { id },
+        variables: { id, userId },
       }),
       providesTags: ['Topic'],
       transformResponse: (response: TopicResponse) => response.topic,
     }),
-    addTopic: builder.mutation<IAddResponse['addTopic'], string>({
-      query: (name) => ({
+    addTopic: builder.mutation<IAddResponse['addTopic'], { name: string; userId: UserId }>({
+      query: ({ name, userId }) => ({
         document: gql`
-          mutation($name: String!) {
-            addTopic(name: $name) {
+          mutation($name: String!, $userId: ID!) {
+            addTopic(name: $name, userId: $userId) {
               id
               name
             }
           }
         `,
-        variables: { name },
+        variables: { name, userId },
       }),
       transformResponse: (response: IAddResponse) => response.addTopic,
       invalidatesTags: [{ type: 'Topic', id: 'LIST' }],
     }),
-    updateTopic: builder.mutation<IUpdateTopic['updateTopic'], ITopic>({
-      query: ({ id, name }) => ({
+    updateTopic: builder.mutation<IUpdateTopic['updateTopic'], ITopic & { userId: UserId }>({
+      query: ({ id, userId, name }) => ({
         document: gql`
-          mutation($id: ID, $name: String) {
-            updateTopic(id: $id, name: $name) {
+          mutation($id: ID!, $name: String!, $userId: ID!) {
+            updateTopic(id: $id, name: $name, userId: $userId) {
               id
               name
             }
           }
         `,
-        variables: { id, name },
+        variables: { id, userId, name },
       }),
       invalidatesTags: ['Topic'],
       transformResponse: (response: IUpdateTopic) => response.updateTopic,

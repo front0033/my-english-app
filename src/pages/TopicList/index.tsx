@@ -15,13 +15,21 @@ import { Alert } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 import routes from 'routes';
 import { useGetTopicsQuery, useDeleteTopicMutation } from 'redux/stores/topicsApi/topicSlice';
+import { useAppSelector } from 'redux/hooks';
 import DeleteButtonWithConfirmDialog from 'components/DeleteButtonWithConfirmDialog';
 
 import useStyles from './styles';
 
 const TopicList: React.FC = () => {
   const classes = useStyles();
-  const { data, isSuccess: isTopicSuccess, isLoading: isTopicLoading, isError: isTopicsError } = useGetTopicsQuery({});
+
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
+  const {
+    data,
+    isSuccess: isTopicSuccess,
+    isLoading: isTopicLoading,
+    isError: isTopicsError,
+  } = useGetTopicsQuery(user?.userId ?? '', { skip: !user });
   const [deleteTopic] = useDeleteTopicMutation();
 
   const topics = data || [];
@@ -41,7 +49,11 @@ const TopicList: React.FC = () => {
           <LinearProgress className={classes.progress} />
         </Grid>
       )}
-      {isTopicSuccess && !topics.length && <Alert severity="info">Topics are missing.</Alert>}
+      {isTopicSuccess && !topics.length && (
+        <Alert severity="info" className={classes.emptyDataAlert}>
+          Topics are missing. Please press +
+        </Alert>
+      )}
       {isTopicSuccess && !!topics.length && (
         <List className={classes.list}>
           {topics.map((topic) => (
