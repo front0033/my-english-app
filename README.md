@@ -23,7 +23,7 @@ docker run --rm -d\
  -e REACT_APP_WORDS_GOOGLE_TRANSLATE_URL=https://translate.google.com/?hl=ru&sl=en&tl=ru&text=\
  -e REACT_APP_WOOORDHUNT_URL=https://wooordhunt.ru/word/\
  -e REACT_APP_GAMBRIDGE_URL=https://dictionary.cambridge.org/dictionary/english-russian/\
- -p 8080:27182 nlp-test-28
+ -p 8080:27182 english-cards
 
 ## Available Scripts
 
