@@ -48,9 +48,15 @@ const App: React.FC<IApp> = (): ReactElement => {
               <Route exact path={routes.main()}>
                 <MainPage />
               </Route>
-              <Route exact path={routes.signIn()} component={SingInPage} />
-              <Route exact path={routes.signUp()} component={SignUpPage} />
-              <Route exact path={routes.profile()} component={ProfilePage} />
+              <Route exact path={routes.signIn()}>
+                <SingInPage />
+              </Route>
+              <Route exact path={routes.signUp()}>
+                <SignUpPage />
+              </Route>
+              <Route exact path={routes.profile()}>
+                <ProfilePage />
+              </Route>
               <Route exact path={routes.topic()}>
                 <TopicPage />
               </Route>
