@@ -19,6 +19,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import { useAddWordMutation, useGetWordQuery, useUpdateWordMutation } from 'redux/stores/wordsApi/wordSlice';
 import { Alert } from '@material-ui/lab';
 import routes from 'routes';
+import { useAppSelector } from 'redux/hooks';
 
 import useStyles from './styles';
 
@@ -43,9 +44,10 @@ const WordForm: React.FC = () => {
   const { wordId } = useParams<{ wordId: string }>();
   const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [fields, setFields] = React.useState<IFields>(initialFields);
-
-  // query
-  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery({});
+  const { user } = useAppSelector((store) => store.profile.userProfile) || {};
+  const { data: topics = [], isLoading, error, isSuccess: isTopicsSuccess } = useGetTopicsQuery(user?.userId ?? '', {
+    skip: !user,
+  });
   const {
     data: wordData,
     isLoading: isWordLoading,
@@ -99,17 +101,17 @@ const WordForm: React.FC = () => {
   const handleHideSnackBar = () => setShowSnackbar(false);
 
   const goToGoogleTranslateClick = () => {
-    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_WORDS_GOOGLE_TRANSLATE_URL}${fields.word.trim()}`;
     window.open(url);
   };
 
   const goToWooordhuntTranslateClick = () => {
-    const url = `https://wooordhunt.ru/word/${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_WOOORDHUNT_URL}${fields.word.trim()}`;
     window.open(url);
   };
 
   const goToCambridgeTranslateClick = () => {
-    const url = `https://dictionary.cambridge.org/dictionary/english-russian/${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_GAMBRIDGE_URL}${fields.word.trim()}`;
     window.open(url);
   };
 

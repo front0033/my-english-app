@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       paddingBottom: theme.spacing(7),
     },
+    emptyDataAlert: {
+      marginTop: theme.spacing(2),
+    },
   })
 );
 

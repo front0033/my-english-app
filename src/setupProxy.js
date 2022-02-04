@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const proxies = [
   {
     target: process.env.REACT_APP_WORDS_API_URL,
-    url: '/words',
+    url: '/api/english-words',
   },
 ];
 

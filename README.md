@@ -6,6 +6,25 @@ Example of my programming skills
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment
+
+- REACT_APP_WORDS_API_URL - api url, example - https://english-words-backend.herokuapp.com/ (slash is required),
+- REACT_APP_WORDS_GOOGLE_TRANSLATE_URL - google translate url, for redurect with current word. Example -
+  https://translate.google.com/?hl=ru&sl=en&tl=ru&text=
+- REACT_APP_WOOORDHUNT_URL - wooordhunt translate url, for redurect with current word. Example -
+  https://wooordhunt.ru/word/
+- REACT_APP_GAMBRIDGE_URL - canbridge translate url, for redurect with current word. Example -
+  https://dictionary.cambridge.org/dictionary/english-russian/
+
+## Deploy example (Docker)
+
+docker run --rm -d\
+ -e REACT_APP_WORDS_API_URL=https://english-words-backend.herokuapp.com/\ 
+ -e REACT_APP_WORDS_GOOGLE_TRANSLATE_URL=https://translate.google.com/?hl=ru&sl=en&tl=ru&text=\
+ -e REACT_APP_WOOORDHUNT_URL=https://wooordhunt.ru/word/\
+ -e REACT_APP_GAMBRIDGE_URL=https://dictionary.cambridge.org/dictionary/english-russian/\
+ -p 8080:27182 nlp-test-28
+
 ## Available Scripts
 
 In the project directory, you can run:

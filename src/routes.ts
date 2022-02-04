@@ -1,6 +1,9 @@
 const routes = {
   main: () => '/',
   auth: () => '/auth',
+  signIn: () => '/sign-in',
+  signUp: () => '/sign-up',
+  profile: () => '/profile',
   topic: () => '/topic',
   word: () => '/word',
   topics: () => '/topics',

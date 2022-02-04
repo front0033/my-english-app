@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 29,
       wordBreak: 'break-word',
     },
+    emptyDataAlert: {
+      marginTop: theme.spacing(7),
+    },
   })
 );
 
