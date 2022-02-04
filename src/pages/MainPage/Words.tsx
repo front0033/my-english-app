@@ -42,7 +42,7 @@ const Words: React.FC<IWordsProps> = ({ topicId }) => {
   };
 
   const goToGoogleTranslateClick = () => {
-    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${words[activeIndex].word.trim()}`;
+    const url = `${process.env.REACT_APP_WORDS_GOOGLE_TRANSLATE_URL}${words[activeIndex].word.trim()}`;
     window.open(url);
   };
 

@@ -101,17 +101,17 @@ const WordForm: React.FC = () => {
   const handleHideSnackBar = () => setShowSnackbar(false);
 
   const goToGoogleTranslateClick = () => {
-    const url = `https://translate.google.com/?hl=ru&sl=en&tl=ru&text=${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_WORDS_GOOGLE_TRANSLATE_URL}${fields.word.trim()}`;
     window.open(url);
   };
 
   const goToWooordhuntTranslateClick = () => {
-    const url = `https://wooordhunt.ru/word/${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_WOOORDHUNT_URL}${fields.word.trim()}`;
     window.open(url);
   };
 
   const goToCambridgeTranslateClick = () => {
-    const url = `https://dictionary.cambridge.org/dictionary/english-russian/${fields.word.trim()}`;
+    const url = `${process.env.REACT_APP_GAMBRIDGE_URL}${fields.word.trim()}`;
     window.open(url);
   };
 
